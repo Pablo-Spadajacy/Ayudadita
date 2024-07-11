@@ -16,7 +16,7 @@ public class ServUsuario {
 	
 	public Usuario register(Usuario newUser, BindingResult result) {
 		
-		String password = newUser.getContraseña();
+		String password = newUser.getContrasenna();
 		String confirm = newUser.getConfirmar();
 		if(!password.equals(confirm)) {
 			result.rejectValue("confirm", "Matches", "La contraseña no esta confirmada");
@@ -31,7 +31,7 @@ public class ServUsuario {
 			return null;
 		} else {
 			String pass_hash = BCrypt.hashpw(password, BCrypt.gensalt());
-			newUser.setContraseña(pass_hash);
+			newUser.setContrasenna(pass_hash);
 			return RepoU.save(newUser);
 		}
 		
@@ -47,7 +47,7 @@ public class ServUsuario {
 		
 		//Comparar las contraseñas
 		//BCrypt.checkpw(Contra NO encriptada, Contra SI encriptada) -> True o False
-		if(BCrypt.checkpw(password, userTryingLogin.getContraseña())) {
+		if(BCrypt.checkpw(password, userTryingLogin.getContrasenna())) {
 			return userTryingLogin;
 		} else {
 			return null;

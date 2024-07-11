@@ -39,7 +39,7 @@ public class Usuario {
 	
 	@NotEmpty(message="Se requiere contraseña")
 	@Size(min= 6, message="La contraseña requiere al menos 6 caracteres")
-	private String contraseña;
+	private String contrasenna;
 	
 	@Transient
 	private String confirmar;
@@ -91,12 +91,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenna() {
+		return contrasenna;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenna(String contrasenna) {
+		this.contrasenna = contrasenna;
 	}
 
 	public String getConfirmar() {
