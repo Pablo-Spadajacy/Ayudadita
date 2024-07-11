@@ -44,6 +44,11 @@ public class Usuario {
 	@Transient
 	private String confirmar;
 	
+	@NotEmpty(message= "Se requiere una facultad")
+	private String facultad;
+	
+	@NotEmpty(message= "Se requiere una carrera")
+	private String carrera;
 
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
