@@ -26,9 +26,9 @@
 						<form:errors path="apellido" class="text-danger"/>
 					</div>
 					<div>
-						<form:label path="correo">Correo</form:label>
-						<form:input path="correo" class="form-control"/>
-						<form:errors path="correo" class="text-danger"/>
+						<form:label path="email">Correo</form:label>
+						<form:input path="email" class="form-control"/>
+						<form:errors path="email" class="text-danger"/>
 					</div>
 					<div>
 						<form:label path="contrasenna">Contraseña</form:label>
@@ -40,7 +40,23 @@
 						<form:password path="confirmar" class="form-control"/>
 						<form:errors path="confirmar" class="text-danger"/>
 					</div>
-					<input type="submit" class="btn btn-primary" value="Registro">
+					<div>
+						<form:select path="facultad" class="form-select mt-3">
+							<c:forEach items="${listaFacultades}" var="facultad">
+								<form:option value="${facultad}">${facultad}</form:option>
+							</c:forEach>
+						</form:select>
+						<form:errors path="facultad" class="text-danger"/>
+					</div>
+					<div>
+						<form:select path="carrera" class="form-select mt-3">
+							<c:forEach items="${listaCarreras}" var="carrera">
+								<form:option value="${carrera}">${carrera}</form:option>
+							</c:forEach>
+						</form:select>
+						<form:errors path="facultad" class="text-danger"/>
+					</div>
+					<input type="submit" class="btn btn-primary" value="Registro mt-3">
 				</form:form>
 			</div>
 			<div class="col-6">

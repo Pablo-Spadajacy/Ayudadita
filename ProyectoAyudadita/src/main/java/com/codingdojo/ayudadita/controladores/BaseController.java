@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.codingdojo.ayudadita.modelos.Carrera;
+import com.codingdojo.ayudadita.modelos.Facultad;
 import com.codingdojo.ayudadita.modelos.Usuario;
 import com.codingdojo.ayudadita.servicios.ServUsuario;
 
@@ -26,6 +28,9 @@ public class BaseController {
 	@GetMapping("/")
 	public String index(@ModelAttribute("newUser") Usuario newUser, Model model) {
 		
+		model.addAttribute("listaFacultades", Facultad.Facultades);
+		model.addAttribute("listaCarreras", Carrera.Carreras);
+		
 		return "index.jsp";
 	}
 	
@@ -37,6 +42,8 @@ public class BaseController {
 		us.register(newUser, result);
 		
 		if(result.hasErrors()) {
+			model.addAttribute("listaFacultades", Facultad.Facultades);
+			model.addAttribute("listaCarreras", Carrera.Carreras);
 			return "index.jsp";
 		} else {
 			session.setAttribute("userInSession", newUser);

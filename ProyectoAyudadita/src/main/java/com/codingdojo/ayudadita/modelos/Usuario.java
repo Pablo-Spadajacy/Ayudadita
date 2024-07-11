@@ -105,6 +105,22 @@ public class Usuario {
 
 	public void setConfirmar(String confirmar) {
 		this.confirmar = confirmar;
+	}	
+	
+	public String getFacultad() {
+		return facultad;
+	}
+
+	public void setFacultad(String facultad) {
+		this.facultad = facultad;
+	}
+
+	public String getCarrera() {
+		return carrera;
+	}
+
+	public void setCarrera(String carrera) {
+		this.carrera = carrera;
 	}
 
 	public Date getCreatedAt() {

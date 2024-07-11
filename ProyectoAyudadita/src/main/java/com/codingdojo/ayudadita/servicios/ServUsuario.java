@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.codingdojo.ayudadita.modelos.Usuario;
 import com.codingdojo.ayudadita.repositorios.RepositorioUsuario;
 
-
+@Service
 public class ServUsuario {
+	
 	@Autowired
 	private RepositorioUsuario RepoU;
 	
@@ -19,7 +21,7 @@ public class ServUsuario {
 		String password = newUser.getContrasenna();
 		String confirm = newUser.getConfirmar();
 		if(!password.equals(confirm)) {
-			result.rejectValue("confirm", "Matches", "La contraseña no esta confirmada");
+			result.rejectValue("confirmar", "Matches", "La contraseña no esta confirmada");
 		}
 		String email = newUser.getEmail();
 		Usuario userExist = RepoU.findByEmail(email);
