@@ -52,7 +52,7 @@ public class BaseController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestParam("email") String email,
+	public String login(@RequestParam("correo") String email,
 						@RequestParam("password") String password,
 						RedirectAttributes redirectAttributes, /*usar mensajes de Flash*/   
 						HttpSession session){
@@ -65,7 +65,7 @@ public class BaseController {
 			return "redirect:/";
 		} else {
 			session.setAttribute("userInSession", userTryingLogin); //Guardando en sesión el objeto de User
-			return "redirect:/tasks";
+			return "redirect:/dashboard";
 		}
 		
 	}

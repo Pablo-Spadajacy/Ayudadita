@@ -56,7 +56,7 @@
 						</form:select>
 						<form:errors path="facultad" class="text-danger"/>
 					</div>
-					<input type="submit" class="btn btn-primary" value="Registro mt-3">
+					<input type="submit" class="btn btn-primary  mt-3" value="Registro">
 				</form:form>
 			</div>
 			<div class="col-6">
@@ -69,7 +69,7 @@
 					</div>
 					<div>
 						<label>Contraseña:</label>
-						<input type="password" class="form-control" name="contraseña" >
+						<input type="password" class="form-control" name="password" >
 					</div>
 					<input type="submit" class="btn btn-info mt-3" value="Iniciar sesion" >
 				</form>
