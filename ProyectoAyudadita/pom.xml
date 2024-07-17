@@ -77,8 +77,7 @@
             <version>0.4</version>
         </dependency>
 		<!--Hasheo (le coloca sal a la contraseña -->
-		
-	</dependencies>
+		</dependencies>
 
 	<build>
 		<plugins>

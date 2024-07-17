@@ -26,7 +26,7 @@ public class ImgServicio {
 	        
 	        String nombreOriginal = file.getOriginalFilename();
 	        String nombreUnico = generarNombreUnico(nombreOriginal);
-	        Path path = Paths.get("src/main/resources/static/img/" + nombreUnico);
+	        Path path = Paths.get("src/main/webapp/img/" + nombreUnico);
 	        Files.write(path, bytes);
 	        
 	        Usuario usuario = us.findUser(id);
