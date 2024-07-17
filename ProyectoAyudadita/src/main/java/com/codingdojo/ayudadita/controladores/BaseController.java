@@ -47,6 +47,7 @@ public class BaseController {
 			return "index.jsp";
 		} else {
 			session.setAttribute("userInSession", newUser);
+			model.addAttribute("listaAlumnos", us.findAllUsers());
 			return "dashboard.jsp";
 		}
 	}
@@ -65,7 +66,7 @@ public class BaseController {
 			return "redirect:/";
 		} else {
 			session.setAttribute("userInSession", userTryingLogin); //Guardando en sesión el objeto de User
-			return "redirect:/dashboard";
+			return "redirect:/principal";
 		}
 		
 	}

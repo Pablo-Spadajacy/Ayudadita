@@ -61,7 +61,6 @@
 			</div>
 			<div class="col-6">
 				<h2>Iniciar sesion</h2>
-				<p class="text-danger">${errorLogin}</p>
 				<form action="/login" method="POST">
 					<div>
 						<label>Correo:</label>
@@ -71,7 +70,8 @@
 						<label>Contraseña:</label>
 						<input type="password" class="form-control" name="password" >
 					</div>
-					<input type="submit" class="btn btn-info mt-3" value="Iniciar sesion" >
+					<p class="text-danger">${errorLogin}</p>
+					<input type="submit" class="btn btn-info mt-2" value="Iniciar sesion" >
 				</form>
 			</div>
 		</div>	
