@@ -49,6 +49,8 @@ public class Usuario {
 	
 	@NotEmpty(message= "Se requiere una carrera")
 	private String carrera;
+	
+	private String avatar;
 
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -121,6 +123,14 @@ public class Usuario {
 
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
+	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public Date getCreatedAt() {

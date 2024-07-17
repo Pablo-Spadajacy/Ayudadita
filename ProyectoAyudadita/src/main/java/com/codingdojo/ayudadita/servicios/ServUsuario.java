@@ -63,4 +63,9 @@ public class ServUsuario {
 		return (List<Usuario>) RepoU.findAll();
 		
 	}
+	
+	public void save(Usuario user) {
+		RepoU.save(user);
+	}
+	
 }

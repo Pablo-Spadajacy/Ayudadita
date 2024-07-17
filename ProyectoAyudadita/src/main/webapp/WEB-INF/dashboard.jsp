@@ -33,5 +33,15 @@
 			</c:forEach>
 		</div>
 	</div>
+	<div>
+		<h2> Prueba de guardado de imagen</h2>
+		<form action="/prueba" method="post" enctype="multipart/form-data">
+	        <input type="file" name="file" accept="image/*" required />
+	        <br/><br/>
+	        <button type="submit">Cargar Imagen</button>
+  			</form>
+	</div>
+	<h4>${userInSession.avatar}</h4>
+	
 </body>
 </html>
