@@ -50,6 +50,7 @@ public class ControladorPrincipal {
 		
 		if(nombreArchivo == "error") {
 			model.addAttribute("listaAlumnos", us.findAllUsers());
+			System.out.println("error flaco");
 			return "dashboard.jsp";
 		}
 		

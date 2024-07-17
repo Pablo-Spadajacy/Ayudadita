@@ -42,6 +42,6 @@
   			</form>
 	</div>
 	<h4>${userInSession.avatar}</h4>
-	
+	<img src="${pageContext.request.contextPath}/img/${userInSession.avatar}" alt="${userInSession.avatar}">
 </body>
 </html>
