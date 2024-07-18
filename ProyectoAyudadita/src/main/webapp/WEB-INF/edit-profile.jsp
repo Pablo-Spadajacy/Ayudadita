@@ -35,14 +35,23 @@
                 </form>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="./home.html">
+                        <a class="nav-link" href="/home">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
                             <span class="d-lg-none">Home</span>
-
+                            
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./store">
+                            <span class="material-symbols-outlined">
+                                store
+                            </span>
+                            <span class="d-lg-none">Tienda</span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="material-symbols-outlined">
@@ -51,32 +60,9 @@
                             <span class="d-lg-none">Grupos</span>
                         </a>
                     </li>
+                    
                     <li class="nav-item">
-                        <a class="nav-link" href="./store.html">
-                            <span class="material-symbols-outlined">
-                                store
-                            </span>
-                            <span class="d-lg-none">Tienda</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./add-friend.html">
-                            <span class="material-symbols-outlined">
-                                person_add
-                            </span>
-                            <span class="d-lg-none">agregar persona</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./notifications.html">
-                            <span class="material-symbols-outlined">
-                                notifications
-                            </span>
-                            <span class="d-lg-none">Notificaciones</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./messenges.html">
+                        <a class="nav-link" href="./messenges">
                             <span class="material-symbols-outlined">
                                 chat
                             </span>
@@ -106,7 +92,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/edit-profile">
                                     <span class="material-icons-outlined">
                                         edit profile
                                     </span>
@@ -118,6 +104,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- fin de nav inicio de codigo-->
 
