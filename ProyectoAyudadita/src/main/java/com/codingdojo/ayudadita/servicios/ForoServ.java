@@ -15,7 +15,7 @@ public class ForoServ {
     @Autowired
     private RepositorioForo repositorioForo;
 
-    public Foro crearForo(String content, Usuario author) {
+    public Foro crearForo( Usuario author) {
         Foro nuevoForo = new Foro();
         nuevoForo.setAuthor(author);
         return repositorioForo.save(nuevoForo);
