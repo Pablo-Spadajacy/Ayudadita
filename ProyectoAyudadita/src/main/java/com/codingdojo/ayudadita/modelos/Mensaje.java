@@ -24,7 +24,6 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "El mensaje no puede estar vacío")
     private String contenido;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,6 +34,7 @@ public class Mensaje {
 	@JoinColumn(name = "foroCarrera_id")
 	private ForoCarrera foroCarrera;
     
+    private String urlFotoForo;
     
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -63,6 +63,16 @@ public class Mensaje {
         return autor;
     }
 
+    
+    
+
+	public String getUrlFotoForo() {
+		return urlFotoForo;
+	}
+
+	public void setUrlFotoForo(String urlFotoForo) {
+		this.urlFotoForo = urlFotoForo;
+	}
 
 	public void setAutor(Usuario autor) {
         this.autor = autor;

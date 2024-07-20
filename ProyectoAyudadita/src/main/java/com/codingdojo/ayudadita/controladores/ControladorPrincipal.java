@@ -178,30 +178,43 @@ public class ControladorPrincipal {
 		
 	}
 	
-	@PostMapping("/crear/mensaje")
-	public String crearMensaje(HttpSession session, 
-							Model model, 
-							@Valid @ModelAttribute("mensaje") Mensaje mensaje, BindingResult result)
-	{
-		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
-		if(userTemp == null) {
-			return "redirect:/";
-		}
-		
-		if (result.hasErrors())
-		{
+	@PostMapping("/crear/mensaje/{id}")
+	public String crearMensaje(@PathVariable("id")Long id, @RequestParam(value = "file", required = false) MultipartFile file,
+	                           @Valid @ModelAttribute("mensaje") Mensaje mensaje,
+	                           BindingResult result,
+	                           HttpSession session,
+	                           Model model) {
+	    Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+	    if (userTemp == null) {
+	        return "redirect:/";
+	    }
+
+	    if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
+	        result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
+	        ForoCarrera foroBuscado = sf.buscarForo(id);
+			model.addAttribute("foro", foroBuscado);
+			mensaje.setForoCarrera(foroBuscado);
+	    }
+	    
+	    if (result.hasErrors()) {
 	        model.addAttribute("userInSession", userTemp);
-			model.addAttribute("foro", mensaje.getForoCarrera());
-			return "foro.jsp";
-		}
-		else
-		{
-			mensaje.setAutor(userTemp);
-			sf.saveMessage(mensaje);
-			return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
-		}
+	        model.addAttribute("foro", mensaje.getForoCarrera());
+	        return "foro.jsp";
+	    }
+
+	    if (file != null && !file.isEmpty()) {
+	        String nombreArchivo = sf.guardarImg(file, mensaje.getForoCarrera().getId());
+	        if (!"error".equals(nombreArchivo)) {
+	            mensaje.setUrlFotoForo(nombreArchivo);
+	        } else {
+	            model.addAttribute("error", "Error al guardar la imagen");
+	        }
+	    }
+
+	    mensaje.setAutor(userTemp);
+	    sf.saveMessage(mensaje);
+	    return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
 	}
-	
 	@GetMapping("/perfil/{id}")
 	public String perfil(@PathVariable("id")Long id, HttpSession session, 
 			Model model)
