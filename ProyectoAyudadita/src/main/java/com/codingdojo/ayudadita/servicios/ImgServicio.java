@@ -1,6 +1,5 @@
 package com.codingdojo.ayudadita.servicios;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,26 +17,27 @@ public class ImgServicio {
 	@Autowired
 	private ServUsuario us;
 	
-	public String guardarImg(MultipartFile file, Long id) {
+	public String guardarImg(MultipartFile file, Long id) throws Exception {
 		
 		
-	    try {
-	        byte[] bytes = file.getBytes();
-	        
-	        String nombreOriginal = file.getOriginalFilename();
-	        String nombreUnico = generarNombreUnico(nombreOriginal);
-	        Path path = Paths.get("src/main/webapp/img/" + nombreUnico);
-	        Files.write(path, bytes);
-	        
-	        Usuario usuario = us.findUser(id);
-	        usuario.setAvatar(nombreUnico);
-	        us.save(usuario);
-	        
-	        return nombreUnico;
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
-	    return "error";
+		try {
+		    byte[] bytes = file.getBytes();
+		    
+		    String nombreOriginal = file.getOriginalFilename();
+		    String nombreUnico = generarNombreUnico(nombreOriginal);
+		    Path path = Paths.get("src/main/webapp/img/" + nombreUnico);
+		    Files.write(path, bytes);
+		    
+		    Usuario usuario = us.findUser(id);
+		    usuario.setAvatar(nombreUnico);
+		    us.save(usuario);
+		    
+		    return nombreUnico;
+		} catch (Exception e) {
+		    e.printStackTrace(); // o loguea el error para análisis
+		    return "error";
+		}
+	    
 	}
 	
 	private String generarNombreUnico(String nombreOriginal) {

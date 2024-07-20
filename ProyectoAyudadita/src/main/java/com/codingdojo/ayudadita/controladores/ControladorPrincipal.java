@@ -55,24 +55,29 @@ public class ControladorPrincipal {
 	
 	@PostMapping("/prueba")
 	public String pruebaImg(@RequestParam("file") MultipartFile file,
-			                HttpSession session,
+							HttpSession session,
 			                Model model) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
 		Long id = userTemp.getId();
-		String nombreArchivo = is.guardarImg(file, id);
-		
-		userTemp.setAvatar(nombreArchivo);
-		session.setAttribute("userInSession", userTemp);
-		
-		if(nombreArchivo == "error") {
-			model.addAttribute("listaAlumnos", us.findAllUsers());
-			System.out.println("error flaco");
-			return "dashboard.jsp";
+		String nombreArchivo;
+		try {
+			nombreArchivo = is.guardarImg(file, id);
+			userTemp.setAvatar(nombreArchivo);
+			session.setAttribute("userInSession", userTemp);
+			
+			
+			if(nombreArchivo.equals("error")) {
+				model.addAttribute("listaAlumnos", us.findAllUsers());
+				System.out.println("error en el guardado");
+				return "dashboard.jsp";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 		
 		return "redirect:/principal";
 	}
@@ -230,5 +235,18 @@ public class ControladorPrincipal {
 		
 		return "perfil.jsp";
 		
+	}
+	@GetMapping("/home")
+	public String home(HttpSession session) {
+		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+		if(userTemp == null) {
+			return "redirect:/";
+		}
+		return "home.jsp";
+	}
+	@GetMapping("/editProfile")
+	public String editProfile(@ModelAttribute("usuario") Usuario usuario) {
+		
+		return "edit-profile.jsp";
 	}
 }

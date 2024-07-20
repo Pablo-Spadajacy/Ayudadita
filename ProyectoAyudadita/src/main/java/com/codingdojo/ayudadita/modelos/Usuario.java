@@ -70,6 +70,17 @@ public class Usuario {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
+	@OneToMany(mappedBy="author", fetch=FetchType.LAZY)
+	private List<Foro> Foro;
+	
+	public List<Foro> getForo() {
+		return Foro;
+	}
+
+	public void setForo(List<Foro> foro) {
+		Foro = foro;
+	}
+
 	public Usuario() {}
 
 	public Long getId() {
