@@ -125,7 +125,7 @@
 			<form:errors path="apellido" class="text-danger" />
 		</div>
 		<div>
-			<h4 class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</h4>
+			<p class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</p>
 			<form:label path="facultad">Facultad:</form:label>
 			<form:select path="facultad" class="form-select mt-1">
 				<c:forEach items="${listaFacultades}" var="facultad">
@@ -134,7 +134,7 @@
 			</form:select>
 		</div>
 		<div>
-			<h4 class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</h4>
+			<p class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</p>
 			<form:label path="carrera">Carrera:</form:label>
 			<form:select path="carrera" class="form-select mt-1">
 				<c:forEach items="${listaCarreras}" var="carrera">
