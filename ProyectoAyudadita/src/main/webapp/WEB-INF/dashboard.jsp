@@ -139,6 +139,9 @@
 		</div>
 	</div>
 	<div>
+		<a href = "/foro/temas/" class = "btn btn-success">Foros</a>
+	</div>
+	<div>
 		<h2> Prueba de guardado de imagen</h2>
 		<form action="/prueba" method="post" enctype="multipart/form-data">
 	        <input type="file" name="file" accept="image/*" required />

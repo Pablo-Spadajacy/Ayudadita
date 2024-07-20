@@ -1,10 +1,12 @@
 package com.codingdojo.ayudadita.modelos;
 
+
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,6 +46,9 @@ public class Usuario {
 	@Size(min= 6, message="La contraseña requiere al menos 6 caracteres")
 	private String contrasenna;
 	
+	@OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Mensaje> mensajes;
+	
 	@Transient
 	private String confirmar;
 	
@@ -58,6 +63,9 @@ public class Usuario {
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
+	
+	@OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
+	private List<ForoCarrera> forosCreados;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
@@ -111,6 +119,16 @@ public class Usuario {
 		return contrasenna;
 	}
 
+	
+	
+	public List<ForoCarrera> getForosCreados() {
+		return forosCreados;
+	}
+
+	public void setForosCreados(List<ForoCarrera> forosCreados) {
+		this.forosCreados = forosCreados;
+	}
+
 	public void setContrasenna(String contrasenna) {
 		this.contrasenna = contrasenna;
 	}
@@ -139,6 +157,16 @@ public class Usuario {
 		this.carrera = carrera;
 	}
 	
+	
+	
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
+
 	public String getAvatar() {
 		return avatar;
 	}
@@ -146,7 +174,7 @@ public class Usuario {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-
+	
 	public Date getCreatedAt() {
 		return createdAt;
 	}

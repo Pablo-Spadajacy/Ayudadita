@@ -112,7 +112,8 @@
     <!-- fin de nav inicio de codigo-->
 	<form:form action="/editarPerfil" method="post" modelAttribute="usuario">
 	<input type="hidden" name="_method" value="PUT">
-	<form:hidden path="email" value="${usuario.email}"></form:hidden>
+	<form:hidden path="email" value="${usuario.email}"/>
+	<form:hidden path="id" value="${userInSession.id}"/>
 		<div>
 			<form:label path="nombre">Nombre:</form:label>
 			<form:input path="nombre" class="form-control" />
@@ -149,7 +150,6 @@
 			<form:errors path="contrasenna" class="text-danger"/>
 		</div>
 		<p class="text-danger">${errorContra}</p>
-		
 		<input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
 	</form:form>	
 	
