@@ -187,8 +187,8 @@ public class ControladorPrincipal {
 		
 	}
 	
-	@PostMapping("/crear/mensaje/{id}")
-	public String crearMensaje(@PathVariable("id")Long id, @RequestParam(value = "file", required = false) MultipartFile file,
+	@PostMapping("/crear/mensaje")
+	public String crearMensaje(@RequestParam(value = "file", required = false) MultipartFile file,
 	                           @Valid @ModelAttribute("mensaje") Mensaje mensaje,
 	                           BindingResult result,
 	                           HttpSession session,
@@ -197,14 +197,16 @@ public class ControladorPrincipal {
 	    if (userTemp == null) {
 	        return "redirect:/";
 	    }
-
+	    
+	    // Verifica que al menos uno de los campos (contenido o imagen) esté presente
 	    if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
 	        result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
-	        ForoCarrera foroBuscado = sf.buscarForo(id);
-			model.addAttribute("foro", foroBuscado);
-			mensaje.setForoCarrera(foroBuscado);
+	        Long foroId = mensaje.getForoCarrera().getId();
+		    ForoCarrera foroBuscado = sf.buscarForo(foroId);
+		    model.addAttribute("foro", foroBuscado);
+		    mensaje.setForoCarrera(foroBuscado);
 	    }
-	    
+
 	    if (result.hasErrors()) {
 	        model.addAttribute("userInSession", userTemp);
 	        model.addAttribute("foro", mensaje.getForoCarrera());
@@ -300,5 +302,6 @@ public class ControladorPrincipal {
 		}
 		return "redirect:/principal";
 	}
+	
 	
 }

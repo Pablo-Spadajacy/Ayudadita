@@ -32,7 +32,7 @@
                 <c:forEach items="${foro.foroMensajes}" var="msg">
                     <div class="message-container">
                         <p>
-                            <a href="/perfil/${msg.autor.id}" class="d-flex align-items-center">
+                            <a href="/perfil/${msg.autor.id}">
                                 <!-- Muestra el avatar del autor -->
                                 <c:choose>
                                     <c:when test="${not empty msg.autor.avatar}">
@@ -42,7 +42,7 @@
                                         <img src="/img/default-avatar.png" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
                                     </c:otherwise>
                                 </c:choose>
-                                <span>${msg.autor.nombre}</span>
+                                ${msg.autor.nombre}
                             </a> dice:
                             <c:choose>
                                 <c:when test="${not empty msg.urlFotoForo}">
@@ -57,16 +57,16 @@
                 </c:forEach>
             </div>
 
-            <form:form action="/crear/mensaje/${foro.id}" method="post" modelAttribute="mensaje" enctype="multipart/form-data">
-                <form:errors path="contenido" class="text-danger" />
-                <form:label path="contenido">Añadir comentario:</form:label>
-                <form:textarea path="contenido" class="form-control"></form:textarea>
-                <form:hidden path="autor.id" value="${userInSession.id}" />
-                <form:hidden path="foroCarrera.id" value="${foro.id}" />
-                <input type="submit" value="Enviar" class="btn btn-info">
-                <br/><br/>
-                <input type="file" name="file" accept="image/*">
-            </form:form>
+           <form:form action="/crear/mensaje" method="post" modelAttribute="mensaje" enctype="multipart/form-data">
+			    <form:errors path="contenido" class="text-danger" />
+			    <form:label path="contenido">Añadir comentario:</form:label>
+			    <form:textarea path="contenido" class="form-control"></form:textarea>
+			    <form:hidden path="autor.id" value="${userInSession.id}" />
+			    <form:hidden path="foroCarrera.id" value="${foro.id}" />
+			    <input type="submit" value="Enviar" class="btn btn-info">
+			    <br/><br/>
+			    <input type="file" name="file" accept="image/*">
+			</form:form>
         </div>
     </div>
 </body>
