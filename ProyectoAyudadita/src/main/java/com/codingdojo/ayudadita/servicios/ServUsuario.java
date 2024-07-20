@@ -68,4 +68,15 @@ public class ServUsuario {
 		RepoU.save(user);
 	}
 	
+	public Usuario chequeo(String email, String password) {
+		Usuario UsuarioEdit = RepoU.findByEmail(email);
+		if(BCrypt.checkpw(password, UsuarioEdit.getContrasenna())) {
+			return UsuarioEdit;
+		} else {
+			return null;
+		}	
+	}
+	public void actualizar(Usuario UsuarioAEditar, Usuario UsuarioEditado) {
+		
+	}
 }

@@ -102,7 +102,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/editProfile">
+                                <a class="dropdown-item" href="/editarPerfil">
                                     <span class="material-icons-outlined">
                                         edit profile
                                     </span>

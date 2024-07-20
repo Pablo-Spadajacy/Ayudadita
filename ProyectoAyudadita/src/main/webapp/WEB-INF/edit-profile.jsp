@@ -29,10 +29,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <a href="/principal" class="btn btn-danger">Cancelar</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="./home.html">
@@ -105,24 +102,59 @@
                                     </span>
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="#">
-                                    <span class="material-icons-outlined">
-                                        edit profile
-                                    </span>
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+	<div class="container">
     <!-- fin de nav inicio de codigo-->
-
-
-
+	<form:form action="/editarPerfil" method="post" modelAttribute="usuario">
+	<input type="hidden" name="_method" value="PUT">
+	<form:hidden path="email" value="${usuario.email}"></form:hidden>
+		<div>
+			<form:label path="nombre">Nombre:</form:label>
+			<form:input path="nombre" class="form-control" />
+			<form:errors path="nombre" class="text-danger" />
+		</div>
+		<div>
+			<form:label path="apellido">Apellido:</form:label>
+			<form:input path="apellido" class="form-control" />
+			<form:errors path="apellido" class="text-danger" />
+		</div>
+		<div>
+			<h4 class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</h4>
+			<form:label path="facultad">Facultad:</form:label>
+			<form:select path="facultad" class="form-select mt-1">
+				<c:forEach items="${listaFacultades}" var="facultad">
+					<form:option value="${facultad}">${facultad}</form:option>
+				</c:forEach>
+			</form:select>
+		</div>
+		<div>
+			<h4 class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</h4>
+			<form:label path="carrera">Carrera:</form:label>
+			<form:select path="carrera" class="form-select mt-1">
+				<c:forEach items="${listaCarreras}" var="carrera">
+					<form:option value="${carrera}">${carrera}</form:option>
+				</c:forEach>
+			</form:select>
+			<form:errors path="facultad" class="text-danger"/>
+		</div>
+		
+		<div>
+			<form:label path="contrasenna">Debes colocar tu contraseña para verificar</form:label>
+			<form:password path="contrasenna" class="form-control"/>
+			<form:errors path="contrasenna" class="text-danger"/>
+		</div>
+		<p class="text-danger">${errorContra}</p>
+		
+		<input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
+	</form:form>	
+	
+	</div>
+	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

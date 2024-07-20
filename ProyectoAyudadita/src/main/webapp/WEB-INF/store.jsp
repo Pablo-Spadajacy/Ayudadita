@@ -105,7 +105,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/editarPerfil">
                                     <span class="material-icons-outlined">
                                         edit profile
                                     </span>
