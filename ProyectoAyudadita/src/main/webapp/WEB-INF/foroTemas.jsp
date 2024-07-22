@@ -14,7 +14,7 @@
 			<div class="border mb-3">
 				<h1>Foros de tu carrera</h1>
 				<c:forEach items="${forosTuCarrera}" var="foroTuCarrera">
-					<a href="/foro/tema/${foroTuCarrera.id}" class = "btn btn-success">${foroTuCarrera.nombreForo}</a><br>
+    				<a href="/foro/tema/${foroTuCarrera.id}" class="btn btn-success">${foroTuCarrera.nombreForo}</a><br>
 				</c:forEach>
 			</div>
 			<div class="border mb-3">
