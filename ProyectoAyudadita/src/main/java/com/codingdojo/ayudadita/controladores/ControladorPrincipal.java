@@ -252,13 +252,16 @@ public class ControladorPrincipal {
 	
 	@GetMapping("/editarPerfil")
 	public String editProfile(@ModelAttribute("usuario") Usuario usuario, HttpSession session,
-							  Model model) {
+							  Model model,
+							  BindingResult result) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
+		
 		userTemp.setContrasenna("");
 		model.addAttribute("usuario", us.findUser(userTemp.getId()));
+		
 		model.addAttribute("listaFacultades", Facultad.Facultades);
 		model.addAttribute("listaCarreras", Carrera.Carreras);
 		
@@ -270,34 +273,43 @@ public class ControladorPrincipal {
 	public String actualizarPerfil(@Valid @ModelAttribute("usuario") Usuario usuario, HttpSession session,
 								   Model model, 
 								   BindingResult result,
-								   @RequestParam("contrasenna") String password,
-								   RedirectAttributes redirectAttributes) {
+								   @RequestParam("contrasenna") String password) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
-		if(result.hasErrors()) {
-			model.addAttribute("listaFacultades", Facultad.Facultades);
-			model.addAttribute("listaCarreras", Carrera.Carreras);
-			model.addAttribute("usuario", us.findUser(userTemp.getId()));
-			return "edit-profile.jsp";
-		}
-		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), password);
-		if(UsuarioCheck == null) {
-			redirectAttributes.addFlashAttribute("errorContra", "La contraseña no es correcta");
-			model.addAttribute("listaFacultades", Facultad.Facultades);
-			model.addAttribute("listaCarreras", Carrera.Carreras);
-			userTemp.setContrasenna("");
-			model.addAttribute("usuario", us.findUser(userTemp.getId()));
-			return "edit-profile.jsp";
-		} else {
-			String contra = usuario.getContrasenna();
-			String pass_hash = BCrypt.hashpw(contra, BCrypt.gensalt());
-			usuario.setContrasenna(pass_hash);
-			us.save(usuario);
-			userTemp = usuario;
-			session.setAttribute("userInSession", userTemp);
-		}
+		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), password, result);
+		
+			if(result.hasErrors()) {
+				
+				model.addAttribute("listaFacultades", Facultad.Facultades);
+				model.addAttribute("listaCarreras", Carrera.Carreras);
+				
+				userTemp.setContrasenna("");
+				model.addAttribute("usuario", us.findUser(userTemp.getId()));
+				
+				model.addAttribute("errorContra", "La contraseña no es correcta");
+				return "edit-profile.jsp";
+			}
+			
+			if(UsuarioCheck == null) {
+				model.addAttribute("listaFacultades", Facultad.Facultades);
+				model.addAttribute("listaCarreras", Carrera.Carreras);
+				
+				userTemp.setContrasenna("");
+				model.addAttribute("usuario", us.findUser(userTemp.getId()));
+				
+				model.addAttribute("errorContra", "La contraseña no es correcta");
+				return "edit-profile.jsp";
+			} else {
+				String contra = usuario.getContrasenna();
+				String pass_hash = BCrypt.hashpw(contra, BCrypt.gensalt());
+				usuario.setContrasenna(pass_hash);
+				us.save(usuario);
+				userTemp = usuario;
+				session.setAttribute("userInSession", userTemp);
+			}
+		
 		return "redirect:/principal";
 	}
 	

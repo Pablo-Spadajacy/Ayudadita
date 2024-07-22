@@ -68,13 +68,20 @@ public class ServUsuario {
 		RepoU.save(user);
 	}
 	
-	public Usuario chequeo(String email, String password) {
+	public Usuario chequeo(String email, String password, BindingResult result) {
+		
+		if(password == null || password == "") {
+			return null;
+		}
+		
 		Usuario UsuarioEdit = RepoU.findByEmail(email);
 		if(BCrypt.checkpw(password, UsuarioEdit.getContrasenna())) {
 			return UsuarioEdit;
-		} else {
+		} else if(UsuarioEdit.getContrasenna().length() > 6){
+			result.rejectValue("size", "La contraseña es demasiado corta");
 			return null;
 		}	
+		return UsuarioEdit;
 	}
 	public void actualizar(Usuario UsuarioAEditar, Usuario UsuarioEditado) {
 		

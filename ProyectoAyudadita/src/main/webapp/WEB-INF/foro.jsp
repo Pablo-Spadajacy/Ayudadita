@@ -8,16 +8,16 @@
 <meta charset="ISO-8859-1">
 <title>Message Wall</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<style>
-    .avatar-img {
+<style type="text/css">
+.avatar-img {
         width: 30px; /* Ajusta el tamaño del avatar */
         height: 30px; /* Ajusta el tamaño del avatar */
         border-radius: 50%; /* Hace que la imagen sea redonda */
         margin-right: 10px; /* Espacio entre la imagen y el nombre */
     }
-    .message-container {
-        margin-bottom: 15px; /* Espacio entre los mensajes */
-    }
+.message-container {
+    margin-bottom: 15px; /* Espacio entre los mensajes */
+}
 </style>
 </head>
 <body>
@@ -39,7 +39,12 @@
                                         <img src="/img/${msg.autor.avatar}" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="/img/default-avatar.png" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
+                                    <c:if test="${msg.autor.id == 1}">
+                                        <img src="/img/adminBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
+                                    </c:if>
+                                    <c:if test="${msg.autor.id > 1}">
+                                    	<img src="/img/studentBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
+                                    </c:if>
                                     </c:otherwise>
                                 </c:choose>
                                 <span>${msg.autor.nombre}</span>

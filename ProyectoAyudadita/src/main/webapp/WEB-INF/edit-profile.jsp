@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>  
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+    <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -146,7 +147,7 @@
 		
 		<div>
 			<form:label path="contrasenna">Debes colocar tu contraseña para verificar</form:label>
-			<form:password path="contrasenna" class="form-control"/>
+			<input type="password" class="form-control" name="contrasenna"/>
 			<form:errors path="contrasenna" class="text-danger"/>
 		</div>
 		<p class="text-danger">${errorContra}</p>
