@@ -73,6 +73,7 @@ public class Usuario {
 	@OneToMany(mappedBy="author", fetch=FetchType.LAZY)
 	private List<Foro> Foro;
 	
+	
 	public List<Foro> getForo() {
 		return Foro;
 	}

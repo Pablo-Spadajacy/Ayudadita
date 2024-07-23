@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.ayudadita.modelos.Carrera;
 import com.codingdojo.ayudadita.modelos.Facultad;
@@ -56,15 +55,15 @@ public class ControladorPrincipal {
 		return "dashboard.jsp";
 	}
 	
-	@PostMapping("/prueba")
-	public String pruebaImg(@RequestParam("file") MultipartFile file,
+	@PostMapping("/imagen")
+	public String cargarAvatar(@RequestParam("file") MultipartFile file,
 							HttpSession session,
 			                Model model) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
-		
+				
 		Long id = userTemp.getId();
 		String nombreArchivo;
 		try {
@@ -243,7 +242,8 @@ public class ControladorPrincipal {
 		
 	}
 	@GetMapping("/home")//PENDIENTE 
-	public String home(HttpSession session) {
+	public String home(HttpSession session,
+		               Model model) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
@@ -289,7 +289,7 @@ public class ControladorPrincipal {
 				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				
+				System.out.println("Si, entro aquí");
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			}
@@ -300,7 +300,7 @@ public class ControladorPrincipal {
 				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				
+				System.out.println("No, entro aquí");
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			} else {
