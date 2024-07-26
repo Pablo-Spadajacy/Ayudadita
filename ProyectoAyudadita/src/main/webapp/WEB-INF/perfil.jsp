@@ -126,7 +126,7 @@
             </c:otherwise>
 		</c:choose>
 		<br>
-		<h2>¿No te gusta tu avatar?, ¡Cambialo!</h2>
+		<h2>¿No te gusta tu avatar? ¡Cambialo!</h2>
 		<form action="/imagen" method="post" enctype="multipart/form-data">
 	        <input type="file" name="file" accept="image/*" required />
 	        <br/><br/>
