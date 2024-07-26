@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page isErrorPage="true" %>
+    
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>  
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
     
@@ -15,6 +15,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <%@ page isErrorPage="true" %>
 </head>
 
 <body>
@@ -95,60 +96,46 @@
     </nav>
 	<div class="container">
     <!-- fin de nav inicio de codigo-->
-	<form action="/editarPerfil" method="post">
+	<form:form action="/editarPerfil" method="post" modelAttribute="usuario">
     <input type="hidden" name="_method" value="PUT">
     <input type="hidden" name="email" value="${usuario.email}">
     <input type="hidden" name="id" value="${userInSession.id}">
 	    
 	    <div>
-	        <label for="nombre">Nombre:</label>
-	        <input type="text" id="nombre" name="nombre" class="form-control" value="${usuario.nombre}">
-	        <span class="text-danger">${errors.nombre}</span>
-	    </div>
-	    
+			<form:label path="nombre">Nombre</form:label>
+			<form:input path="nombre" class="form-control"/>
+			<form:errors path="nombre" class="text-danger"/>
+		</div>
+		<div>
+			<form:label path="apellido">Apellido</form:label>
+			<form:input path="apellido" class="form-control"/>
+			<form:errors path="apellido" class="text-danger"/>
+		</div>
 	    <div>
-	        <label for="apellido">Apellido:</label>
-	        <input type="text" id="apellido" name="apellido" class="form-control" value="${usuario.apellido}">
-	        <span class="text-danger">${errors.apellido}</span>
-	    </div>
-	    
+			<form:label path="contrasenna">Contraseña</form:label>
+			<form:password path="contrasenna" class="form-control" name="contrasenna"/>
+			<form:errors path="contrasenna" class="text-danger"/>
+		</div>
 	    <div>
-	        <p class="text-danger">AVISO: Si no quieres cambiar de facultad elije la actual</p>
-	        <label for="facultad">Facultad:</label>
-	        <select id="facultad" name="facultad" class="form-select mt-1">
-	            <c:forEach items="${listaFacultades}" var="facultad">
-	                <option value="${facultad}" ${usuario.facultad == facultad ? 'selected' : ''}>${facultad}</option>
-	            </c:forEach>
-	        </select>
-	    </div>
-	    
-	    <div>
-	        <p class="text-danger">AVISO: Si no quieres cambiar la carrera elije la actual</p>
-	        <label for="carrera">Carrera:</label>
-	        <select id="carrera" name="carrera" class="form-select mt-1">
-	            <c:forEach items="${listaCarreras}" var="carrera">
-	                <option value="${carrera}" ${usuario.carrera == carrera ? 'selected' : ''}>${carrera}</option>
-	            </c:forEach>
-	        </select>
-	    </div>
-	    
-	    <div>
-	        <label for="contrasenna">Debes colocar tu contraseña para verificar:</label>
-	        <input type="password" id="contrasenna" name="contrasenna" class="form-control">
-	        <span class="text-danger">${errors.contrasenna}</span>
-	    </div>
-	    
-	    <p class="text-danger">${errorContra}</p>
-	    
+			<form:label path="facultad">Facultad:</form:label>
+			<form:select path="facultad" class="form-select">
+				<c:forEach items="${listaFacultades}" var="facultad">
+					<form:option value="${facultad}">${facultad}</form:option>
+				</c:forEach>
+			</form:select>
+			<form:errors path="facultad" class="text-danger"/>
+		</div>
+		<div>
+			<form:label path="carrera">Carrera:</form:label>
+			<form:select path="carrera" class="form-select">
+				<c:forEach items="${listaCarreras}" var="carrera">
+					<form:option value="${carrera}">${carrera}</form:option>
+				</c:forEach>
+			</form:select>
+			<form:errors path="facultad" class="text-danger"/>
+		</div>
 	    <input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
-	</form>
-
-	
+	</form:form>
 	</div>
-	
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 </body>
-
 </html>

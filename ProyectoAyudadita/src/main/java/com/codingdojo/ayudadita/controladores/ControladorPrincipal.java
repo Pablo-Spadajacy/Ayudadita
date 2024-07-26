@@ -274,22 +274,18 @@ public class ControladorPrincipal {
 	@PutMapping("/editarPerfil")
 	public String actualizarPerfil(@Valid @ModelAttribute("usuario") Usuario usuario, HttpSession session,
 								   Model model, 
-								   BindingResult result,
-								   @RequestParam("contrasenna") String password) {
+								   BindingResult result) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
-		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), password, result);
+		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), usuario.getContrasenna(), result);
 		
 			if(result.hasErrors()) {
-				
 				model.addAttribute("listaFacultades", Facultad.Facultades);
 				model.addAttribute("listaCarreras", Carrera.Carreras);
-				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				System.out.println("Si, entro aquí");
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			}
@@ -297,10 +293,8 @@ public class ControladorPrincipal {
 			if(UsuarioCheck == null) {
 				model.addAttribute("listaFacultades", Facultad.Facultades);
 				model.addAttribute("listaCarreras", Carrera.Carreras);
-				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				System.out.println("No, entro aquí");
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			} else {
