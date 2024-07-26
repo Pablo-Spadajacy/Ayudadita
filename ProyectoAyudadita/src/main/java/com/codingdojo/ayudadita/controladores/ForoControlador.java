@@ -1,6 +1,6 @@
 package com.codingdojo.ayudadita.controladores;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.codingdojo.ayudadita.modelos.Foro;
+
 import com.codingdojo.ayudadita.modelos.Usuario;
-import com.codingdojo.ayudadita.servicios.ForoServ;
 
 import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpSession;
@@ -19,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/foro")
 public class ForoControlador{
 
-    @Autowired
+    /*@Autowired
     private ForoServ foroServicio;
 
     public ForoServ getForoServicio() {
@@ -46,6 +45,7 @@ public class ForoControlador{
         nuevoForo.setAuthor(author);
         return "redirect:/foro/crear"; 
     }
+    */
  
 }
 

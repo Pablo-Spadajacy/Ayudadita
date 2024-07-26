@@ -1,5 +1,10 @@
 package com.codingdojo.ayudadita.servicios;
 
+
+
+
+
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,49 +16,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.codingdojo.ayudadita.modelos.ForoCarrera;
-import com.codingdojo.ayudadita.modelos.Mensaje;
-import com.codingdojo.ayudadita.repositorios.RepositorioForo;
-import com.codingdojo.ayudadita.repositorios.RepositorioMensaje;
+import com.codingdojo.ayudadita.modelos.ForoGeneral;
+import com.codingdojo.ayudadita.modelos.MensajeForoGeneral;
+import com.codingdojo.ayudadita.repositorios.RepositorioForoGeneral;
+import com.codingdojo.ayudadita.repositorios.RepositorioMensajeGeneral;
 
 @Service
-public class ServicioForos {
+public class ServicioForoGeneral {
 
 	@Autowired
-	RepositorioForo rf;
+	RepositorioForoGeneral rf;
 	
 	@Autowired
-	RepositorioMensaje rm;
+	RepositorioMensajeGeneral rm;
 	
-	public List<ForoCarrera> forosDeMiCarrera(String carrera) {
-		
-		return rf.findByCarreraForo(carrera);
-	}
-	
-	public List<ForoCarrera> ForoDeOtrasCarreras(String carerra){
-		return rf.findByCarreraForoIsNot(carerra);
-	}
-	
-	public List<ForoCarrera> ForosDeMiFacultad(String facultad)
+	public ForoGeneral buscarForoPorNombre(String nombre)
 	{
-		return rf.findByFacultadForo(facultad);
+		return rf.findByNombre(nombre);
 	}
 	
-	public List<ForoCarrera> ForosOtrasFacultades(String facultad)
-	{
-		return rf.findByFacultadForoIsNot(facultad);
-	}
 	
-	public Mensaje saveMessage(Mensaje mensaje) {
+	public MensajeForoGeneral saveMessage(MensajeForoGeneral mensaje) {
 		return rm.save(mensaje);
 	}
 	
-	public ForoCarrera buscarForo(Long foroId)
+	public ForoGeneral buscarForo(Long foroId)
 	{
 		return rf.findById(foroId).orElse(null);
 	}
 	
-	public ForoCarrera guardarForo(ForoCarrera foro)
+	public ForoGeneral guardarForo(ForoGeneral foro)
 	{
 		return rf.save(foro);
 	}
@@ -69,7 +61,7 @@ public String guardarImg(MultipartFile file, Long id) {
 	        Path path = Paths.get("src/main/webapp/img/" + nombreUnico);
 	        Files.write(path, bytes);
 	        
-	        Mensaje mensajeForo = rm.findById(id).orElse(null);
+	        MensajeForoGeneral mensajeForo = rm.findById(id).orElse(null);
 	        mensajeForo.setUrlFotoForo(nombreUnico);
 	        rm.save(mensajeForo);
 	        
@@ -98,11 +90,23 @@ public String guardarImg(MultipartFile file, Long id) {
         return nombreArchivo.substring(lastIndex); // Obtener la extensión (incluyendo el punto)
     }
     
-    public Mensaje buscarMensaje(Long id)
+    public MensajeForoGeneral buscarMensaje(Long id)
     {
     	return rm.findById(id).orElse(null);
     }
     
+    public List<MensajeForoGeneral> buscarMensajesPorForo(Long foroId) {
+        return rm.findByForoGeneralId(foroId);
+    }
     
+    public void init()
+    {
+    	if (rf.count() == 0)
+    	{
+    		ForoGeneral foroGeneral = new ForoGeneral();
+    		foroGeneral.setNombre("Foro General");
+    		rf.save(foroGeneral);
+    	}
+    }
     
 }

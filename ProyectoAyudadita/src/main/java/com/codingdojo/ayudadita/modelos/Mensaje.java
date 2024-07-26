@@ -30,9 +30,19 @@ public class Mensaje {
     @JoinColumn(name = "autor_id")
     private Usuario autor;
     
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "autorMensaje_id")
+    private Usuario autorMensaje;*/
+    
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "foroCarrera_id")
 	private ForoCarrera foroCarrera;
+    
+    /*@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "chat_id")
+	private Chat chat;
+    */
+    //private String urlFotoChat;
     
     private String urlFotoForo;
     
@@ -66,6 +76,22 @@ public class Mensaje {
     
     
 
+	/*public Usuario getAutorMensaje() {
+		return autorMensaje;
+	}
+
+	public void setAutorMensaje(Usuario autorMensaje) {
+		this.autorMensaje = autorMensaje;
+	}
+
+	public Chat getChat() {
+		return chat;
+	}
+
+	public void setChat(Chat chat) {
+		this.chat = chat;
+	}*/
+
 	public String getUrlFotoForo() {
 		return urlFotoForo;
 	}
@@ -86,7 +112,17 @@ public class Mensaje {
         this.foroCarrera = foroCarrera;
     }
 
-    public Date getCreatedAt() {
+    
+    
+    /*public String getUrlFotoChat() {
+		return urlFotoChat;
+	}
+
+	public void setUrlFotoChat(String urlFotoChat) {
+		this.urlFotoChat = urlFotoChat;
+	}*/
+
+	public Date getCreatedAt() {
         return createdAt;
     }
 

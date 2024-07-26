@@ -151,6 +151,7 @@
 			<form:errors path="contrasenna" class="text-danger"/>
 		</div>
 		<p class="text-danger">${errorContra}</p>
+		<p class="text-danger">${size}</p>
 		<input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
 	</form:form>	
 	

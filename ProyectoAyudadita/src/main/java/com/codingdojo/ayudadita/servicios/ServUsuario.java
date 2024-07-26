@@ -70,20 +70,35 @@ public class ServUsuario {
 	
 	public Usuario chequeo(String email, String password, BindingResult result) {
 		
-		if(password == null || password == "") {
+		if(password == null || password == "" || password.length() < 6) {
 			return null;
 		}
-		
 		Usuario UsuarioEdit = RepoU.findByEmail(email);
+		
+		//String contrasennaEditar = UsuarioEdit.getContrasenna();
+		
+		//UsuarioEdit.setConfirmarContraseñaEditar(contrasennaEditar);
+		/*
+		if(BCrypt.checkpw(password, UsuarioEdit.getConfirmarContraseñaEditar()) && UsuarioEdit.getConfirmarContraseñaEditar().length() >= 6 ) {
+			return UsuarioEdit;
+		}	
+		*/
 		if(BCrypt.checkpw(password, UsuarioEdit.getContrasenna())) {
 			return UsuarioEdit;
-		} else if(UsuarioEdit.getContrasenna().length() > 6){
-			result.rejectValue("size", "La contraseña es demasiado corta");
-			return null;
 		}	
-		return UsuarioEdit;
+		return null;
 	}
 	public void actualizar(Usuario UsuarioAEditar, Usuario UsuarioEditado) {
 		
+	}
+	
+	public List<Usuario> usuariosDeMiCarrera(String carrera)
+	{
+		return RepoU.findByCarrera(carrera);
+	}
+	
+	public List<Usuario> usuariosDeMiFacultad(String facultad)
+	{
+		return RepoU.findByFacultad(facultad);
 	}
 }

@@ -1,6 +1,7 @@
 package com.codingdojo.ayudadita.modelos;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,30 +13,38 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name="foro")
-public class Foro {
+@Table(name = "foroGeneral")
+public class ForoGeneral {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
 	private String content;
 	
+	private String nombre;
+
+	
 	@Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="usuario_id")
-	private Usuario author;
+	@OneToMany(mappedBy = "foroGeneral", fetch = FetchType.LAZY)
+	private List<MensajeForoGeneral> foroGeneralMensajes;
+
+	public ForoGeneral() {
+	}
 
 	public Long getId() {
 		return id;
@@ -69,13 +78,34 @@ public class Foro {
 		this.updatedAt = updatedAt;
 	}
 
-	public Usuario getAuthor() {
-		return author;
+	
+	
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setAuthor(Usuario author) {
-		this.author = author;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
+
+	public List<MensajeForoGeneral> getForoGeneralMensajes() {
+		return foroGeneralMensajes;
+	}
+
+	public void setForoGeneralMensajes(List<MensajeForoGeneral> foroGeneralMensajes) {
+		this.foroGeneralMensajes = foroGeneralMensajes;
+	}
+
+	@PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
+    }
+	
 }
 
 
