@@ -9,6 +9,8 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <meta charset="UTF-8">
+<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <title>Bienvenido ${userInSession.nombre}</title>
 <style type="text/css">
 .avatar-img {
@@ -36,10 +38,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/home">
@@ -51,11 +49,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/foro/temas/">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
-                            <span class="d-lg-none">Grupos</span>
+                            <span class="d-lg-none">Foros</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -64,22 +62,6 @@
                                 store
                             </span>
                             <span class="d-lg-none">Tienda</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./add-friend.html">
-                            <span class="material-symbols-outlined">
-                                person_add
-                            </span>
-                            <span class="d-lg-none">agregar persona</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./notifications.html">
-                            <span class="material-symbols-outlined">
-                                notifications
-                            </span>
-                            <span class="d-lg-none">Notificaciones</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -101,21 +83,21 @@
                             <li>
                                 <a class="dropdown-item" href="/logout">
                                     <span class="material-icons-outlined">
-                                        log out
+                                        Cerrar sesión
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
                                     <span class="material-icons-outlined">
-                                        events
+                                        Perfil
                                     </span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="/editarPerfil">
                                     <span class="material-icons-outlined">
-                                        edit profile
+                                       Editar Perfil
                                     </span>
                                 </a>
                             </li>
@@ -153,13 +135,7 @@
 		<a href = "/foro/temas/" class = "btn btn-success">Foros</a>
 	</div>
 	<div>
-		<h2> Prueba de guardado de imagen</h2>
-		<form action="/prueba" method="post" enctype="multipart/form-data">
-	        <input type="file" name="file" accept="image/*" required />
-	        <br/><br/>
-	        
-	        <button type="submit">Cargar Imagen</button>
-		</form>	
+		
 	</div>
 	
 	<h4>${userInSession.avatar}</h4>

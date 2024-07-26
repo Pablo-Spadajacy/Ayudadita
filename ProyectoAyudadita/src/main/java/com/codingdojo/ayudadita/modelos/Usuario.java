@@ -80,6 +80,13 @@ public class Usuario {
 	
 	/*@OneToMany(mappedBy = "usuario1", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Chat> chatsComoUsuario1;
+	@OneToMany(mappedBy="author", fetch=FetchType.LAZY)
+	private List<Foro> Foro;
+	
+	
+	public List<Foro> getForo() {
+		return Foro;
+	}
 
 	@OneToMany(mappedBy = "usuario2", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Chat> chatsComoUsuario2;

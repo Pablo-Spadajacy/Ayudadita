@@ -14,10 +14,8 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
@@ -30,10 +28,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/home">
@@ -45,11 +39,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/foro/temas/">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
-                            <span class="d-lg-none">Grupos</span>
+                            <span class="d-lg-none">Foros</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -93,23 +87,23 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/logout">
                                     <span class="material-icons-outlined">
-                                        log out
+                                        Cerrar sesión
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
                                     <span class="material-icons-outlined">
-                                        events
+                                        Perfil
                                     </span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="/editarPerfil">
                                     <span class="material-icons-outlined">
-                                        edit profile
+                                       Editar Perfil
                                     </span>
                                 </a>
                             </li>
@@ -122,43 +116,30 @@
 
 
     <div class="container">
-        <!-- crear y mostrar mensajes -->
 
-
-        <form:form action="/create_message" method="post" modelAttribute="message">
-            <form:errors path="content" class="text-danger" />
-            <form:label path="content">Add Comment:</form:label>
-            <form:textarea path="content" class="form-control"></form:textarea>
-            <form:hidden path="author" value="${userInSession.id}" />
-            <form:hidden path="event" value="${event.id}" />
+		<!-- PENDIENTE 
+        <form:form action="/crearPublicacion" method="post" modelAttribute="PENDIENTE">
+            <form:errors path="contenidoP" class="text-danger" />
+            <form:label path="contenidoP">Publicar:</form:label>
+            <form:textarea path="contenidoP" class="form-control"/>
+            <form:hidden path="autor" value="${userInSession.id}" />
             <input type="submit" value="submit" class="btn btn-info">
         </form:form>
-
+		
         <div class="col-6">
             <h2>Message Wall</h2>
             <div class="border mb-3">
-                <!-- mostrar mensajes -->
-                <c:forEach items="${event.eventMessages}" var="msg">
-                    <p>
-                        ${msg.author.firstName} says: ${msg.content}
+                <c:forEach items="${publicaciones}" var="publicacion">
+                    <p>${publicacion.autor.name} ${publicacion.contenidoP}
                     </p>
+                    
                 </c:forEach>
             </div>
         </div>
+	</div>        
+	-->
 	</div>
-
-
-
-
-
-
-
-
-
-        <!----<span class="material-symbols-outlined">
-    calendar_month
-</span>-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 </body>

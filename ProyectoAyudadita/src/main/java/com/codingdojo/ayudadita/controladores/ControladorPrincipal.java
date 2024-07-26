@@ -70,15 +70,15 @@ public class ControladorPrincipal {
 		return "dashboard.jsp";
 	}
 	
-	@PostMapping("/prueba")
-	public String pruebaImg(@RequestParam("file") MultipartFile file,
+	@PostMapping("/imagen")
+	public String cargarAvatar(@RequestParam("file") MultipartFile file,
 							HttpSession session,
 			                Model model) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
-		
+				
 		Long id = userTemp.getId();
 		String nombreArchivo;
 		try {
@@ -350,7 +350,8 @@ public class ControladorPrincipal {
 		
 	}
 	@GetMapping("/home")//PENDIENTE 
-	public String home(HttpSession session) {
+	public String home(HttpSession session,
+		               Model model) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
@@ -412,7 +413,7 @@ public class ControladorPrincipal {
 				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				
+				System.out.println("Si, entro aquí");
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			}
@@ -423,8 +424,10 @@ public class ControladorPrincipal {
 				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				
 				model.addAttribute("errorContra", "La contraseña es menor al tamaño indicado");
+				System.out.println("No, entro aquí");
+				model.addAttribute("errorContra", "La contraseña no es correcta");
+
 				return "edit-profile.jsp";
 			} else {
 				String contra = usuario.getContrasenna();
