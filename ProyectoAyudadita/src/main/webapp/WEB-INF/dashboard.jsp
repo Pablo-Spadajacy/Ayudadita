@@ -113,31 +113,28 @@
 			
 		</header>
 		<div>
-			<h2 class="mb-5">Compañeros de tu facultad</h2>			
+			<div class="mt-3">
+			<h2 class="mb-1">Compañeros de tu facultad</h2>			
 			<c:forEach items="${listaAlumnos}" var="alumno">
-					<c:if test="${userInSession.facultad == alumno.facultad}">
+					<c:if test="${userInSession.facultad == alumno.facultad && userInSession.id != alumno.id}">
 						<h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
 						<h3>-Facultad/Universidad: ${alumno.facultad}</h3>
 						<h3>-Carrera: ${alumno.carrera}</h3>
 					</c:if>
 			</c:forEach><!-- MAXIMO 3 ALUMNOS  -->
-			<h2 class="mb-5 mt-5">Compañeros de tu carrera</h2>
+			</div>
+			<div class="mt-3">
+			<h2 class="mb-1">Compañeros de tu carrera</h2>
 				<c:forEach items="${listaAlumnos}" var="alumno">
-					<c:if test="${userInSession.carrera == alumno.carrera}">
+					<c:if test="${userInSession.carrera == alumno.carrera && userInSession.id != alumno.id}">
 						<h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
 						<h3>-Facultad/Universidad: ${alumno.facultad}</h3>
 						<h3>-Carrera: ${alumno.carrera}</h3>
 					</c:if>
 			</c:forEach>
+			</div>
 		</div>
 	</div>
-	<div>
-		<a href = "/foro/temas/" class = "btn btn-success">Foros</a>
-	</div>
-	<div>
-		
-	</div>
-	
 	<h4>${userInSession.avatar}</h4>
 	<img src="/img/${userInSession.avatar}" alt="${userInSession.avatar}">
 	<div class="container">
@@ -192,7 +189,6 @@
         </form:form>
     </div>
 </div>
-	
 	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

@@ -413,7 +413,7 @@ public class ControladorPrincipal {
 				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				System.out.println("Si, entro aquí");
+				
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			}
@@ -424,10 +424,8 @@ public class ControladorPrincipal {
 				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
+				
 				model.addAttribute("errorContra", "La contraseña es menor al tamaño indicado");
-				System.out.println("No, entro aquí");
-				model.addAttribute("errorContra", "La contraseña no es correcta");
-
 				return "edit-profile.jsp";
 			} else {
 				String contra = usuario.getContrasenna();
