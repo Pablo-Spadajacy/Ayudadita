@@ -39,7 +39,16 @@ public class BaseController {
 						   BindingResult result, HttpSession session,
 						   Model model) {
 		
+		if (newUser.getContrasenna().length() < 6)
+		{
+			result.rejectValue("contrasenna", "Length", "La contraseña debe tener al menos 6 caracteres");
+			model.addAttribute("listaFacultades", Facultad.Facultades);
+			model.addAttribute("listaCarreras", Carrera.Carreras);
+			return "index.jsp";
+		}
+		
 		us.register(newUser, result);
+		
 		
 		if(result.hasErrors()) {
 			model.addAttribute("listaFacultades", Facultad.Facultades);
@@ -57,6 +66,8 @@ public class BaseController {
 						@RequestParam("password") String password,
 						RedirectAttributes redirectAttributes, /*usar mensajes de Flash*/   
 						HttpSession session){
+		
+		
 		
 		Usuario userTryingLogin = us.login(email, password); //Obj User o null
 		

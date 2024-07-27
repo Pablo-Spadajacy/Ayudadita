@@ -43,14 +43,22 @@ public class Usuario {
 	private String email;
 	
 	@NotEmpty(message="Se requiere contraseña")
-	@Size(min= 6, message="La contraseña requiere al menos 6 caracteres")
+	//@Size(min= 6, message="La contraseña requiere al menos 6 caracteres")
 	private String contrasenna;
 	
 	@OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Mensaje> mensajes;
 	
+	@OneToMany(mappedBy = "autorForoGeneral", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<MensajeForoGeneral> mensajesForoGeneral;
+	
+	/*@OneToMany(mappedBy = "autorMensaje", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Mensaje> mensajesChat;*/
+	
 	@Transient
 	private String confirmar;
+	
+	//private String confirmarContraseñaEditar;
 	
 	@NotEmpty(message= "Se requiere una facultad")
 	private String facultad;
@@ -70,6 +78,8 @@ public class Usuario {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
+	/*@OneToMany(mappedBy = "usuario1", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Chat> chatsComoUsuario1;
 	@OneToMany(mappedBy="author", fetch=FetchType.LAZY)
 	private List<Foro> Foro;
 	
@@ -78,9 +88,9 @@ public class Usuario {
 		return Foro;
 	}
 
-	public void setForo(List<Foro> foro) {
-		Foro = foro;
-	}
+	@OneToMany(mappedBy = "usuario2", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Chat> chatsComoUsuario2;
+	*/
 
 	public Usuario() {}
 
@@ -96,9 +106,38 @@ public class Usuario {
 		return nombre;
 	}
 
+	
+	
+	/*public List<Chat> getChatsComoUsuario1() {
+		return chatsComoUsuario1;
+	}
+
+	public void setChatsComoUsuario1(List<Chat> chatsComoUsuario1) {
+		this.chatsComoUsuario1 = chatsComoUsuario1;
+	}
+
+	public List<Chat> getChatsComoUsuario2() {
+		return chatsComoUsuario2;
+	}
+
+	public void setChatsComoUsuario2(List<Chat> chatsComoUsuario2) {
+		this.chatsComoUsuario2 = chatsComoUsuario2;
+	}
+   */
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	
+	
+	/*public List<Mensaje> getMensajesChat() {
+		return mensajesChat;
+	}
+
+	public void setMensajesChat(List<Mensaje> mensajesChat) {
+		this.mensajesChat = mensajesChat;
+	}*/
 
 	public String getApellido() {
 		return apellido;
@@ -116,12 +155,29 @@ public class Usuario {
 		this.email = email;
 	}
 
+	
+	
+	
+	public List<MensajeForoGeneral> getMensajesForoGeneral() {
+		return mensajesForoGeneral;
+	}
+
+	public void setMensajesForoGeneral(List<MensajeForoGeneral> mensajesForoGeneral) {
+		this.mensajesForoGeneral = mensajesForoGeneral;
+	}
+
+	/*public String getConfirmarContraseñaEditar() {
+		return confirmarContraseñaEditar;
+	}
+
+	public void setConfirmarContraseñaEditar(String confirmarContraseñaEditar) {
+		this.confirmarContraseñaEditar = confirmarContraseñaEditar;
+	}
+*/
 	public String getContrasenna() {
 		return contrasenna;
 	}
 
-	
-	
 	public List<ForoCarrera> getForosCreados() {
 		return forosCreados;
 	}

@@ -2,6 +2,7 @@ package com.codingdojo.ayudadita.controladores;
 
 
 
+
 import java.util.List;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -20,10 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codingdojo.ayudadita.modelos.Carrera;
 import com.codingdojo.ayudadita.modelos.Facultad;
 import com.codingdojo.ayudadita.modelos.ForoCarrera;
+import com.codingdojo.ayudadita.modelos.ForoGeneral;
 import com.codingdojo.ayudadita.modelos.Mensaje;
+import com.codingdojo.ayudadita.modelos.MensajeForoGeneral;
 import com.codingdojo.ayudadita.modelos.Usuario;
 import com.codingdojo.ayudadita.servicios.ImgServicio;
 import com.codingdojo.ayudadita.servicios.ServUsuario;
+import com.codingdojo.ayudadita.servicios.ServicioForoGeneral;
 import com.codingdojo.ayudadita.servicios.ServicioForos;
 
 import jakarta.servlet.http.HttpSession;
@@ -41,17 +45,28 @@ public class ControladorPrincipal {
 	@Autowired
 	private ServicioForos sf;
 	
+	@Autowired
+	private ServicioForoGeneral servGeneral;
+	
+	//@Autowired
+	//private ServicioChat sc;
+	
 	//@Autowired
 	//private RepositorioMensaje rm;
 	
 	@GetMapping("/principal")
-	public String principal(Model model, HttpSession session) {
+	public String principal(Model model, HttpSession session, @ModelAttribute("MensajeForoGeneral") MensajeForoGeneral mensaje) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
+		servGeneral.init();
 		
-		model.addAttribute("listaAlumnos", us.findAllUsers());
+		ForoGeneral foroGeneral = servGeneral.buscarForoPorNombre("Foro General");
+
+	    model.addAttribute("foro", foroGeneral);
+	    model.addAttribute("listaAlumnos", us.findAllUsers());
+	    model.addAttribute("mensajeForoGeneral", new MensajeForoGeneral());
 		return "dashboard.jsp";
 	}
 	
@@ -225,6 +240,95 @@ public class ControladorPrincipal {
 	    sf.saveMessage(mensaje);
 	    return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
 	}
+	
+	@GetMapping("/chats")
+	public String chats(HttpSession session, Model model)
+	{
+		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+		if(userTemp == null) {
+			return "redirect:/";
+		}
+		
+		List<Usuario> todosUsuarios = us.findAllUsers();
+		List<Usuario> usuariosDeMiFacultad = us.usuariosDeMiFacultad(userTemp.getFacultad());
+		List<Usuario> usuariosDeMiCarrera = us.usuariosDeMiCarrera(userTemp.getCarrera());
+		
+		model.addAttribute("todosUsuarios", todosUsuarios);
+		model.addAttribute("usuariosMiFacultad", usuariosDeMiFacultad);
+		model.addAttribute("usuariosMiCarrera", usuariosDeMiCarrera);
+		
+		return "chats.jsp";
+	}
+	
+	@GetMapping("/chats/filtrado")
+	public String chatFiltrado(HttpSession session, Model model, @RequestParam("tipoFiltrado")String tipoFiltrado)
+	{
+		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+		if(userTemp == null) {
+			return "redirect:/";
+		}
+		
+		List<Usuario> todosUsuarios = us.findAllUsers();
+		List<Usuario> usuariosDeMiFacultad = us.usuariosDeMiFacultad(userTemp.getFacultad());
+		List<Usuario> usuariosDeMiCarrera = us.usuariosDeMiCarrera(userTemp.getCarrera());
+		
+		if ("facultad".equals(tipoFiltrado))
+		{
+			model.addAttribute("usuariosMiFacultad", usuariosDeMiFacultad);
+		}
+		else if ("carrera".equals(tipoFiltrado))
+		{
+			model.addAttribute("usuariosMiCarrera", usuariosDeMiCarrera);
+		}
+		else if ("todos".equals(tipoFiltrado))
+		{
+			model.addAttribute("todosUsuarios", todosUsuarios);
+		}
+		
+		return "chats.jsp";
+	}
+	
+	/*@GetMapping("/usuario/chat/{id}")
+	public String usuarioChat(@PathVariable("id") Long id,HttpSession session, Model model)
+	{
+		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+		if(userTemp == null) {
+			return "redirect:/";
+		}
+		Usuario otroUsuario = us.findUser(id);
+		
+		Chat chat = sc.iniciarChat(userTemp, otroUsuario);
+		
+		List<Mensaje> mensajes = sc.todosLosMensajesDelChat(chat);
+		
+		model.addAttribute("chat", chat);
+		model.addAttribute("mensajes", mensajes);
+		model.addAttribute("otroUsuario", otroUsuario);
+		
+		return "chat.jsp";
+		
+	}
+	
+	@PostMapping("/usuario/chat/{id}/enviar")
+    public String enviarMensaje(@PathVariable("id") Long id, @RequestParam("contenido") String contenido, HttpSession session) {
+        Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/";
+        }
+
+        Usuario otroUsuario = us.findUser(id);
+        if (otroUsuario == null) {
+            return "redirect:/chats";
+        }
+
+        Chat chat = sc.iniciarChat(userTemp, otroUsuario);
+        sc.enviarMensaje(chat, userTemp, contenido);
+
+        return "redirect:/usuario/chat/" + id;
+    }
+    */
+	
+	
 	@GetMapping("/perfil/{id}")
 	public String perfil(@PathVariable("id")Long id, HttpSession session, 
 			Model model)
@@ -240,6 +344,10 @@ public class ControladorPrincipal {
 		
 		return "perfil.jsp";
 		
+		
+		
+		
+		
 	}
 	@GetMapping("/home")//PENDIENTE 
 	public String home(HttpSession session,
@@ -250,6 +358,8 @@ public class ControladorPrincipal {
 		}
 		return "home.jsp";
 	}//PENDIENTE
+	
+	
 	
 	
 	@GetMapping("/editarPerfil")
@@ -274,18 +384,36 @@ public class ControladorPrincipal {
 	@PutMapping("/editarPerfil")
 	public String actualizarPerfil(@Valid @ModelAttribute("usuario") Usuario usuario, HttpSession session,
 								   Model model, 
-								   BindingResult result) {
+								   BindingResult result,
+								   @RequestParam("contrasenna") String password) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
-		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), usuario.getContrasenna(), result);
+		
+		if (password.length() < 6) {
+	        result.rejectValue("contrasenna", "Length", "La contraseña debe tener al menos 6 caracteres");
+	        model.addAttribute("listaFacultades", Facultad.Facultades);
+	        model.addAttribute("listaCarreras", Carrera.Carreras);
+	        userTemp.setContrasenna("");
+	        model.addAttribute("usuario", us.findUser(userTemp.getId()));
+	        return "edit-profile.jsp";
+	    }
+		
+		
+		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), password, result);
+		
+			
 		
 			if(result.hasErrors()) {
+				
+				result.rejectValue("size", "La contraseña es demasiado corta");
 				model.addAttribute("listaFacultades", Facultad.Facultades);
 				model.addAttribute("listaCarreras", Carrera.Carreras);
+				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
+				
 				model.addAttribute("errorContra", "La contraseña no es correcta");
 				return "edit-profile.jsp";
 			}
@@ -293,9 +421,11 @@ public class ControladorPrincipal {
 			if(UsuarioCheck == null) {
 				model.addAttribute("listaFacultades", Facultad.Facultades);
 				model.addAttribute("listaCarreras", Carrera.Carreras);
+				
 				userTemp.setContrasenna("");
 				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				model.addAttribute("errorContra", "La contraseña no es correcta");
+				
+				model.addAttribute("errorContra", "La contraseña es menor al tamaño indicado");
 				return "edit-profile.jsp";
 			} else {
 				String contra = usuario.getContrasenna();
@@ -309,5 +439,47 @@ public class ControladorPrincipal {
 		return "redirect:/principal";
 	}
 	
-	
+	@PostMapping("/crear/mensaje/foroGeneral")
+	public String crearMensajeForoGeneral(@RequestParam(value = "file", required = false) MultipartFile file,
+	                                      @Valid @ModelAttribute("mensajeForoGeneral") MensajeForoGeneral mensaje,
+	                                      BindingResult result,
+	                                      HttpSession session,
+	                                      Model model) {
+	    Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+	    if (userTemp == null) {
+	        return "redirect:/";
+	    }
+
+	    // Verifica que al menos uno de los campos (contenido o imagen) esté presente
+	    if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
+	        result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
+	    }
+
+	    if (result.hasErrors()) {
+	        model.addAttribute("userInSession", userTemp);
+	        model.addAttribute("mensajeForoGeneral", mensaje); // Asegurarse de que el objeto esté en el modelo
+	        return "dashboard.jsp";
+	    }
+
+	    // Asigna el foro general al mensaje
+	    ForoGeneral foroGeneral = servGeneral.buscarForoPorNombre("Foro General");
+	    if (foroGeneral == null) {
+	        model.addAttribute("error", "Foro General no encontrado");
+	        return "dashboard.jsp";
+	    }
+	    mensaje.setForoGeneral(foroGeneral);
+
+	    if (file != null && !file.isEmpty()) {
+	        String nombreArchivo = servGeneral.guardarImg(file, mensaje.getForoGeneral().getId());
+	        if (!"error".equals(nombreArchivo)) {
+	            mensaje.setUrlFotoForo(nombreArchivo);
+	        } else {
+	            model.addAttribute("error", "Error al guardar la imagen");
+	        }
+	    }
+
+	    mensaje.setAutorForoGeneral(userTemp);
+	    servGeneral.saveMessage(mensaje);
+	    return "redirect:/principal";
+	}
 }

@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>  
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
-    
+    <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar perfil</title>
+    <title>edit profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet"
@@ -32,9 +31,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <a href="/principal" class="btn btn-danger">Cancelar</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" href="./home.html">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
@@ -43,11 +43,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/foro/temas/">
+                        <a class="nav-link" href="#">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
-                            <span class="d-lg-none">Foros</span>
+                            <span class="d-lg-none">Grupos</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -56,6 +56,22 @@
                                 store
                             </span>
                             <span class="d-lg-none">Tienda</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./add-friend.html">
+                            <span class="material-symbols-outlined">
+                                person_add
+                            </span>
+                            <span class="d-lg-none">agregar persona</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./notifications.html">
+                            <span class="material-symbols-outlined">
+                                notifications
+                            </span>
+                            <span class="d-lg-none">Notificaciones</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -75,16 +91,16 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="/logout">
+                                <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
-                                        Cerrar sesión
+                                        log out
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
+                                <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
-                                        Perfil
+                                        events
                                     </span>
                                 </a>
                             </li>
@@ -97,45 +113,52 @@
 	<div class="container">
     <!-- fin de nav inicio de codigo-->
 	<form:form action="/editarPerfil" method="post" modelAttribute="usuario">
-    <input type="hidden" name="_method" value="PUT">
-    <input type="hidden" name="email" value="${usuario.email}">
-    <input type="hidden" name="id" value="${userInSession.id}">
-	    
-	    <div>
-			<form:label path="nombre">Nombre</form:label>
-			<form:input path="nombre" class="form-control"/>
-			<form:errors path="nombre" class="text-danger"/>
+	<input type="hidden" name="_method" value="PUT">
+	<form:hidden path="email" value="${usuario.email}"/>
+	<form:hidden path="id" value="${userInSession.id}"/>
+		<div>
+			<form:label path="nombre">Nombre:</form:label>
+			<form:input path="nombre" class="form-control" />
+			<form:errors path="nombre" class="text-danger" />
 		</div>
 		<div>
-			<form:label path="apellido">Apellido</form:label>
-			<form:input path="apellido" class="form-control"/>
-			<form:errors path="apellido" class="text-danger"/>
+			<form:label path="apellido">Apellido:</form:label>
+			<form:input path="apellido" class="form-control" />
+			<form:errors path="apellido" class="text-danger" />
 		</div>
-	    <div>
-			<form:label path="contrasenna">Contraseña</form:label>
-			<form:password path="contrasenna" class="form-control" name="contrasenna"/>
-			<form:errors path="contrasenna" class="text-danger"/>
-		</div>
-	    <div>
+		<div>
+			<p class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</p>
 			<form:label path="facultad">Facultad:</form:label>
-			<form:select path="facultad" class="form-select">
+			<form:select path="facultad" class="form-select mt-1">
 				<c:forEach items="${listaFacultades}" var="facultad">
 					<form:option value="${facultad}">${facultad}</form:option>
 				</c:forEach>
 			</form:select>
-			<form:errors path="facultad" class="text-danger"/>
 		</div>
 		<div>
+			<p class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</p>
 			<form:label path="carrera">Carrera:</form:label>
-			<form:select path="carrera" class="form-select">
+			<form:select path="carrera" class="form-select mt-1">
 				<c:forEach items="${listaCarreras}" var="carrera">
 					<form:option value="${carrera}">${carrera}</form:option>
 				</c:forEach>
 			</form:select>
 			<form:errors path="facultad" class="text-danger"/>
 		</div>
-	    <input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
-	</form:form>
+		
+		<div>
+			<form:label path="contrasenna">Debes colocar tu contraseña para verificar</form:label>
+			<input type="password" class="form-control" name="contrasenna"/>
+			<form:errors path="contrasenna" class="text-danger"/>
+		</div>
+		<p class="text-danger">${errorContra}</p>
+		<p class="text-danger">${size}</p>
+		<input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
+	</form:form>	
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="email" value="${usuario.email}">
+    <input type="hidden" name="id" value="${userInSession.id}">
+	  
 	</div>
 </body>
 </html>

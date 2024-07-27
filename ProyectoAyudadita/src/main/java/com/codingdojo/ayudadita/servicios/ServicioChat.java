@@ -1,62 +1,64 @@
 package com.codingdojo.ayudadita.servicios;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.codingdojo.ayudadita.modelos.ForoCarrera;
 import com.codingdojo.ayudadita.modelos.Mensaje;
-import com.codingdojo.ayudadita.repositorios.RepositorioForo;
-import com.codingdojo.ayudadita.repositorios.RepositorioMensaje;
+import com.codingdojo.ayudadita.modelos.Usuario;
+//import com.codingdojo.ayudadita.repositorios.RepositorioMensaje;
 
-@Service
-public class ServicioForos {
-
-	@Autowired
-	RepositorioForo rf;
+/*@Service
+public class ServicioChat {
 	
 	@Autowired
 	RepositorioMensaje rm;
 	
-	public List<ForoCarrera> forosDeMiCarrera(String carrera) {
+	@Autowired
+	RepositorioChat rc;
+	
+	public Chat iniciarChat(Usuario usuario1, Usuario usuario2) {
+	    List<Chat> chatExistente = rc.findByUsuario1AndUsuario2(usuario1, usuario2);
+
+	    if (chatExistente.isEmpty()) {
+	        chatExistente = rc.findByUsuario2AndUsuario1(usuario2, usuario1);
+	    }
+
+	    if (!chatExistente.isEmpty()) {
+	        return chatExistente.get(0);
+	    }
+
+	    Chat nuevoChat = new Chat();
+	    nuevoChat.setUsuario1(usuario1);
+	    nuevoChat.setUsuario2(usuario2);
+	    nuevoChat.setCreatedAt(new Date()); // Establece la fecha de creación
+	    return rc.save(nuevoChat);
+	}
+	
+	public List<Mensaje> todosLosMensajesDelChat(Chat chat)
+	{
+		return rm.findByChat(chat);
+	}
+	
+	public Mensaje enviarMensaje(Chat chat, Usuario autor ,String contenido)
+	{
+		Mensaje mensaje = new Mensaje();
 		
-		return rf.findByCarreraForo(carrera);
-	}
-	
-	public List<ForoCarrera> ForoDeOtrasCarreras(String carerra){
-		return rf.findByCarreraForoIsNot(carerra);
-	}
-	
-	public List<ForoCarrera> ForosDeMiFacultad(String facultad)
-	{
-		return rf.findByFacultadForo(facultad);
-	}
-	
-	public List<ForoCarrera> ForosOtrasFacultades(String facultad)
-	{
-		return rf.findByFacultadForoIsNot(facultad);
-	}
-	
-	public Mensaje saveMessage(Mensaje mensaje) {
+		mensaje.setChat(chat);
+		mensaje.setAutor(autor);
+		mensaje.setContenido(contenido);
+		
 		return rm.save(mensaje);
 	}
 	
-	public ForoCarrera buscarForo(Long foroId)
-	{
-		return rf.findById(foroId).orElse(null);
-	}
 	
-	public ForoCarrera guardarForo(ForoCarrera foro)
-	{
-		return rf.save(foro);
-	}
 	
 public String guardarImg(MultipartFile file, Long id) {
 		
@@ -97,12 +99,5 @@ public String guardarImg(MultipartFile file, Long id) {
         }
         return nombreArchivo.substring(lastIndex); // Obtener la extensión (incluyendo el punto)
     }
-    
-    public Mensaje buscarMensaje(Long id)
-    {
-    	return rm.findById(id).orElse(null);
-    }
-    
-    
-    
 }
+*/
