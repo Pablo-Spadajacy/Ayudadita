@@ -158,49 +158,7 @@
     <input type="hidden" name="_method" value="PUT">
     <input type="hidden" name="email" value="${usuario.email}">
     <input type="hidden" name="id" value="${userInSession.id}">
-	   <form:form action="/editarPerfil" method="post" modelAttribute="usuario">
-	<input type="hidden" name="_method" value="PUT">
-	<form:hidden path="email" value="${usuario.email}"/>
-	<form:hidden path="id" value="${userInSession.id}"/>
-		<div>
-			<form:label path="nombre">Nombre:</form:label>
-			<form:input path="nombre" class="form-control" />
-			<form:errors path="nombre" class="text-danger" />
-		</div>
-		<div>
-			<form:label path="apellido">Apellido:</form:label>
-			<form:input path="apellido" class="form-control" />
-			<form:errors path="apellido" class="text-danger" />
-		</div>
-		<div>
-			<p class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</p>
-			<form:label path="facultad">Facultad:</form:label>
-			<form:select path="facultad" class="form-select mt-1">
-				<c:forEach items="${listaFacultades}" var="facultad">
-					<form:option value="${facultad}">${facultad}</form:option>
-				</c:forEach>
-			</form:select>
-		</div>
-		<div>
-			<p class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</p>
-			<form:label path="carrera">Carrera:</form:label>
-			<form:select path="carrera" class="form-select mt-1">
-				<c:forEach items="${listaCarreras}" var="carrera">
-					<form:option value="${carrera}">${carrera}</form:option>
-				</c:forEach>
-			</form:select>
-			<form:errors path="facultad" class="text-danger"/>
-		</div>
-		
-		<div>
-			<form:label path="contrasenna">Debes colocar tu contraseña para verificar</form:label>
-			<input type="password" class="form-control" name="contrasenna"/>
-			<form:errors path="contrasenna" class="text-danger"/>
-		</div>
-		<p class="text-danger">${errorContra}</p>
-		<p class="text-danger">${size}</p>
-		<input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
-	</form:form>
+	  
 	</div>
 </body>
 </html>
