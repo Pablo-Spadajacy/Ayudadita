@@ -8,10 +8,11 @@
 <meta charset="ISO-8859-1">
 <title>Message Wall</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <style type="text/css">
 .avatar-img {
-        width: 30px; /* Ajusta el tamaño del avatar */
-        height: 30px; /* Ajusta el tamaño del avatar */
+        width: 30px; /* Ajusta el tamaï¿½o del avatar */
+        height: 30px; /* Ajusta el tamaï¿½o del avatar */
         border-radius: 50%; /* Hace que la imagen sea redonda */
         margin-right: 10px; /* Espacio entre la imagen y el nombre */
     }
@@ -80,7 +81,7 @@
                             <li>
                                 <a class="dropdown-item" href="/logout">
                                     <span class="material-icons-outlined">
-                                        Cerrar sesión
+                                        Cerrar sesiï¿½n
                                     </span>
                                 </a>
                             </li>
@@ -107,7 +108,7 @@
     
     <div class="container">
         <div class="col-6">
-            <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
+            <a class="btn btn-danger" href="/logout">Cerrar sesiÃ³n</a>
             <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
             <a href="/principal" class="btn btn-dark">Volver al principio</a>
             <h2>Message Wall</h2>
@@ -148,7 +149,7 @@
 
            <form:form action="/crear/mensaje" method="post" modelAttribute="mensaje" enctype="multipart/form-data">
 			    <form:errors path="contenido" class="text-danger" />
-			    <form:label path="contenido">Añadir comentario:</form:label>
+			    <form:label path="contenido">AÃ±adir comentario:</form:label>
 			    <form:textarea path="contenido" class="form-control"></form:textarea>
 			    <form:hidden path="autor.id" value="${userInSession.id}" />
 			    <form:hidden path="foroCarrera.id" value="${foro.id}" />
