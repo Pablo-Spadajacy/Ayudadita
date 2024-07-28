@@ -135,8 +135,6 @@
 			</div>
 		</div>
 	</div>
-	<h4>${userInSession.avatar}</h4>
-	<img src="/img/${userInSession.avatar}" alt="${userInSession.avatar}">
 	<div class="container">
     <div class="col-6">
         <a class="btn btn-danger" href="/logout">Cerrar sesión</a>

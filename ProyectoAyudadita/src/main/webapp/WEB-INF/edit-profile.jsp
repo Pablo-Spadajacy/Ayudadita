@@ -101,6 +101,7 @@
 		<input type="hidden" name="_method" value="PUT">
 		<input type="hidden" name="email" value="${usuario.email}">
 	    <input type="hidden" name="id" value="${userInSession.id}">
+	    <input type="hidden" name="avatar" value="${usuario.avatar}">
 			<div>
 				<form:label path="nombre">Nombre:</form:label>
 				<form:input path="nombre" class="form-control" />

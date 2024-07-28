@@ -12,8 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.ayudadita.modelos.Carrera;
 import com.codingdojo.ayudadita.modelos.Facultad;
+import com.codingdojo.ayudadita.modelos.ForoGeneral;
+import com.codingdojo.ayudadita.modelos.MensajeForoGeneral;
 import com.codingdojo.ayudadita.modelos.Usuario;
 import com.codingdojo.ayudadita.servicios.ServUsuario;
+import com.codingdojo.ayudadita.servicios.ServicioForoGeneral;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -23,6 +26,9 @@ public class BaseController {
 	
 	@Autowired
 	private ServUsuario us;
+	
+	@Autowired
+	private ServicioForoGeneral servGeneral;
 	
 	
 	@GetMapping("/")
@@ -55,6 +61,9 @@ public class BaseController {
 			model.addAttribute("listaCarreras", Carrera.Carreras);
 			return "index.jsp";
 		} else {
+			ForoGeneral foroGeneral = servGeneral.buscarForoPorNombre("Foro General");
+		    model.addAttribute("foro", foroGeneral);
+		    model.addAttribute("mensajeForoGeneral", new MensajeForoGeneral());
 			session.setAttribute("userInSession", newUser);
 			model.addAttribute("listaAlumnos", us.findAllUsers());
 			return "dashboard.jsp";

@@ -138,7 +138,7 @@
 		</div>
 	</div>
 		<div class="col-6 border border-secondary rounded">
-			<h3 class="mt-2">Publicaciones del usuario</h3>
+			<h3 class="mt-2">Publicaciones del usuario:</h3>
 			<c:forEach items="${foro.foroGeneralMensajes}" var="msg">
 				<c:if test="${msg.autor.id == usuario.id}">
                     <div class="message-container mt-1">
