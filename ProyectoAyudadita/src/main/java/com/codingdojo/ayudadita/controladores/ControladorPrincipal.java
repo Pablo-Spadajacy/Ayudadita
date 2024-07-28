@@ -337,6 +337,8 @@ public class ControladorPrincipal {
 		if(userTemp == null) {
 			return "redirect:/";
 		}
+		ForoGeneral foroGeneral = servGeneral.buscarForoPorNombre("Foro General");
+		model.addAttribute("foro", foroGeneral);
 		
 		Usuario perfilUsuario = us.findUser(id);
 		
@@ -384,57 +386,55 @@ public class ControladorPrincipal {
 	@PutMapping("/editarPerfil")
 	public String actualizarPerfil(@Valid @ModelAttribute("usuario") Usuario usuario, HttpSession session,
 								   Model model, 
-								   BindingResult result,
-								   @RequestParam("contrasenna") String password) {
+								   BindingResult result) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
 		}
+		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), usuario.getContrasenna());
 		
-		if (password.length() < 6) {
-	        result.rejectValue("contrasenna", "Length", "La contraseña debe tener al menos 6 caracteres");
-	        model.addAttribute("listaFacultades", Facultad.Facultades);
-	        model.addAttribute("listaCarreras", Carrera.Carreras);
-	        userTemp.setContrasenna("");
-	        model.addAttribute("usuario", us.findUser(userTemp.getId()));
-	        return "edit-profile.jsp";
-	    }
-		
-		
-		Usuario UsuarioCheck = us.chequeo(usuario.getEmail(), password, result);
-		
+		if(result.hasErrors()) {
 			
-		
-			if(result.hasErrors()) {
-				
-				result.rejectValue("size", "La contraseña es demasiado corta");
-				model.addAttribute("listaFacultades", Facultad.Facultades);
-				model.addAttribute("listaCarreras", Carrera.Carreras);
-				
-				userTemp.setContrasenna("");
-				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				
-				model.addAttribute("errorContra", "La contraseña no es correcta");
-				return "edit-profile.jsp";
-			}
+			model.addAttribute("listaFacultades", Facultad.Facultades);
+			model.addAttribute("listaCarreras", Carrera.Carreras);
 			
-			if(UsuarioCheck == null) {
-				model.addAttribute("listaFacultades", Facultad.Facultades);
-				model.addAttribute("listaCarreras", Carrera.Carreras);
-				
-				userTemp.setContrasenna("");
-				model.addAttribute("usuario", us.findUser(userTemp.getId()));
-				
-				model.addAttribute("errorContra", "La contraseña es menor al tamaño indicado");
-				return "edit-profile.jsp";
-			} else {
-				String contra = usuario.getContrasenna();
-				String pass_hash = BCrypt.hashpw(contra, BCrypt.gensalt());
-				usuario.setContrasenna(pass_hash);
-				us.save(usuario);
-				userTemp = usuario;
-				session.setAttribute("userInSession", userTemp);
-			}
+			userTemp.setContrasenna("");
+			model.addAttribute("usuario", us.findUser(userTemp.getId()));
+			
+			model.addAttribute("errorContra", "La contraseña no es correcta");
+			return "edit-profile.jsp";
+		}
+		
+		if(UsuarioCheck == null) {
+			model.addAttribute("listaFacultades", Facultad.Facultades);
+			model.addAttribute("listaCarreras", Carrera.Carreras);
+			
+			userTemp.setContrasenna("");
+			model.addAttribute("usuario", us.findUser(userTemp.getId()));
+			
+			model.addAttribute("errorContra", "La contraseña es erronea");
+			return "edit-profile.jsp";
+		}
+		
+		if(UsuarioCheck.getContrasenna() == "lessSize") {
+			model.addAttribute("listaFacultades", Facultad.Facultades);
+			model.addAttribute("listaCarreras", Carrera.Carreras);
+			
+			userTemp.setContrasenna("");
+			model.addAttribute("usuario", us.findUser(userTemp.getId()));
+			
+			model.addAttribute("size", "La contraseña es demasiado corta");
+			return "edit-profile.jsp";
+		}
+		else {
+			String contra = usuario.getContrasenna();
+			String pass_hash = BCrypt.hashpw(contra, BCrypt.gensalt());
+			usuario.setContrasenna(pass_hash);
+			System.out.println("aquí");
+			us.save(usuario);
+			userTemp = usuario;
+			session.setAttribute("userInSession", userTemp);
+		}
 		
 		return "redirect:/principal";
 	}

@@ -26,19 +26,19 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
-                    Principal
+                    home
                 </span>
-                <span class="d-lg-none ms-2">Principal</span> <!-- Texto para dispositivos pequeños -->
+                <span class="d-lg-none ms-2">Home</span> <!-- Texto para dispositivos pequeños -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-               
+                <a href="/principal" class="btn btn-danger">Cancelar</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" href="./home.html">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
@@ -47,11 +47,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/foro/temas/">
+                        <a class="nav-link" href="/foro/temas">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
-                            <span class="d-lg-none">Foros</span>
+                            <span class="d-lg-none">Grupos</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -61,7 +61,7 @@
                             </span>
                             <span class="d-lg-none">Tienda</span>
                         </a>
-                    </li>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href="./messenges.html">
                             <span class="material-symbols-outlined">
@@ -79,14 +79,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="/logout">
+                                <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
-                                        Cerrar sesi�n
+                                        cerrar Sesion
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
+                                <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
                                         Perfil
                                     </span>

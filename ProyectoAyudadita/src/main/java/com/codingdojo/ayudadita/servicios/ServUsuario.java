@@ -68,21 +68,19 @@ public class ServUsuario {
 		RepoU.save(user);
 	}
 	
-	public Usuario chequeo(String email, String password, BindingResult result) {
+	public Usuario chequeo(String email, String password) {
 		
-		if(password == null || password == "" || password.length() < 6) {
-			return null;
-		}
+		
 		Usuario UsuarioEdit = RepoU.findByEmail(email);
-		
-		//String contrasennaEditar = UsuarioEdit.getContrasenna();
-		
-		//UsuarioEdit.setConfirmarContraseñaEditar(contrasennaEditar);
-		/*
-		if(BCrypt.checkpw(password, UsuarioEdit.getConfirmarContraseñaEditar()) && UsuarioEdit.getConfirmarContraseñaEditar().length() >= 6 ) {
+		if(password == null || password == "") {
+			UsuarioEdit.setContrasenna(null);
 			return UsuarioEdit;
-		}	
-		*/
+		}
+		if(password.length() < 6 || password == null || password == "") {
+			UsuarioEdit.setContrasenna("lessSize");
+			return UsuarioEdit;
+		}
+		
 		if(BCrypt.checkpw(password, UsuarioEdit.getContrasenna())) {
 			return UsuarioEdit;
 		}	

@@ -11,15 +11,24 @@
 <title>Perfil de ${usuario.nombre}</title>
 <style>
 	.avatar-img {
-        width: 600px; /* Ajusta el tamaño del avatar */
-        height: 600px; /* Ajusta el tamaño del avatar */
+        width: 250px; /* Ajusta el tamaño del avatar */
+        height: 250px; /* Ajusta el tamaño del avatar */
         border-radius: 50%; /* Hace que la imagen sea redonda */
         margin-right: 10px; /* Espacio entre la imagen y el nombre */
     }
     .avatarNoDefault {
-    	width: 800px;
+    	width: 300px;
     	margin-right: 10px;
     }
+    .avatarMsg-img {
+        width: 30px; /* Ajusta el tamaï¿½o del avatar */
+        height: 30px; /* Ajusta el tamaï¿½o del avatar */
+        border-radius: 50%; /* Hace que la imagen sea redonda */
+        margin-right: 10px; /* Espacio entre la imagen y el nombre */
+    }
+	.message-container {
+    margin-bottom: 15px; /* Espacio entre los mensajes */
+}
 </style>
 </head>
 <body>
@@ -36,9 +45,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <a href="/principal" class="btn btn-danger">Cancelar</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" href="./home.html">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
@@ -47,11 +57,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/foro/temas/">
+                        <a class="nav-link" href="/foro/temas">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
-                            <span class="d-lg-none">Foros</span>
+                            <span class="d-lg-none">Grupos</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -61,7 +71,7 @@
                             </span>
                             <span class="d-lg-none">Tienda</span>
                         </a>
-                    </li>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href="./messenges.html">
                             <span class="material-symbols-outlined">
@@ -79,23 +89,16 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="/logout">
+                                <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
-                                        Cerrar sesión
+                                        cerrar Sesion
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
+                                <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
                                         Perfil
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/editarPerfil">
-                                    <span class="material-icons-outlined">
-                                       Editar Perfil
                                     </span>
                                 </a>
                             </li>
@@ -105,36 +108,73 @@
             </div>
         </div>
     </nav>
-	<div class = "container">
-		<h1>Nombre: ${usuario.nombre} ${usuario.apellido}</h1>
-		<h2>Facultad: ${usuario.facultad}</h2>
-		<h3>Carrera: ${usuario.carrera}</h3>
-		<c:choose>
-			<c:when test="${not empty usuario.avatar}">
-				<h4>Avatar del Usuario</h4>
-				<img src="/img/${usuario.avatar}" alt="${usuario.avatar}" class="avatarNoDefault">
-			</c:when>
-			<c:otherwise>
-              <c:if test="${usuario.id == 1}">
-              	  <h4>Este admin no tiene foto</h4>
-                  <img src="/img/adminBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
-              </c:if>
-              <c:if test="${usuario.id > 1}">
-          	    <h4>Este usuario no tiene foto</h4>
-              	<img src="/img/studentBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatar-img"/>
-              </c:if>
-            </c:otherwise>
-		</c:choose>
-		<br>
-		<h2>¿No te gusta tu avatar? ¡Cambialo!</h2>
-		<form action="/imagen" method="post" enctype="multipart/form-data">
-	        <input type="file" name="file" accept="image/*" required />
-	        <br/><br/>
-	        
-	        <button type="submit">Cargar Imagen</button>
-		</form>	
+    <div class="container justify-content-between">
+    <div class="row mt-2">
+    <div class="col-6">
+		<div class="container text-center items-center border border-secondary rounded pb-2 position-fixed col-4">
+			<h1>Nombre: ${usuario.nombre} ${usuario.apellido}</h1>
+			<h2>Facultad: ${usuario.facultad}</h2>
+			<h3>Carrera: ${usuario.carrera}</h3>
+			<c:choose>
+				<c:when test="${not empty usuario.avatar}">
+					<h4>Avatar del Usuario</h4>
+					<img src="/img/${usuario.avatar}" alt="${usuario.avatar}" class="avatarNoDefault border border-secondary">
+				</c:when>
+				<c:otherwise>
+	              <c:if test="${usuario.id == 1}">
+	              	  <h4>Este admin no tiene foto</h4>
+	                  <img src="/img/adminBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatar-img border border-secondary"/>
+	              </c:if>
+	              <c:if test="${usuario.id > 1}">
+	          	    <h4>Este usuario no tiene foto</h4>
+	              	<img src="/img/studentBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatar-img border border-secondary"/>
+	              </c:if>
+	            </c:otherwise>
+			</c:choose>
+			<br>
+			<c:if test="${usuario.id == userInSession.id}">
+				<a href="/editarPerfil" class="btn btn-success mt-3 mb-2">Editar perfil</a>
+			</c:if>
+		</div>
 	</div>
-	
+		<div class="col-6 border border-secondary rounded">
+			<h3 class="mt-2">Publicaciones del usuario</h3>
+			<c:forEach items="${foro.foroGeneralMensajes}" var="msg">
+				<c:if test="${msg.autor.id == usuario.id}">
+                    <div class="message-container mt-1">
+                        <p>
+                            <a href="/perfil/${msg.autor.id}">
+                                <!-- Muestra el avatar del autor -->
+                                <c:choose>
+                                    <c:when test="${not empty msg.autor.avatar}">
+                                        <img src="/img/${msg.autor.avatar}" alt="Avatar de ${msg.autor.nombre}" class="avatarMsg-img"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <c:if test="${msg.autor.id == 1}">
+                                        <img src="/img/adminBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatarMsg-img"/>
+                                    </c:if>
+                                    <c:if test="${msg.autor.id > 1}">
+                                    	<img src="/img/studentBlank.jpg" alt="Avatar de ${msg.autor.nombre}" class="avatarMsg-img"/>
+                                    </c:if>
+                                    </c:otherwise>
+                                </c:choose>
+                                ${msg.autor.nombre}
+                            </a> dice:
+                            <c:choose>
+                                <c:when test="${not empty msg.urlFotoForo}">
+                                    <img src="/img/${msg.urlFotoForo}" alt="Imagen enviada" class="img-fluid" />
+                                </c:when>
+                                <c:otherwise>
+                                    ${msg.contenido}
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
+                    </div>
+       			</c:if>
+      		</c:forEach>
+		</div>
+	</div>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
