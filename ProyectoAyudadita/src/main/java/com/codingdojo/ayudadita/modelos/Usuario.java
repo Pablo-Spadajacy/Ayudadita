@@ -91,6 +91,9 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario2", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Chat> chatsComoUsuario2;
 	*/
+	
+	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
+	private List<Product> myProducts;
 
 	public Usuario() {}
 
@@ -257,5 +260,13 @@ public class Usuario {
     protected void onUpdate() {
         this.updatedAt = new Date();
     }
+
+	public List<Product> getMyProducts() {
+		return myProducts;
+	}
+
+	public void setMyProducts(List<Product> myProducts) {
+		this.myProducts = myProducts;
+	}
 	
 }

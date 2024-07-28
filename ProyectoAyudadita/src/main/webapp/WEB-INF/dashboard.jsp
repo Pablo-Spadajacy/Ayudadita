@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./store.html">
+                        <a class="nav-link" href="/store/">
                             <span class="material-symbols-outlined">
                                 store
                             </span>
@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./messenges.html">
+                        <a class="nav-link" href="/messenges">
                             <span class="material-symbols-outlined">
                                 chat
                             </span>
