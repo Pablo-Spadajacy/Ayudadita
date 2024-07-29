@@ -98,32 +98,35 @@
                     </div>
                 </div>
             </nav>
-            <div class="container">
+            <div class="container mt-4">
 
-                <!-- modelo de card -->
-                <a href="/store/product/new" class="btn-primary">
+                <a href="/store/product/new" class="btn btn-primary position-fixed bottom-0 end-0 m-3">
                     <span class="material-symbols-outlined">
                         add_circle
                     </span>
                 </a>
 
                 <div class="row">
-                    <div class="col-md-4">
-
-                        <c:forEach items="${store}" var="product">
-                            <a href="/store/product/${product.id}" class="link-underline link-underline-opacity-0">
-                                <div class="card">
-                                    <!--    <img src="..." class="card-img-top" alt="...">-->
+                    <!-- modelo de card -->
+                    <c:forEach items="${store}" var="product">
+                        <div class="col-md-4 mb-3">
+                            <a href="/store/product/${product.id}" class="text-decoration-none">
+                                <div class="card ">
+                                    <c:if test="${empty product.img}">
+                                        <img src="../img/test.png" alt="imagen del producto" class="card-img-top img-fluid img-thumbnail" style="height: 200px; object-fit: cover;" />
+                                    </c:if>
+                                    <c:if test="${not empty product.img}">
+                                        <img src="../img/${product.img}" alt="Imagen del producto" class="card-img-top img-thumbnail" style="height: 200px; object-fit: cover;"/>
+                                    </c:if>
                                     <div class="card-body">
                                         <h5 class="card-title">Title: ${product.title}</h5>
                                         <p class="card-text">precio: ${product.price}</p>
                                     </div>
                                 </div>
                             </a>
+                        </div>
+                    </c:forEach>
 
-                        </c:forEach>
-
-                    </div>
                 </div>
 
 
