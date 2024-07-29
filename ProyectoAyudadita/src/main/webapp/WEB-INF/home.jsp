@@ -117,27 +117,6 @@
 
     <div class="container">
 
-		<!-- PENDIENTE 
-        <form:form action="/crearPublicacion" method="post" modelAttribute="PENDIENTE">
-            <form:errors path="contenidoP" class="text-danger" />
-            <form:label path="contenidoP">Publicar:</form:label>
-            <form:textarea path="contenidoP" class="form-control"/>
-            <form:hidden path="autor" value="${userInSession.id}" />
-            <input type="submit" value="submit" class="btn btn-info">
-        </form:form>
-		
-        <div class="col-6">
-            <h2>Message Wall</h2>
-            <div class="border mb-3">
-                <c:forEach items="${publicaciones}" var="publicacion">
-                    <p>${publicacion.autor.name} ${publicacion.contenidoP}
-                    </p>
-                    
-                </c:forEach>
-            </div>
-        </div>
-	</div>        
-	-->
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

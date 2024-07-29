@@ -6,7 +6,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>store</title>
+            <title>Product</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
                 crossorigin="anonymous">
@@ -98,42 +98,38 @@
                     </div>
                 </div>
             </nav>
-            <div class="container mt-4">
+            <div class="container">
 
-                <a href="/store/product/new" class="btn btn-primary position-fixed bottom-0 end-0 m-3">
-                    <span class="material-symbols-outlined">
-                        add_circle
-                    </span>
-                </a>
-
-                <div class="row">
-                    <!-- modelo de card -->
-                    <c:forEach items="${store}" var="product">
-                        <div class="col-md-4 mb-3">
-                            <a href="/store/product/${product.id}" class="text-decoration-none">
-                                <div class="card ">
-                                    <c:if test="${empty product.img}">
-                                        <img src="../img/test.png" alt="imagen del producto" class="card-img-top img-fluid img-thumbnail" style="height: 200px; object-fit: cover;" />
-                                    </c:if>
-                                    <c:if test="${not empty product.img}">
-                                        <img src="../img/${product.img}" alt="Imagen del producto" class="card-img-top img-thumbnail" style="height: 200px; object-fit: cover;"/>
-                                    </c:if>
-                                    <div class="card-body">
-                                        <h5 class="card-title">Title: ${product.title}</h5>
-                                        <p class="card-text">precio: ${product.price}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </c:forEach>
-
+                <a href="/store/" class="btn btn-success">Store</a>
+                <h1>Title: ${product.title}</h1>
+                <p>Location: ${product.productLocation}</p>
+                <p>Price: ${product.price}</p>
+                <p>Description: ${product.productDescription}</p>
+              
+                <div>
+                    <c:if test="${userInSession.id == product.creator.id}">
+                        
+                        <a href="/store/product/${id}/edit" class="btn btn-warning">Edit</a>
+                    </c:if>
+                    
+                    <c:if test="${userInSession.id == product.creator.id}">
+                        <a href="/store/product/${id}/delete" class="btn btn-danger">Delete</a>
+                    </c:if>
                 </div>
+                <div class="row">
+                    <c:if test="${userInSession.id != product.creator.id}">
+                        
+                        <a href="#" class="btn btn-success">Send messenge</a>
+                    </c:if>
+                </div>
+                
+            </div>
 
 
 
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                    crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
         </body>
 
         </html>

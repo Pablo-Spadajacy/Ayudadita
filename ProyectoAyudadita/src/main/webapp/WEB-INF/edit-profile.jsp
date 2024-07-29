@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/foro/temas">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
@@ -57,23 +57,7 @@
                             </span>
                             <span class="d-lg-none">Tienda</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./add-friend.html">
-                            <span class="material-symbols-outlined">
-                                person_add
-                            </span>
-                            <span class="d-lg-none">agregar persona</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./notifications.html">
-                            <span class="material-symbols-outlined">
-                                notifications
-                            </span>
-                            <span class="d-lg-none">Notificaciones</span>
-                        </a>
-                    </li>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href="./messenges.html">
                             <span class="material-symbols-outlined">
@@ -93,14 +77,14 @@
                             <li>
                                 <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
-                                        log out
+                                        cerrar Sesion
                                     </span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">
                                     <span class="material-icons-outlined">
-                                        events
+                                        Perfil
                                     </span>
                                 </a>
                             </li>
@@ -110,55 +94,68 @@
             </div>
         </div>
     </nav>
-	<div class="container">
-    <!-- fin de nav inicio de codigo-->
-	<form:form action="/editarPerfil" method="post" modelAttribute="usuario">
-	<input type="hidden" name="_method" value="PUT">
-	<form:hidden path="email" value="${usuario.email}"/>
-	<form:hidden path="id" value="${userInSession.id}"/>
-		<div>
-			<form:label path="nombre">Nombre:</form:label>
-			<form:input path="nombre" class="form-control" />
-			<form:errors path="nombre" class="text-danger" />
+	<div class="container justify-content-between">
+    <div class="row">
+	    <div class="col-6">
+		<form:form action="/editarPerfil" method="post" modelAttribute="usuario">
+		<input type="hidden" name="_method" value="PUT">
+		<input type="hidden" name="email" value="${usuario.email}">
+	    <input type="hidden" name="id" value="${userInSession.id}">
+	    <input type="hidden" name="avatar" value="${usuario.avatar}">
+			<div>
+				<form:label path="nombre">Nombre:</form:label>
+				<form:input path="nombre" class="form-control" />
+				<form:errors path="nombre" class="text-danger" />
+			</div>
+			<div>
+				<form:label path="apellido">Apellido:</form:label>
+				<form:input path="apellido" class="form-control" />
+				<form:errors path="apellido" class="text-danger" />
+			</div>
+			<div>
+				<form:label path="facultad">Facultad:</form:label>
+				<form:select path="facultad" class="form-select">
+					<c:forEach items="${listaFacultades}" var="facultad">
+						<form:option value="${facultad}">${facultad}</form:option>
+					</c:forEach>
+				</form:select>
+				<p class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</p>
+			</div>
+			<div>
+				<form:label path="carrera">Carrera:</form:label>
+				<form:select path="carrera" class="form-select">
+					<c:forEach items="${listaCarreras}" var="carrera">
+						<form:option value="${carrera}">${carrera}</form:option>
+					</c:forEach>
+				</form:select>
+				<p class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</p>
+				<form:errors path="facultad" class="text-danger"/>
+			</div>
+			
+			<div>
+				<form:label path="contrasenna">Debes colocar tu contraseña para verificar</form:label>
+				<input type="password" class="form-control" name="contrasenna"/>
+				<form:errors path="contrasenna" class="text-danger"/>
+			</div>
+			<p class="text-danger">${errorContra}</p>
+			<p class="text-danger">${size}</p>
+			<input type="submit" value="Guardar Perfil" class="btn btn-success mt-1">
+		</form:form>	
+	    
+	    
 		</div>
-		<div>
-			<form:label path="apellido">Apellido:</form:label>
-			<form:input path="apellido" class="form-control" />
-			<form:errors path="apellido" class="text-danger" />
+		<div class="col-6">
+			<h2>¿No te gusta tu avatar? ¡Cambialo!</h2>
+			<form action="/imagen" method="post" enctype="multipart/form-data">
+		        <input type="file" name="file" accept="image/*" required />
+		        <br/><br/>
+	        <button type="submit">Cargar Imagen</button>
+		</form>	
 		</div>
-		<div>
-			<p class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual</p>
-			<form:label path="facultad">Facultad:</form:label>
-			<form:select path="facultad" class="form-select mt-1">
-				<c:forEach items="${listaFacultades}" var="facultad">
-					<form:option value="${facultad}">${facultad}</form:option>
-				</c:forEach>
-			</form:select>
-		</div>
-		<div>
-			<p class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual</p>
-			<form:label path="carrera">Carrera:</form:label>
-			<form:select path="carrera" class="form-select mt-1">
-				<c:forEach items="${listaCarreras}" var="carrera">
-					<form:option value="${carrera}">${carrera}</form:option>
-				</c:forEach>
-			</form:select>
-			<form:errors path="facultad" class="text-danger"/>
-		</div>
-		
-		<div>
-			<form:label path="contrasenna">Debes colocar tu contraseña para verificar</form:label>
-			<input type="password" class="form-control" name="contrasenna"/>
-			<form:errors path="contrasenna" class="text-danger"/>
-		</div>
-		<p class="text-danger">${errorContra}</p>
-		<p class="text-danger">${size}</p>
-		<input type="submit" value="Guardar Perfil" class="btn btn-success mt-3">
-	</form:form>	
-    <input type="hidden" name="_method" value="PUT">
-    <input type="hidden" name="email" value="${usuario.email}">
-    <input type="hidden" name="id" value="${userInSession.id}">
-	  
 	</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

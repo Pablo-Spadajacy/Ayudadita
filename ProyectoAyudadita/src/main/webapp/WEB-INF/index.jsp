@@ -13,7 +13,7 @@
 	<div class="container justify-content-between">
 		<div class="row">
 			<div class="col-6">
-				<h2>Register</h2>
+				<h2>Registro</h2>
 				<form:form action="/register" method="post" modelAttribute="newUser">
 					<div>
 						<form:label path="nombre">Nombre</form:label>
