@@ -41,19 +41,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./store.html">
+                        <a class="nav-link" href="/store">
                             <span class="material-symbols-outlined">
                                 store
                             </span>
                             <span class="d-lg-none">Tienda</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./messenges.html">
-                            <span class="material-symbols-outlined">
-                                chat
-                            </span>
-                            <span class="d-lg-none">Chat</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
