@@ -103,7 +103,7 @@
 
                     <div class="container">
 
-                        <form:form action="/store/product/create" method="post" modelAttribute="product">
+                        <form:form action="/store/product/create" method="post" modelAttribute="product" enctype="multipart/form-data">
                             <h1>New Product</h1>
                             <span class="text-danger">${errors.first('title')}</span>
 
@@ -136,6 +136,10 @@
                                                     </c:forEach>
                                                 </form:select>
                                     -->
+                                </div>
+
+                                <div>
+                                    <input type="file" name="file" accept="image/*">
                                 </div>
 
                                 <form:hidden path="Creator" value="${userInSession.id}" />

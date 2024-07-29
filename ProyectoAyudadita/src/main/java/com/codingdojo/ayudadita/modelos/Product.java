@@ -39,6 +39,8 @@ public class Product {
 	
 	@NotEmpty(message="Product description is required.")
 	private String productDescription;
+
+    private String img;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -156,6 +158,14 @@ public class Product {
 
     public void setCreator(Usuario creator) {
         this.creator = creator;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 	
 	

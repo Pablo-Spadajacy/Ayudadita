@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.codingdojo.ayudadita.modelos.Product;
 import com.codingdojo.ayudadita.modelos.Usuario;
@@ -81,6 +82,7 @@ public class StoreController {
 
 	@PostMapping("/product/create")
 	public String productCreate(@Valid @ModelAttribute("product") Product product,
+			@RequestParam(value = "file", required = false) MultipartFile file,		
 			BindingResult result,
 			HttpSession session) {
 
@@ -92,6 +94,11 @@ public class StoreController {
 		if (result.hasErrors()) {
 			return "new-product.jsp";
 		} else {
+			if (!file.isEmpty()) {
+				ps.saveProduct(product);
+				String imagenNombre = ps.saveImg(file, product.getId());
+				product.setImg(imagenNombre);
+			}
 
 			ps.saveProduct(product);
 
@@ -106,9 +113,9 @@ public class StoreController {
 
 	@GetMapping("/product/{id}/edit")
 	public String productEdit(@PathVariable("id") Long id,
-							HttpSession session,
-							@ModelAttribute("product") Product product, 
-							Model model) {
+								HttpSession session,
+								@ModelAttribute("product") Product product, 
+								Model model) {
 		
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession"); 
 		if(userTemp == null) {
@@ -116,10 +123,10 @@ public class StoreController {
 		}
 		
 		
-
+		
 		Product productToEdit = ps.findProduct(id);
 		
-
+		
 		if(userTemp.getId() != productToEdit.getCreator().getId()) {
 			return "redirect:/store/";
 		}
@@ -134,6 +141,7 @@ public class StoreController {
 	
 	@PutMapping("/product/update")
 	public String productUpdate(HttpSession session,
+								@RequestParam(value = "file", required = false) MultipartFile file,
 								@Valid @ModelAttribute("product") Product product, 
 								BindingResult result) {
 	
@@ -142,10 +150,14 @@ public class StoreController {
 			return "redirect:/";
 		}
 
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "edit-product.jsp";
-
 		} else {
+			if (!file.isEmpty()) {
+				// Guardar la imagen y actualizar el producto
+				String imagenNombre = ps.saveImg(file, product.getId());
+				product.setImg(imagenNombre);
+			}
 
 			ps.saveProduct(product);
 			return "redirect:/store/";

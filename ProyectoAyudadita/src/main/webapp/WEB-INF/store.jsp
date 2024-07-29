@@ -113,7 +113,12 @@
                         <c:forEach items="${store}" var="product">
                             <a href="/store/product/${product.id}" class="link-underline link-underline-opacity-0">
                                 <div class="card">
-                                    <!--    <img src="..." class="card-img-top" alt="...">-->
+                                    <c:if test="${empty product.img}">
+                                        <img src="../img/test.png" alt="imagen del producto" class="card-img-top"/>
+                                    </c:if>
+                                    <c:if test="${not empty product.img}">
+                                        <img src="../img/${product.img}" alt="Imagen del producto" class="card-img-top" />
+                                    </c:if>
                                     <div class="card-body">
                                         <h5 class="card-title">Title: ${product.title}</h5>
                                         <p class="card-text">precio: ${product.price}</p>
