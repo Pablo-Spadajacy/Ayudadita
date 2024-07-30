@@ -11,23 +11,31 @@
 <title>Perfil de ${usuario.nombre}</title>
 <style>
 	.avatar-img {
-        width: 250px; /* Ajusta el tamaño del avatar */
-        height: 250px; /* Ajusta el tamaño del avatar */
-        border-radius: 50%; /* Hace que la imagen sea redonda */
-        margin-right: 10px; /* Espacio entre la imagen y el nombre */
+        width: 250px; 
+        height: 250px;
+        border-radius: 50%;
+        margin-right: 10px;
     }
     .avatarNoDefault {
     	width: 300px;
     	margin-right: 10px;
     }
     .avatarMsg-img {
-        width: 30px; /* Ajusta el tamaï¿½o del avatar */
-        height: 30px; /* Ajusta el tamaï¿½o del avatar */
-        border-radius: 50%; /* Hace que la imagen sea redonda */
-        margin-right: 10px; /* Espacio entre la imagen y el nombre */
+        width: 30px;
+        height: 30px; 
+        border-radius: 50%; 
+        margin-right: 10px;
     }
 	.message-container {
-    margin-bottom: 15px; /* Espacio entre los mensajes */
+    margin-bottom: 15px;
+    }
+    body {
+        background-color: #ffffff; 
+        background-image: linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px), 
+                          linear-gradient(180deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+        background-size: 30px 30px; 
+        background-repeat: repeat; 
+    }
 }
 </style>
 </head>
