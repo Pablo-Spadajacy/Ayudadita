@@ -74,7 +74,7 @@
                                     <li>
                                         <a class="dropdown-item" href="/logout">
                                             <span class="material-icons-outlined">
-                                                Cerrar sesiÃ³n
+                                                Cerrar Sesión
                                             </span>
                                         </a>
                                     </li>
