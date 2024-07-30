@@ -69,7 +69,7 @@
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">

@@ -40,7 +40,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #bfab97;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
@@ -97,14 +97,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/logout">
                                     <span class="material-icons-outlined">
                                         cerrar Sesion
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
                                     <span class="material-icons-outlined">
                                         Perfil
                                     </span>

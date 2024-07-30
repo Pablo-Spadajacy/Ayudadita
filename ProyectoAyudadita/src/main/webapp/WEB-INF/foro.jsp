@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Message Wall</title>
+<title>Muro de mensaje</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <style type="text/css">
@@ -60,14 +60,6 @@
                             </span>
                             <span class="d-lg-none">Tienda</span>
                         </a>
-                    </li>                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="/messenges">
-                            <span class="material-symbols-outlined">
-                                chat
-                            </span>
-                            <span class="d-lg-none">Chat</span>
-                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -78,14 +70,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/logout">
                                     <span class="material-icons-outlined">
                                         cerrar Sesion
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
                                     <span class="material-icons-outlined">
                                         Perfil
                                     </span>
@@ -107,7 +99,7 @@
     
     <div class="container">
         <div class="col-6">
-            <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
+            <a class="btn btn-danger" href="/logout">Cerrar sesion</a>
             <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
             <a href="/principal" class="btn btn-dark">Volver al principio</a>
             <h2>Message Wall</h2>

@@ -22,10 +22,17 @@
 .message-container {
     margin-bottom: 15px; /* Espacio entre los mensajes */
 }
+body {
+        background-color: #ffffff; 
+        background-image: linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px), 
+                          linear-gradient(180deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+        background-size: 30px 30px; 
+        background-repeat: repeat; 
+    }
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #bfab97;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
@@ -40,12 +47,11 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" href="/principal">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
                             <span class="d-lg-none">Home</span>
-
                         </a>
                     </li>
                     <li class="nav-item">
@@ -176,7 +182,7 @@
             </c:forEach>
         </div>
 
-        <form:form action="/crear/mensaje/foroGeneral" method="post" modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
+        <form:form action="/crear/mensaje" method="post" modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
             <form:errors path="contenido" class="text-danger" />
             <form:label path="contenido">Añadir comentario:</form:label>
             <form:textarea path="contenido" class="form-control"></form:textarea>

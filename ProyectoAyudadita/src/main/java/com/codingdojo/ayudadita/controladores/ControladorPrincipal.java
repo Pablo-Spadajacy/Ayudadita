@@ -55,7 +55,7 @@ public class ControladorPrincipal {
 	//private RepositorioMensaje rm;
 	
 	@GetMapping("/principal")
-	public String principal(Model model, HttpSession session, @ModelAttribute("MensajeForoGeneral") MensajeForoGeneral mensaje) {
+	public String principal(Model model, HttpSession session, @ModelAttribute("mensajeForoGeneral") MensajeForoGeneral mensaje) {
 		Usuario userTemp = (Usuario) session.getAttribute("userInSession");
 		if(userTemp == null) {
 			return "redirect:/";
@@ -202,44 +202,44 @@ public class ControladorPrincipal {
 	}
 	
 	@PostMapping("/crear/mensaje")
-	public String crearMensaje(@RequestParam(value = "file", required = false) MultipartFile file,
-	                           @Valid @ModelAttribute("mensaje") Mensaje mensaje,
-	                           BindingResult result,
-	                           HttpSession session,
-	                           Model model) {
-	    Usuario userTemp = (Usuario) session.getAttribute("userInSession");
-	    if (userTemp == null) {
-	        return "redirect:/";
-	    }
-	    
-	    // Verifica que al menos uno de los campos (contenido o imagen) esté presente
-	    if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
-	        result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
-	        Long foroId = mensaje.getForoCarrera().getId();
-		    ForoCarrera foroBuscado = sf.buscarForo(foroId);
-		    model.addAttribute("foro", foroBuscado);
-		    mensaje.setForoCarrera(foroBuscado);
-	    }
+    public String crearMensaje(@RequestParam(value = "file", required = false) MultipartFile file,
+                               @Valid @ModelAttribute("mensaje") Mensaje mensaje,
+                               BindingResult result,
+                               HttpSession session,
+                               Model model) {
+        Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/";
+        }
 
-	    if (result.hasErrors()) {
-	        model.addAttribute("userInSession", userTemp);
-	        model.addAttribute("foro", mensaje.getForoCarrera());
-	        return "foro.jsp";
-	    }
+        // Verifica que al menos uno de los campos (contenido o imagen) esté presente
+        if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
+            result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
+            Long foroId = mensaje.getForoCarrera().getId();
+            ForoCarrera foroBuscado = sf.buscarForo(foroId);
+            model.addAttribute("foro", foroBuscado);
+            mensaje.setForoCarrera(foroBuscado);
+        }
 
-	    if (file != null && !file.isEmpty()) {
-	        String nombreArchivo = sf.guardarImg(file, mensaje.getForoCarrera().getId());
-	        if (!"error".equals(nombreArchivo)) {
-	            mensaje.setUrlFotoForo(nombreArchivo);
-	        } else {
-	            model.addAttribute("error", "Error al guardar la imagen");
-	        }
-	    }
+        if (result.hasErrors()) {
+            model.addAttribute("userInSession", userTemp);
+            model.addAttribute("foro", mensaje.getForoCarrera());
+            return "foro.jsp";
+        }
 
-	    mensaje.setAutor(userTemp);
-	    sf.saveMessage(mensaje);
-	    return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
-	}
+        if (file != null && !file.isEmpty()) {
+            String nombreArchivo = sf.guardarImg(file, mensaje.getForoCarrera().getId());
+            if (!"error".equals(nombreArchivo)) {
+                mensaje.setUrlFotoForo(nombreArchivo);
+            } else {
+                model.addAttribute("error", "Error al guardar la imagen");
+            }
+        }
+
+        mensaje.setAutor(userTemp);
+        sf.saveMessage(mensaje);
+        return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
+    }
 	
 	@GetMapping("/chats")
 	public String chats(HttpSession session, Model model)
