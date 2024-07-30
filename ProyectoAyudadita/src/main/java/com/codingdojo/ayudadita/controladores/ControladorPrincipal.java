@@ -63,10 +63,10 @@ public class ControladorPrincipal {
 		servGeneral.init();
 		
 		ForoGeneral foroGeneral = servGeneral.buscarForoPorNombre("Foro General");
+
 	    model.addAttribute("foro", foroGeneral);
-	    model.addAttribute("mensajeForoGeneral", new MensajeForoGeneral());
-	    
 	    model.addAttribute("listaAlumnos", us.findAllUsers());
+	    model.addAttribute("mensajeForoGeneral", new MensajeForoGeneral());
 		return "dashboard.jsp";
 	}
 	
@@ -483,3 +483,4 @@ public class ControladorPrincipal {
 	    return "redirect:/principal";
 	}
 }
+

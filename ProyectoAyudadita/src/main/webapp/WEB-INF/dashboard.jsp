@@ -113,28 +113,39 @@
 			
 		</header>
 		<div>
-			<div class="mt-3">
-			<h2 class="mb-1">Compañeros de tu facultad</h2>			
+			<h2 class="mb-5">Compañeros de tu facultad</h2>			
 			<c:forEach items="${listaAlumnos}" var="alumno">
-					<c:if test="${userInSession.facultad == alumno.facultad && userInSession.id != alumno.id}">
+					<c:if test="${userInSession.facultad == alumno.facultad}">
 						<h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
 						<h3>-Facultad/Universidad: ${alumno.facultad}</h3>
 						<h3>-Carrera: ${alumno.carrera}</h3>
 					</c:if>
 			</c:forEach><!-- MAXIMO 3 ALUMNOS  -->
-			</div>
-			<div class="mt-3">
-			<h2 class="mb-1">Compañeros de tu carrera</h2>
+			<h2 class="mb-5 mt-5">Compañeros de tu carrera</h2>
 				<c:forEach items="${listaAlumnos}" var="alumno">
-					<c:if test="${userInSession.carrera == alumno.carrera && userInSession.id != alumno.id}">
+					<c:if test="${userInSession.carrera == alumno.carrera}">
 						<h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
 						<h3>-Facultad/Universidad: ${alumno.facultad}</h3>
 						<h3>-Carrera: ${alumno.carrera}</h3>
 					</c:if>
 			</c:forEach>
-			</div>
 		</div>
 	</div>
+	<div>
+		<a href = "/foro/temas/" class = "btn btn-success">Foros</a>
+	</div>
+	<div>
+		<h2> Prueba de guardado de imagen</h2>
+		<form action="/prueba" method="post" enctype="multipart/form-data">
+	        <input type="file" name="file" accept="image/*" required />
+	        <br/><br/>
+	        
+	        <button type="submit">Cargar Imagen</button>
+		</form>	
+	</div>
+	
+	<h4>${userInSession.avatar}</h4>
+	<img src="/img/${userInSession.avatar}" alt="${userInSession.avatar}">
 	<div class="container">
     <div class="col-6">
         <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
