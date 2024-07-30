@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/store">
+                        <a class="nav-link" href="/store/">
                             <span class="material-symbols-outlined">
                                 store
                             </span>

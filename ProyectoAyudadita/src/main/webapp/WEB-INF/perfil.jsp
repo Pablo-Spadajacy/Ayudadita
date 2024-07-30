@@ -32,7 +32,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #bfab97;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
@@ -48,7 +48,7 @@
                 <a href="/principal" class="btn btn-danger">Cancelar</a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="./home.html">
+                        <a class="nav-link" href="/principal">
                             <span class="material-symbols-outlined">
                                 home
                             </span>
@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/store">
+                        <a class="nav-link" href="/store/">
                             <span class="material-symbols-outlined">
                                 store
                             </span>
@@ -110,8 +110,8 @@
     </nav>
     <div class="container justify-content-between">
     <div class="row mt-2">
-    <div class="col-6">
-		<div class="container text-center items-center border border-secondary rounded pb-2 position-fixed col-4">
+    <div class="col-6 ">
+		<div class="container text-center items-center border border-secondary rounded pb-2 position-fixed col-4" style="background-color: #bfab97;">
 			<h1>Nombre: ${usuario.nombre} ${usuario.apellido}</h1>
 			<h2>Facultad: ${usuario.facultad}</h2>
 			<h3>Carrera: ${usuario.carrera}</h3>

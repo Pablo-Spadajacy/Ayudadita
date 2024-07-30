@@ -25,7 +25,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #bfab97;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
