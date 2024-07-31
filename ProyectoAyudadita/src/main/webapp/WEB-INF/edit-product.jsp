@@ -32,6 +32,7 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                            <a></a>
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="/home">
@@ -130,28 +131,11 @@
                                     <form:label path="productLocation">Location:</form:label>
                                     <form:input path="productLocation" />
                                     <form:errors path="productLocation" class="text-danger" />
-
-                                    <!--
-                                        <form:select path="productLocation" class="form-select">
-                                            <c:forEach items="${locations}" var="location">
-                                                <form:option value="${location}">${location}</form:option>
-                                            </c:forEach>
-                                        </form:select>
-                           
-
-                            <div class="col-6">
-                                <h2>�No te gusta tu avatar? �Cambialo!</h2>
-                                <form action="/imagen" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="file" accept="image/*" required />
-                                    <br/><br/>
-                                <button type="submit">Cargar Imagen</button>
-                            </form>	
-                            </div>
-                            -->
                                 </div>
                                 <div>
                                     <input type="file" name="file" accept="image/*">
                                 </div>
+                                <form:hidden path="img" value="${product.img}"/>
                                 <form:hidden path="Creator" value="${userInSession.id}" />
                                 <form:hidden path="id" value="${product.id}" />
                                 <input type="hidden" value="put" name="_method">

@@ -53,7 +53,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                <a href="/principal" class="btn btn-danger">Cancelar</a>
+                <a></a>	
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/principal">
@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/foro/temas">
+                        <a class="nav-link" href="/foro/temas/">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>

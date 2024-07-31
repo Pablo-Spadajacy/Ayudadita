@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
@@ -55,11 +55,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/store">
+                        <a class="nav-link" href="/store/">
                             <span class="material-symbols-outlined">
                                 store
                             </span>
                             <span class="d-lg-none">Tienda</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/messenges">
+                            <span class="material-symbols-outlined">
+                                chat
+                            </span>
+                            <span class="d-lg-none">Chat</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -99,11 +107,25 @@
     </nav>
     
     <div class="container">
-        <div class="col-6">
-            <a class="btn btn-danger" href="/logout">Cerrar sesion</a>
-            <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
-            <a href="/principal" class="btn btn-dark">Volver al principio</a>
-            <h2>Message Wall</h2>
+        <div class="col-8 offset-2">
+            <div class="text-center">
+			    <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
+		        <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
+		        <a href="/principal" class="btn btn-dark">Volver al principio</a>
+		        <h2>Foro ${foro.nombreForo}</h2>
+	        </div>
+	        <form:form action="/crear/mensaje" method="post" modelAttribute="mensaje" enctype="multipart/form-data">
+			    <form:errors path="contenido" class="text-danger" />
+			    <h3 class="text-center">Publicar en el foro</h3>
+			    <form:textarea path="contenido" class="form-control"></form:textarea>
+			    <form:hidden path="autor.id" value="${userInSession.id}" />
+			    <form:hidden path="foroCarrera.id" value="${foro.id}" />
+			    <div class="text-center">
+		         	<label for="fileInput" class="form-label">Selecciona una imagen:</label>
+		            <input type="file" name="file" accept="image/*" class="form-control">
+		            <input type="submit" value="Enviar" class="btn btn-info mt-1">
+		        </div>
+			</form:form>
             <div class="border mb-3">
                 <!-- mostrar mensajes -->
                 <c:forEach items="${foro.foroMensajes}" var="msg">
@@ -138,17 +160,6 @@
                     </div>
                 </c:forEach>
             </div>
-
-           <form:form action="/crear/mensaje" method="post" modelAttribute="mensaje" enctype="multipart/form-data">
-			    <form:errors path="contenido" class="text-danger" />
-			    <form:label path="contenido">AÃ±adir comentario:</form:label>
-			    <form:textarea path="contenido" class="form-control"></form:textarea>
-			    <form:hidden path="autor.id" value="${userInSession.id}" />
-			    <form:hidden path="foroCarrera.id" value="${foro.id}" />
-			    <input type="submit" value="Enviar" class="btn btn-info">
-			    <br/><br/>
-			    <input type="file" name="file" accept="image/*">
-			</form:form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

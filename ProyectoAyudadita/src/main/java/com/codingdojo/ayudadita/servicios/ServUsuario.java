@@ -86,9 +86,6 @@ public class ServUsuario {
 		}	
 		return null;
 	}
-	public void actualizar(Usuario UsuarioAEditar, Usuario UsuarioEditado) {
-		
-	}
 	
 	public List<Usuario> usuariosDeMiCarrera(String carrera)
 	{

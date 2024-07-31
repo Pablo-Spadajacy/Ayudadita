@@ -29,6 +29,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <a></a>
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">
@@ -118,14 +119,13 @@
                                         <img src="../img/${product.img}" alt="Imagen del producto" class="card-img-top img-thumbnail" style="height: 200px; object-fit: cover;"/>
                                     </c:if>
                                     <div class="card-body">
-                                        <h5 class="card-title">Title: ${product.title}</h5>
-                                        <p class="card-text">precio: ${product.price}</p>
+                                        <h5 class="card-title">Titulo: ${product.title}</h5>
+                                        <p class="card-text">Precio: ${product.price}</p>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </c:forEach>
-
                 </div>
 			</div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

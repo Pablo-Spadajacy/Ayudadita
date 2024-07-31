@@ -13,7 +13,11 @@
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         </head>
-
+<style>
+.product-img	{
+	width: 300px;
+}
+</style>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
                 <div class="container-fluid">
@@ -29,6 +33,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                    <a></a>
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">
@@ -100,26 +105,35 @@
             </nav>
             <div class="container">
 
-                <a href="/store/" class="btn btn-success">Store</a>
-                <h1>Title: ${product.title}</h1>
-                <p>Location: ${product.productLocation}</p>
-                <p>Price: ${product.price}</p>
-                <p>Description: ${product.productDescription}</p>
-              
+                <a href="/store/" class="btn btn-success">Tienda</a>
+                <h1>Titulo: ${product.title}</h1>
+                <p>Localidad: ${product.productLocation}</p>
+                <p>Precio: ${product.price}</p>
+                <p>Descripcion: ${product.productDescription}</p>
+                <c:choose>
+				    <c:when test="${not empty product.img}">
+				        <!-- Imagen del producto disponible -->
+				        <img src="/img/${product.img}" class="product-img">
+				    </c:when>
+				    <c:otherwise>
+				        <!-- Imagen por defecto si el producto no tiene imagen -->
+				        <img src="/img/test.png" class="product-img">
+				    </c:otherwise>
+				</c:choose>
                 <div>
                     <c:if test="${userInSession.id == product.creator.id}">
                         
-                        <a href="/store/product/${id}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/store/product/${id}/edit" class="btn btn-warning">Editar</a>
                     </c:if>
                     
                     <c:if test="${userInSession.id == product.creator.id}">
-                        <a href="/store/product/${id}/delete" class="btn btn-danger">Delete</a>
+                        <a href="/store/product/${id}/delete" class="btn btn-danger">Borrar</a>
                     </c:if>
                 </div>
                 <div class="row">
                     <c:if test="${userInSession.id != product.creator.id}">
                         
-                        <a href="#" class="btn btn-success">Send messenge</a>
+                        <a href="#" class="btn btn-success">Enviar mensaje</a>
                     </c:if>
                 </div>
                 

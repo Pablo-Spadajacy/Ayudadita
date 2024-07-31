@@ -19,12 +19,6 @@
         color: #ffffff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    .navbar a {
-        color: #ffffff;
-    }
-    .navbar a:hover {
-        color: #f8f9fa;
-    }
     .header-title {
         background-color: #bfab97; 
         color: white;
@@ -70,18 +64,20 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
-        <div class="container-fluid">
+        <div class="container-fluid justify-content-between">
             <a class="navbar-brand" href="/principal">
                 <span class="material-icons-outlined">
                     home
                 </span>
                 <span class="d-lg-none ms-2">Home</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <a></a>	
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/principal">
@@ -105,6 +101,14 @@
                                 store
                             </span>
                             <span class="d-lg-none">Tienda</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/messenges">
+                            <span class="material-symbols-outlined">
+                                chat
+                            </span>
+                            <span class="d-lg-none">Chat</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">

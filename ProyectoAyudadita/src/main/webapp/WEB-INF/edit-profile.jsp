@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/foro/temas">
+                        <a class="nav-link" href="/foro/temas/">
                             <span class="material-symbols-outlined">
                                 groups
                             </span>
@@ -75,14 +75,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/logout">
                                     <span class="material-icons-outlined">
                                         cerrar Sesion
                                     </span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/perfil/${userInSession.id}">
                                     <span class="material-icons-outlined">
                                         Perfil
                                     </span>

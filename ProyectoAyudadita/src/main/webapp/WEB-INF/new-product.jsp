@@ -31,6 +31,7 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                            <a></a>	
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="/home">
@@ -38,7 +39,6 @@
                                                 home
                                             </span>
                                             <span class="d-lg-none">Home</span>
-                
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -104,56 +104,43 @@
                     <div class="container">
 
                         <form:form action="/store/product/create" method="post" modelAttribute="product" enctype="multipart/form-data">
-                            <h1>New Product</h1>
+                            <h1>Nuevos apuntes para la venta</h1>
                             <span class="text-danger">${errors.first('title')}</span>
 
                             <div class="container">
 
                                 <div>
-                                    <form:label path="title">Product Title:</form:label>
+                                    <form:label path="title" class="form-control">Titulo de los apuntes	:</form:label>
                                     <form:input path="title" class="form-control" />
                                     <form:errors path="title" class="text-danger" />
                                 </div>
 
                                 <div>
-                                    <form:label path="price">Price:</form:label>
+                                    <form:label path="price" class="form-control">Precio:</form:label>
                                     <form:input path="price" />
                                     <form:errors path="price" class="text-danger" />
                                 </div>
                                 <div>
-                                    <form:label path="productDescription">Description:</form:label>
+                                    <form:label path="productDescription" class="form-control">Descripcion:</form:label>
                                     <form:input path="productDescription" />
                                     <form:errors path="productDescription" class="text-danger" />
                                 </div>
                                 <div>
-                                    <form:label path="productLocation">Location:</form:label>
+                                    <form:label path="productLocation" class="form-control">Localidad:</form:label>
                                     <form:input path="productLocation" />
                                     <form:errors path="productLocation" class="text-danger" />
-                                    <!--
-                                                <form:select path="productLocation" class="form-select">
-                                                    <c:forEach items="${locations}" var="location">
-                                                        <form:option value="${location}">${location}</form:option>
-                                                    </c:forEach>
-                                                </form:select>
-                                    -->
                                 </div>
-
-                                <div>
-                                    <input type="file" name="file" accept="image/*">
-                                </div>
-
+                                <div class="text-center">
+						         	<label for="fileInput" class="form-label">(Opcional) Selecciona una imagen:</label>
+						            <input type="file" name="file" accept="image/*" class="form-control">
+						            <input type="submit" value="Enviar" class="btn btn-info mt-1">
+						        </div>
                                 <form:hidden path="Creator" value="${userInSession.id}" />
-                              
-                                <input type="submit" class="btn btn-success" value="Submit">
-                                <a href="/store/" class="btn btn-danger">Cancel</a>
+                                <input type="submit" class="btn btn-success" value="Enviar">
+                                <a href="/store/" class="btn btn-danger ms-1">Cancelar</a>
+                                </div>
                         </form:form>
-
-
-
-                    </div>
-
-
-
+						</div>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                         crossorigin="anonymous"></script>

@@ -202,44 +202,49 @@ public class ControladorPrincipal {
 	}
 	
 	@PostMapping("/crear/mensaje")
-    public String crearMensaje(@RequestParam(value = "file", required = false) MultipartFile file,
-                               @Valid @ModelAttribute("mensaje") Mensaje mensaje,
-                               BindingResult result,
-                               HttpSession session,
-                               Model model) {
-        Usuario userTemp = (Usuario) session.getAttribute("userInSession");
-        if (userTemp == null) {
-            return "redirect:/";
-        }
+	public String crearMensaje(@RequestParam(value = "file", required = false) MultipartFile file,
+	                           @Valid @ModelAttribute("mensaje") Mensaje mensaje,
+	                           BindingResult result,
+	                           HttpSession session,
+	                           Model model) {
+	    Usuario userTemp = (Usuario) session.getAttribute("userInSession");
+	    if (userTemp == null) {
+	        return "redirect:/";
+	    }
 
-        // Verifica que al menos uno de los campos (contenido o imagen) esté presente
-        if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
-            result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
-            Long foroId = mensaje.getForoCarrera().getId();
-            ForoCarrera foroBuscado = sf.buscarForo(foroId);
-            model.addAttribute("foro", foroBuscado);
-            mensaje.setForoCarrera(foroBuscado);
-        }
+	    // Verifica que al menos uno de los campos (contenido o imagen) esté presente
+	    if ((mensaje.getContenido() == null || mensaje.getContenido().trim().isEmpty()) && (file == null || file.isEmpty())) {
+	        result.rejectValue("contenido", "error.mensaje", "Debes ingresar un mensaje o subir una imagen.");
+	        Long foroId = mensaje.getForoCarrera().getId();
+	        ForoCarrera foroBuscado = sf.buscarForo(foroId);
+	        model.addAttribute("foro", foroBuscado);
+	        mensaje.setForoCarrera(foroBuscado);
+	    }
 
-        if (result.hasErrors()) {
-            model.addAttribute("userInSession", userTemp);
-            model.addAttribute("foro", mensaje.getForoCarrera());
-            return "foro.jsp";
-        }
+	    if (result.hasErrors()) {
+	        model.addAttribute("userInSession", userTemp);
+	        model.addAttribute("foro", mensaje.getForoCarrera());
+	        return "foro.jsp";
+	    }
 
-        if (file != null && !file.isEmpty()) {
-            String nombreArchivo = sf.guardarImg(file, mensaje.getForoCarrera().getId());
-            if (!"error".equals(nombreArchivo)) {
-                mensaje.setUrlFotoForo(nombreArchivo);
-            } else {
-                model.addAttribute("error", "Error al guardar la imagen");
-            }
-        }
+	    // Primero guarda el mensaje
+	    Mensaje mensajeGuardado = sf.saveMessage(mensaje);
 
-        mensaje.setAutor(userTemp);
-        sf.saveMessage(mensaje);
-        return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
-    }
+	    // Luego maneja el archivo (si existe)
+	    if (file != null && !file.isEmpty()) {
+	        // Guarda la imagen y obtiene el nombre del archivo
+	        String nombreArchivo = sf.guardarImg(file, mensajeGuardado.getId());
+	        if (!"error".equals(nombreArchivo)) {
+	            mensajeGuardado.setUrlFotoForo(nombreArchivo);
+	            sf.saveMessage(mensajeGuardado); // Actualiza el mensaje con la URL de la imagen
+	        } else {
+	            model.addAttribute("error", "Error al guardar la imagen");
+	            // Aunque haya un error, puedes optar por redirigir al usuario a la misma página
+	        }
+	    }
+
+	    return "redirect:/foro/tema/" + mensaje.getForoCarrera().getId();
+	}
 	
 	@GetMapping("/chats")
 	public String chats(HttpSession session, Model model)
@@ -457,7 +462,7 @@ public class ControladorPrincipal {
 
 	    if (result.hasErrors()) {
 	        model.addAttribute("userInSession", userTemp);
-	        model.addAttribute("mensajeForoGeneral", mensaje); // Asegurarse de que el objeto esté en el modelo
+	        model.addAttribute("mensajeForoGeneral", mensaje);
 	        return "dashboard.jsp";
 	    }
 
@@ -468,18 +473,24 @@ public class ControladorPrincipal {
 	        return "dashboard.jsp";
 	    }
 	    mensaje.setForoGeneral(foroGeneral);
+	    mensaje.setAutorForoGeneral(userTemp);
 
+	    // Primero guarda el mensaje
+	    MensajeForoGeneral mensajeGuardado = servGeneral.saveMessage(mensaje);
+
+	    // Luego maneja el archivo (si existe)
 	    if (file != null && !file.isEmpty()) {
-	        String nombreArchivo = servGeneral.guardarImg(file, mensaje.getForoGeneral().getId());
+	        // Guarda la imagen y obtiene el nombre del archivo
+	        String nombreArchivo = servGeneral.guardarImg(file, mensajeGuardado.getId());
 	        if (!"error".equals(nombreArchivo)) {
-	            mensaje.setUrlFotoForo(nombreArchivo);
+	            mensajeGuardado.setUrlFotoForo(nombreArchivo);
+	            servGeneral.saveMessage(mensajeGuardado); // Actualiza el mensaje con la URL de la imagen
 	        } else {
 	            model.addAttribute("error", "Error al guardar la imagen");
+	            // Aunque haya un error, puedes optar por redirigir al usuario a la misma página
 	        }
 	    }
 
-	    mensaje.setAutorForoGeneral(userTemp);
-	    servGeneral.saveMessage(mensaje);
 	    return "redirect:/principal";
 	}
 }

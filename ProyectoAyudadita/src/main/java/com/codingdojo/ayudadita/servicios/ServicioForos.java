@@ -58,7 +58,7 @@ public class ServicioForos {
 		return rf.save(foro);
 	}
 	
-public String guardarImg(MultipartFile file, Long id) {
+	public String guardarImg(MultipartFile file, Long id) {
 		
 		
 	    try {

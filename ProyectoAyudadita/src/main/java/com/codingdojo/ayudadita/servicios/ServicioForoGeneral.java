@@ -50,20 +50,13 @@ public class ServicioForoGeneral {
 		return rf.save(foro);
 	}
 	
-public String guardarImg(MultipartFile file, Long id) {
-		
-		
+	public String guardarImg(MultipartFile file, Long mensajeId) {
 	    try {
 	        byte[] bytes = file.getBytes();
-	        
 	        String nombreOriginal = file.getOriginalFilename();
 	        String nombreUnico = generarNombreUnico(nombreOriginal);
 	        Path path = Paths.get("src/main/webapp/img/" + nombreUnico);
 	        Files.write(path, bytes);
-	        
-	        MensajeForoGeneral mensajeForo = rm.findById(id).orElse(null);
-	        mensajeForo.setUrlFotoForo(nombreUnico);
-	        rm.save(mensajeForo);
 	        
 	        return nombreUnico;
 	    } catch (IOException e) {

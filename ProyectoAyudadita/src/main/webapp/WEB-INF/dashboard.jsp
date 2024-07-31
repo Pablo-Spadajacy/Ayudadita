@@ -29,6 +29,10 @@ body {
         background-size: 30px 30px; 
         background-repeat: repeat; 
     }
+.msg-img {
+		width: 95%;
+		margin: 0 auto;
+}
 </style>
 </head>
 <body>
@@ -45,6 +49,7 @@ body {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <a></a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/principal">
@@ -113,97 +118,93 @@ body {
             </div>
         </div>
     </nav>
-	<div class="container">
-		<header class="d-flex justify-content-between">
-			<h1>Bienvenido ${userInSession.nombre} !</h1>
-			
-		</header>
-		<div>
+    <div class="container-fluid">
+		<div class="row">
+		<div class="col-3">
 			<h2 class="mb-5">Compañeros de tu facultad</h2>			
-			<c:forEach items="${listaAlumnos}" var="alumno">
-					<c:if test="${userInSession.facultad == alumno.facultad}">
-						<h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
-						<h3>-Facultad/Universidad: ${alumno.facultad}</h3>
-						<h3>-Carrera: ${alumno.carrera}</h3>
-					</c:if>
+			<c:set var="count" value="0" />
+			<c:forEach items="${listaAlumnos}" var="alumno" varStatus="status">
+			    <c:if test="${userInSession.facultad == alumno.facultad && status.index < 3}">
+			        <h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
+			        <h3>-Carrera: ${alumno.carrera}</h3>
+			    </c:if>
 			</c:forEach><!-- MAXIMO 3 ALUMNOS  -->
 			<h2 class="mb-5 mt-5">Compañeros de tu carrera</h2>
-				<c:forEach items="${listaAlumnos}" var="alumno">
-					<c:if test="${userInSession.carrera == alumno.carrera}">
-						<h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
-						<h3>-Facultad/Universidad: ${alumno.facultad}</h3>
-						<h3>-Carrera: ${alumno.carrera}</h3>
-					</c:if>
+			<c:set var="count" value="0" />
+			<c:forEach items="${listaAlumnos}" var="alumno" varStatus="status">
+			    <c:if test="${userInSession.carrera == alumno.carrera && status.index < 3}">
+			        <h3>-Nombre: ${alumno.nombre} ${alumno.apellido}</h3>
+			        <h3>-Facultad/Universidad: ${alumno.facultad}</h3>
+			    </c:if>
 			</c:forEach>
 		</div>
-	</div>
-	<div>
-		<a href = "/foro/temas/" class = "btn btn-success">Foros</a>
-	</div>
-	<div>
-		<h2> Prueba de guardado de imagen</h2>
-		<form action="/prueba" method="post" enctype="multipart/form-data">
-	        <input type="file" name="file" accept="image/*" required />
-	        <br/><br/>
+			
+		<div class="col-7">
+			<form:form action="/crear/mensaje/foroGeneral" method="post" modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
+	            <form:errors path="contenido" class="text-danger" />
+	            <h3 class="text-center">¿Te gustaría compartir algo?</h3>
+	            <form:textarea path="contenido" class="form-control rounded-3" style="width: 100%; max-width: 95%; height: 100px;"></form:textarea>
+	            <form:hidden path="autorForoGeneral.id" value="${userInSession.id}" />
+	            <br/><br/>
+		         <div class="text-center col-10 offset-1">
+		         	<label for="fileInput" class="form-label">Selecciona una imagen:</label>
+		            <input type="file" name="file" accept="image/*" class="form-control" value="Selecciona una imagen">
+		            <input type="submit" value="Enviar" class="btn btn-info mt-1">
+		        </div>
+	        </form:form>
+	        <div class="text-center">
+			    <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
+		        <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
+		        <a href="/principal" class="btn btn-dark">Volver al principio</a>
+		        <h2>Foro principal</h2>
+	        </div>
+	        <div class="border mb-3">
+  			<!-- mostrar mensajes -->
+		    <c:choose>
+		        <c:when test="${not empty foro.foroGeneralMensajes}">
+		            <c:forEach items="${foro.foroGeneralMensajes}" var="msg" varStatus="status">
+		                <c:if test="${status.index < 5}">
+		                    <div class="message-container">
+		                        <p>
+		                            <a href="/perfil/${msg.autorForoGeneral.id}">
+		                                <!-- Muestra el avatar del autor -->
+		                                <c:choose>
+		                                    <c:when test="${not empty msg.autorForoGeneral.avatar}">
+		                                        <img src="/img/${msg.autorForoGeneral.avatar}" alt="Avatar de ${msg.autorForoGeneral.nombre}" class="avatar-img"/>
+		                                    </c:when>
+		                                    <c:otherwise>
+		                                        <c:if test="${msg.autorForoGeneral.id == 1}">
+		                                            <img src="/img/adminBlank.jpg" alt="Avatar de ${msg.autorForoGeneral.nombre}" class="avatar-img"/>
+		                                        </c:if>
+		                                        <c:if test="${msg.autorForoGeneral.id > 1}">
+		                                            <img src="/img/studentBlank.jpg" alt="Avatar de ${msg.autorForoGeneral.nombre}" class="avatar-img"/>
+		                                        </c:if>
+		                                    </c:otherwise>
+		                                </c:choose>
+		                                ${msg.autorForoGeneral.nombre}
+		                            </a>
+		                            <!-- Mostrar la imagen si existe -->
+		                            <c:if test="${not empty msg.contenido}">
+		                                <p class="mb-0 mt-1">${msg.contenido}</p>
+		                            </c:if>
+		                            <c:if test="${not empty msg.urlFotoForo}">
+		                                <img src="/img/${msg.urlFotoForo}" alt="Imagen enviada" class="img-fluid msg-img" />
+		                            </c:if>
+		                            <!-- Mostrar el contenido si existe -->
+		                        </p>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+		        </c:when>
+		        <c:otherwise>
+		            <p>¡Aún nadie ha publicado nada!</p>
+		        </c:otherwise>
+		    </c:choose>
+		</div>
+		</div>
 	        
-	        <button type="submit">Cargar Imagen</button>
-		</form>	
-	</div>
-	
-	<h4>${userInSession.avatar}</h4>
-	<img src="/img/${userInSession.avatar}" alt="${userInSession.avatar}">
-	<div class="container">
-    <div class="col-6">
-        <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
-        <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
-        <a href="/principal" class="btn btn-dark">Volver al principio</a>
-        <h2>Message Wall</h2>
-        <div class="border mb-3">
-            <!-- mostrar mensajes -->
-            <c:forEach items="${foro.foroGeneralMensajes}" var="msg">
-                <div class="message-container">
-                    <p>
-                        <a href="/perfil/${msg.autorForoGeneral.id}">
-                            <!-- Muestra el avatar del autor -->
-                            <c:choose>
-                                <c:when test="${not empty msg.autorForoGeneral.avatar}">
-                                    <img src="/img/${msg.autorForoGeneral.avatar}" alt="Avatar de ${msg.autorForoGeneral.nombre}" class="avatar-img"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:if test="${msg.autorForoGeneral.id == 1}">
-                                        <img src="/img/adminBlank.jpg" alt="Avatar de ${msg.autorForoGeneral.nombre}" class="avatar-img"/>
-                                    </c:if>
-                                    <c:if test="${msg.autorForoGeneral.id > 1}">
-                                        <img src="/img/studentBlank.jpg" alt="Avatar de ${msg.autorForoGeneral.nombre}" class="avatar-img"/>
-                                    </c:if>
-                                </c:otherwise>
-                            </c:choose>
-                            ${msg.autorForoGeneral.nombre}
-                        </a> dice:
-                        <c:choose>
-                            <c:when test="${not empty msg.urlFotoForo}">
-                                <img src="/img/${msg.urlFotoForo}" alt="Imagen enviada" class="img-fluid" />
-                            </c:when>
-                            <c:otherwise>
-                                ${msg.contenido}
-                            </c:otherwise>
-                        </c:choose>
-                    </p>
-                </div>
-            </c:forEach>
-        </div>
-
-        <form:form action="/crear/mensaje" method="post" modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
-            <form:errors path="contenido" class="text-danger" />
-            <form:label path="contenido">Añadir comentario:</form:label>
-            <form:textarea path="contenido" class="form-control"></form:textarea>
-            <form:hidden path="autorForoGeneral.id" value="${userInSession.id}" />
-            <input type="submit" value="Enviar" class="btn btn-info">
-            <br/><br/>
-            <input type="file" name="file" accept="image/*">
-        </form:form>
+	    </div>
     </div>
-</div>
 	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
