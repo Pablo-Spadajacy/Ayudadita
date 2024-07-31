@@ -63,11 +63,12 @@ public class ControladorPrincipal {
 		servGeneral.init();
 		
 		ForoGeneral foroGeneral = servGeneral.buscarForoPorNombre("Foro General");
-
+		List<MensajeForoGeneral> mensajesForoGeneral = servGeneral.buscarMensajesPorForo(foroGeneral.getId());
 	    model.addAttribute("foro", foroGeneral);
 	    model.addAttribute("listaAlumnos", us.findAllUsers());
 	    model.addAttribute("mensajeForoGeneral", new MensajeForoGeneral());
-		return "dashboard.jsp";
+	    model.addAttribute("mensajesForoGeneral", mensajesForoGeneral);
+	    return "dashboard.jsp";
 	}
 	
 	@PostMapping("/imagen")
@@ -445,7 +446,7 @@ public class ControladorPrincipal {
 	}
 	
 	@PostMapping("/crear/mensaje/foroGeneral")
-	public String crearMensajeForoGeneral(@RequestParam(value = "file", required = false) MultipartFile file,
+	public String crearMensajeForoGeneral(@RequestParam(value = "foto", required = false) MultipartFile file,
 	                                      @Valid @ModelAttribute("mensajeForoGeneral") MensajeForoGeneral mensaje,
 	                                      BindingResult result,
 	                                      HttpSession session,
