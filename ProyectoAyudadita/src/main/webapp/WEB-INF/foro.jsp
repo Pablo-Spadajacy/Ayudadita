@@ -150,6 +150,7 @@
                             </a> dice:
                             <c:choose>
                                 <c:when test="${not empty msg.urlFotoForo}">
+                                	<p class="message-text">${msg.contenido}</p>
                                     <img src="/img/${msg.urlFotoForo}" alt="Imagen enviada" class="img-fluid" />
                                 </c:when>
                                 <c:otherwise>
