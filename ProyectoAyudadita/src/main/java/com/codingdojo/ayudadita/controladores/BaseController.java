@@ -39,6 +39,14 @@ public class BaseController {
 		
 		return "index.jsp";
 	}
+	@GetMapping("/sobreNosotros")
+	public String sobreNosotros(@ModelAttribute("newUser") Usuario newUser, Model model) {
+			
+		model.addAttribute("listaFacultades", Facultad.Facultades);
+		model.addAttribute("listaCarreras", Carrera.Carreras);
+		
+		return "sobreNosotros.jsp";
+	}
 	
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("newUser") Usuario newUser,
