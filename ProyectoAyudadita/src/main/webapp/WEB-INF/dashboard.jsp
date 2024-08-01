@@ -82,113 +82,89 @@
                 </nav>
 
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="container col-3">
-                            <h2 class="mb-5">Compañeros de tu facultad</h2>
-                            <c:set var="count" value="0" />
-                            <c:forEach items="${listaAlumnos}" var="alumno" varStatus="status">
-                                <c:if
-                                    test="${userInSession.facultad == alumno.facultad && userInSession.id != alumno.id && status.index < 3}">
-                                    <div class="card mb-3">
-                                        <div class="card-body d-flex align-items-center">
-                                            <c:choose>
-                                                <c:when test="${not empty alumno.avatar}">
-                                                    <img src="/img/${alumno.avatar}" alt="Avatar de ${alumno.nombre}"
-                                                        class="card-avatar me-3" />
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="/img/studentBlank.jpg" alt="Avatar de ${alumno.nombre}"
-                                                        class="card-avatar me-3" />
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <div>
-                                                <h5 class="card-title mb-1">${alumno.nombre} ${alumno.apellido}</h5>
-                                                <p class="card-text mb-0">Carrera: ${alumno.carrera}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            </c:forEach>
-                            <h2 class="mb-5 mt-5">Compañeros de tu carrera</h2>
-                            <c:set var="count" value="0" />
-                            <c:forEach items="${listaAlumnos}" var="alumno" varStatus="status">
-                                <c:if
-                                    test="${userInSession.carrera == alumno.carrera && userInSession.id != alumno.id && status.index < 3}">
-                                    <div class="card mb-3">
-                                        <div class="card-body d-flex align-items-center">
-                                            <c:choose>
-                                                <c:when test="${not empty alumno.avatar}">
-                                                    <img src="/img/${alumno.avatar}" alt="Avatar de ${alumno.nombre}"
-                                                        class="card-avatar me-3" />
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="/img/studentBlank.jpg" alt="Avatar de ${alumno.nombre}"
-                                                        class="card-avatar me-3" />
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <div>
-                                                <h5 class="card-title mb-1">${alumno.nombre} ${alumno.apellido}</h5>
-                                                <p class="card-text mb-0">Facultad/Universidad: ${alumno.facultad}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            </c:forEach>
-                        </div>
-
-                        <div class="container col-7">
-                            <form:form action="/crear/mensaje/foroGeneral" class="container" method="post"
-                                modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
-                                <form:errors path="contenido" class="text-danger" />
-                                <h3>Bienvenido ${userInSession.nombre} al foro General</h3>
-                                <div class="row" >
-                                    <div class="form-group mt-3">
-                                        <form:textarea path="contenido" class="form-control"
-                                            placeholder="Escribe un mensaje..."></form:textarea>
-                                    </div>
-                                    <div class="form-group text-center ">
-                                        <label for="foto" class="custom-file-upload btn btn-info mt-1">
-                                            <input type="file" id="foto" class="d-none" name="foto" accept="image/*"
-                                                required />
-                                            Agregar imagen
-                                        </label>
-
-
-
-                                        <button type="submit" class="btn btn-info mt-1">Enviar</button>
+            <div class="row">
+                <div class="col-3">
+                    <h2 class="mb-5">Compañeros de tu facultad</h2>
+                    <c:forEach items="${listaAlumnos}" var="alumno">
+                        <c:if test="${userInSession.facultad == alumno.facultad && userInSession.id != alumno.id}">
+                            <div class="card mb-3">
+                                <div class="card-body d-flex align-items-center">
+                                    <c:choose>
+                                        <c:when test="${not empty alumno.avatar}">
+                                            <img src="/img/${alumno.avatar}" alt="Avatar de ${alumno.nombre}" class="card-avatar me-3"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="/img/studentBlank.jpg" alt="Avatar de ${alumno.nombre}" class="card-avatar me-3"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div>
+                                        <h5 class="card-title mb-1">${alumno.nombre} ${alumno.apellido}</h5>
+                                        <p class="card-text mb-0">Carrera: ${alumno.carrera}</p>
                                     </div>
                                 </div>
-
-                            </form:form>
-                            <c:forEach items="${mensajesForoGeneral}" var="mensaje">
-                                <div class="message-card container">
-                                    <div class="message-header">
-                                        <c:choose>
-                                            <c:when test="${not empty mensaje.autorForoGeneral.avatar}">
-                                                <img src="/img/${mensaje.autorForoGeneral.avatar}"
-                                                    alt="Avatar de ${mensaje.autorForoGeneral.nombre}"
-                                                    class="avatar-img" />
-                                            </c:when>
-                                            <c:otherwise>
-                                                <img src="/img/studentBlank.jpg"
-                                                    alt="Avatar de ${mensaje.autorForoGeneral.nombre}"
-                                                    class="avatar-img" />
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <span class="message-author">${mensaje.autorForoGeneral.nombre}</span>
-                                    </div>
-                                    <div class="message-content">
-                                        <p class="message-text">${mensaje.contenido}</p>
-                                        <c:if test="${not empty mensaje.urlFotoForo}">
-                                            <img src="/img/${mensaje.urlFotoForo}" alt="Imagen del mensaje"
-                                                class="img-fluid msg-img">
-                                        </c:if>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                    <h2 class="mb-5 mt-5">Compañeros de tu carrera</h2>
+                    <c:forEach items="${listaAlumnos}" var="alumno">
+                        <c:if test="${userInSession.carrera == alumno.carrera && userInSession.id != alumno.id}">
+                            <div class="card mb-3">
+                                <div class="card-body d-flex align-items-center">
+                                    <c:choose>
+                                        <c:when test="${not empty alumno.avatar}">
+                                            <img src="/img/${alumno.avatar}" alt="Avatar de ${alumno.nombre}" class="card-avatar me-3"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="/img/studentBlank.jpg" alt="Avatar de ${alumno.nombre}" class="card-avatar me-3"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div>
+                                        <h5 class="card-title mb-1">${alumno.nombre} ${alumno.apellido}</h5>
+                                        <p class="card-text mb-0">Facultad/Universidad: ${alumno.facultad}</p>
                                     </div>
                                 </div>
-                            </c:forEach>
-                        </div>
-                    </div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
                 </div>
+
+                <div class="col-7">
+                    <form:form action="/crear/mensaje/foroGeneral" method="post" modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
+                        <form:errors path="contenido" class="text-danger" />
+                        <h3>Bienvenido ${userInSession.nombre} al foro General</h3>
+                        <div class="form-group mt-3">
+                            <form:textarea path="contenido" class="form-control" placeholder="Escribe un mensaje..."></form:textarea>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="foto">Enviar foto</label>
+                            <input type="file" class="form-control-file" id="foto" name="foto">
+                        </div>
+                        <button type="submit" class="btn btn-info mt-3">Enviar</button>
+                    </form:form>
+                    <c:forEach items="${mensajesForoGeneral}" var="mensaje">
+                        <div class="message-card">
+                            <div class="message-header">
+                                <c:choose>
+                                    <c:when test="${not empty mensaje.autorForoGeneral.avatar}">
+                                        <img src="/img/${mensaje.autorForoGeneral.avatar}" alt="Avatar de ${mensaje.autorForoGeneral.nombre}" class="avatar-img"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/img/studentBlank.jpg" alt="Avatar de ${mensaje.autorForoGeneral.nombre}" class="avatar-img"/>
+                                    </c:otherwise>
+                                </c:choose>
+                                <span class="message-author">${mensaje.autorForoGeneral.nombre}</span>
+                            </div>
+                            <div class="message-content">
+                                <p class="message-text">${mensaje.contenido}</p>
+                                <c:if test="${not empty mensaje.urlFotoForo}">
+                                    <img src="/img/${mensaje.urlFotoForo}" alt="Imagen del mensaje" class="img-fluid msg-img">
+                                </c:if>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
 
                 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
                     integrity="sha384-gbkS7ggqbRjOcUQ01iNm5hQuTkwtMjHzVb7vU50c4Hn3uHj6B5gJpRJG3LNmjYMC"
