@@ -139,7 +139,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                                 ${msg.autor.nombre}
-                                            </a> dice:
+                                            </a>
                                             <c:choose>
                                                 <c:when test="${not empty msg.urlFotoForo}">
                                                     <img src="/img/${msg.urlFotoForo}" alt="Imagen enviada"
