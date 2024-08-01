@@ -12,104 +12,64 @@
                 crossorigin="anonymous">
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-        </head>
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
+            </head>
 
         <body>
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/principal">
-                        <span class="material-icons-outlined">
-                            home
-                        </span>
-                        <span class="d-lg-none ms-2">Home</span> <!-- Texto para dispositivos pequeños -->
+                    
+                        <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
+                        
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                    <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">
-                                    <span class="material-symbols-outlined">
-                                        home
-                                    </span>
-                                    <span class="d-lg-none">Home</span>
-
+                                <a class="nav-link" href="/principal">
+                                    <span class="material-symbols-outlined">home</span> Home
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span class="material-symbols-outlined">
-                                        groups
-                                    </span>
-                                    <span class="d-lg-none">Grupos</span>
+                                <a class="nav-link" href="/foro/temas/">
+                                    <span class="material-symbols-outlined">groups</span> Foros
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./store.html">
-                                    <span class="material-symbols-outlined">
-                                        store
-                                    </span>
-                                    <span class="d-lg-none">Tienda</span>
+                                <a class="nav-link" href="/store/">
+                                    <span class="material-symbols-outlined">store</span> Tienda
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./add-friend.html">
-                                    <span class="material-symbols-outlined">
-                                        person_add
-                                    </span>
-                                    <span class="d-lg-none">agregar persona</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./notifications.html">
-                                    <span class="material-symbols-outlined">
-                                        notifications
-                                    </span>
-                                    <span class="d-lg-none">Notificaciones</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./messenges.html">
-                                    <span class="material-symbols-outlined">
-                                        chat
-                                    </span>
-                                    <span class="d-lg-none">Chat</span>
+                                <a class="nav-link" href="/messenges">
+                                    <span class="material-symbols-outlined">chat</span> Chat
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="material-symbols-outlined">
-                                        account_circle
-                                    </span>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="material-symbols-outlined">account_circle</span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-menu-end"
+                                    aria-labelledby="navbarDropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="material-icons-outlined">
-                                                log out
-                                            </span>
+                                        <a class="dropdown-item" href="/logout">
+                                            <span class="material-icons-outlined">Cerrar sesión</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="material-icons-outlined">
-                                                events
-                                            </span>
+                                        <a class="dropdown-item" href="/perfil/${userInSession.id}">
+                                            <span class="material-icons-outlined">Perfil</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="/editarPerfil">
-                                            <span class="material-icons-outlined">
-                                                edit profile
-                                            </span>
+                                            <span class="material-icons-outlined">Editar Perfil</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -19,15 +19,16 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="/principal">
-                            <span class="material-icons-outlined">home</span>
-                            <span class="d-lg-none ms-2">Home</span>
+                        
+                            <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
+                            
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                             aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link" href="/principal">
@@ -184,6 +185,10 @@
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
                     integrity="sha384-QmeHVoQA3RN49A9KTyML1imF0F5wHHyw2oIogtkY8Vr81Bt+K5B8zBMMsgrG2O/Q"
                     crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous">
+                </script>
             </body>
 
             </html>

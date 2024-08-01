@@ -14,6 +14,68 @@
             </head>
 
             <body>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/principal">
+                        
+                            <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
+                            
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/principal">
+                                        <span class="material-symbols-outlined">home</span> Home
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/foro/temas/">
+                                        <span class="material-symbols-outlined">groups</span> Foros
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/store/">
+                                        <span class="material-symbols-outlined">store</span> Tienda
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/messenges">
+                                        <span class="material-symbols-outlined">chat</span> Chat
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="material-symbols-outlined">account_circle</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <li>
+                                            <a class="dropdown-item" href="/logout">
+                                                <span class="material-icons-outlined">Cerrar sesión</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/perfil/${userInSession.id}">
+                                                <span class="material-icons-outlined">Perfil</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/editarPerfil">
+                                                <span class="material-icons-outlined">Editar Perfil</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
                 <div class="container">
                     <h1>Chat con ${otroUsuario.nombre} ${otroUsuario.apellido}</h1>
 

@@ -17,82 +17,60 @@
         </head>
 
         <body>
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/principal">
-                        <span class="material-icons-outlined">
-                            home
-                        </span>
-                        <span class="d-lg-none ms-2">Home</span> <!-- Texto para dispositivos pequeÃ±os -->
+                    
+                        <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
+                        
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                        <a></a>
+                    <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/home">
-                                    <span class="material-symbols-outlined">
-                                        home
-                                    </span>
-                                    <span class="d-lg-none">Home</span>
-
+                                <a class="nav-link" href="/principal">
+                                    <span class="material-symbols-outlined">home</span> Home
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/foro/temas/">
-                                    <span class="material-symbols-outlined">
-                                        groups
-                                    </span>
-                                    <span class="d-lg-none">Foros</span>
+                                    <span class="material-symbols-outlined">groups</span> Foros
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/store/">
-                                    <span class="material-symbols-outlined">
-                                        store
-                                    </span>
-                                    <span class="d-lg-none">Tienda</span>
+                                    <span class="material-symbols-outlined">store</span> Tienda
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/messenges">
-                                    <span class="material-symbols-outlined">
-                                        chat
-                                    </span>
-                                    <span class="d-lg-none">Chat</span>
+                                    <span class="material-symbols-outlined">chat</span> Chat
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="material-symbols-outlined">
-                                        account_circle
-                                    </span>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="material-symbols-outlined">account_circle</span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-menu-end"
+                                    aria-labelledby="navbarDropdownMenuLink">
                                     <li>
                                         <a class="dropdown-item" href="/logout">
-                                            <span class="material-icons-outlined">
-                                                Cerrar Sesi�n
-                                            </span>
+                                            <span class="material-icons-outlined">Cerrar sesión</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="/perfil/${userInSession.id}">
-                                            <span class="material-icons-outlined">
-                                                Perfil
-                                            </span>
+                                            <span class="material-icons-outlined">Perfil</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="/editarPerfil">
-                                            <span class="material-icons-outlined">
-                                                Editar Perfil
-                                            </span>
+                                            <span class="material-icons-outlined">Editar Perfil</span>
                                         </a>
                                     </li>
                                 </ul>
