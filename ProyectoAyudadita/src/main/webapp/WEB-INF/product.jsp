@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html>
-        <html lang="en">
+        <html>
 
         <head>
             <meta charset="UTF-8">
@@ -12,12 +12,9 @@
                 crossorigin="anonymous">
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
         </head>
-<style>
-.product-img	{
-	width: 300px;
-}
-</style>
+
         <body>
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
                 <div class="container-fluid">
@@ -33,7 +30,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                    <a></a>
+                        <a></a>
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">
@@ -79,7 +76,7 @@
                                     <li>
                                         <a class="dropdown-item" href="/logout">
                                             <span class="material-icons-outlined">
-                                                Cerrar Sesión
+                                                Cerrar Sesiï¿½n
                                             </span>
                                         </a>
                                     </li>
@@ -111,32 +108,32 @@
                 <p>Precio: ${product.price}</p>
                 <p>Descripcion: ${product.productDescription}</p>
                 <c:choose>
-				    <c:when test="${not empty product.img}">
-				        <!-- Imagen del producto disponible -->
-				        <img src="/img/${product.img}" class="product-img">
-				    </c:when>
-				    <c:otherwise>
-				        <!-- Imagen por defecto si el producto no tiene imagen -->
-				        <img src="/img/test.png" class="product-img">
-				    </c:otherwise>
-				</c:choose>
+                    <c:when test="${not empty product.img}">
+                        <!-- Imagen del producto disponible -->
+                        <img src="/img/${product.img}" class="product-img">
+                    </c:when>
+                    <c:otherwise>
+                        <!-- Imagen por defecto si el producto no tiene imagen -->
+                        <img src="/img/test.png" class="product-img">
+                    </c:otherwise>
+                </c:choose>
                 <div>
                     <c:if test="${userInSession.id == product.creator.id}">
-                        
+
                         <a href="/store/product/${id}/edit" class="btn btn-warning">Editar</a>
                     </c:if>
-                    
+
                     <c:if test="${userInSession.id == product.creator.id}">
                         <a href="/store/product/${id}/delete" class="btn btn-danger">Borrar</a>
                     </c:if>
                 </div>
                 <div class="row">
                     <c:if test="${userInSession.id != product.creator.id}">
-                        
+
                         <a href="#" class="btn btn-success">Enviar mensaje</a>
                     </c:if>
                 </div>
-                
+
             </div>
 
 

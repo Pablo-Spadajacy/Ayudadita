@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
             <%@ page isErrorPage="true" %>
@@ -15,7 +15,8 @@
                         crossorigin="anonymous">
                     <link rel="stylesheet"
                         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-                </head>
+                        <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
+                    </head>
 
                 <body>
                 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">

@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
         <!DOCTYPE html>
-        <html lang="en">
+        <html>
 
         <head>
             <meta charset="UTF-8">
@@ -12,6 +13,7 @@
                 crossorigin="anonymous">
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
         </head>
 
         <body>
@@ -29,7 +31,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                    <a></a>
+                        <a></a>
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">
@@ -75,7 +77,7 @@
                                     <li>
                                         <a class="dropdown-item" href="/logout">
                                             <span class="material-icons-outlined">
-                                                Cerrar Sesión
+                                                Cerrar Sesiï¿½n
                                             </span>
                                         </a>
                                     </li>
@@ -113,10 +115,14 @@
                             <a href="/store/product/${product.id}" class="text-decoration-none">
                                 <div class="card ">
                                     <c:if test="${empty product.img}">
-                                        <img src="../img/test.png" alt="imagen del producto" class="card-img-top img-fluid img-thumbnail" style="height: 200px; object-fit: cover;" />
+                                        <img src="../img/test.png" alt="imagen del producto"
+                                            class="card-img-top img-fluid img-thumbnail"
+                                            style="height: 200px; object-fit: cover;" />
                                     </c:if>
                                     <c:if test="${not empty product.img}">
-                                        <img src="../img/${product.img}" alt="Imagen del producto" class="card-img-top img-thumbnail" style="height: 200px; object-fit: cover;"/>
+                                        <img src="../img/${product.img}" alt="Imagen del producto"
+                                            class="card-img-top img-thumbnail"
+                                            style="height: 200px; object-fit: cover;" />
                                     </c:if>
                                     <div class="card-body">
                                         <h5 class="card-title">Titulo: ${product.title}</h5>
@@ -127,11 +133,12 @@
                         </div>
                     </c:forEach>
                 </div>
-			</div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous">
-        </script>
-            
-</body>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous">
+                </script>
 
-</html>
+        </body>
+
+        </html>

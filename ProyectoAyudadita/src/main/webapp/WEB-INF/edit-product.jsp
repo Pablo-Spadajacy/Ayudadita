@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
             <%@ page isErrorPage="true" %>
@@ -15,6 +15,7 @@
                         crossorigin="anonymous">
                     <link rel="stylesheet"
                         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+                    <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
                 </head>
 
                 <body>
@@ -32,7 +33,7 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-                            <a></a>
+                                <a></a>
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
                                         <a class="nav-link" href="/home">
@@ -105,7 +106,8 @@
                     </nav>
 
                     <div class="container">
-                        <form:form action="/store/product/update" method="post" modelAttribute="product" enctype="multipart/form-data">
+                        <form:form action="/store/product/update" method="post" modelAttribute="product"
+                            enctype="multipart/form-data">
                             <h1>Edit Product</h1>
                             <span class="text-danger">${errors.first('title')}</span>
 
@@ -135,7 +137,7 @@
                                 <div>
                                     <input type="file" name="file" accept="image/*">
                                 </div>
-                                <form:hidden path="img" value="${product.img}"/>
+                                <form:hidden path="img" value="${product.img}" />
                                 <form:hidden path="Creator" value="${userInSession.id}" />
                                 <form:hidden path="id" value="${product.id}" />
                                 <input type="hidden" value="put" name="_method">
