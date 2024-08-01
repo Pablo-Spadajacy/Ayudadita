@@ -1,25 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+            <!DOCTYPE html>
+            <html>
+
+            <head>
+                <meta charset="UTF-8">
 <title>Muro de mensaje</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-<style type="text/css">
-.avatar-img {
-        width: 30px; /* Ajusta el tamaï¿½o del avatar */
-        height: 30px; /* Ajusta el tamaï¿½o del avatar */
-        border-radius: 50%; /* Hace que la imagen sea redonda */
-        margin-right: 10px; /* Espacio entre la imagen y el nombre */
-    }
-.message-container {
-    margin-bottom: 15px; /* Espacio entre los mensajes */
-}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #835448;">
@@ -109,7 +99,7 @@
     <div class="container">
         <div class="col-8 offset-2">
             <div class="text-center">
-			    <a class="btn btn-danger" href="/logout">Cerrar sesión</a>
+			    <a class="btn btn-danger" href="/logout">Cerrar sesiï¿½n</a>
 		        <a href="/foro/temas/" class="btn btn-dark">Volver a foros</a>
 		        <a href="/principal" class="btn btn-dark">Volver al principio</a>
 		        <h2>Foro ${foro.nombreForo}</h2>
