@@ -82,7 +82,7 @@
             </nav>
             <div class="container mt-4">
 
-                <a href="/store/product/new" class="btn btn-primary position-fixed bottom-0 end-0 m-3 btn-info">
+                <a href="/store/product/new" class="btn  position-fixed bottom-0 end-0 m-3 btn-info">
                     <span class="material-symbols-outlined">
                         add_circle
                     </span>
