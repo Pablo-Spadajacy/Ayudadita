@@ -27,102 +27,91 @@
                     <header>
                         <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
                         <nav class="navegacion">
-                            <a href="/">Inicio</a>
-                            <a href="/sobreNosotros">Sobre nosotros</a>
-                            <button class="btn">Iniciar Sesión</button>
-                        </nav>
-                    </header>
+							<a href="/">Inicio</a>
+							<a href="/sobreNosotros">Sobre nosotros</a>
+							<button class="btn-subb">Iniciar Sesión</button>
+						</nav>
+					</header>
 
-                    <div class="fondo position-absolute top-50 start-50 translate-middle">
-                        <span class="icono-cerrar"><i class="fa-solid fa-xmark"></i></span>
-                        <div class="contenedor-form login active-form">
-                            <h2>Iniciar sesión</h2>
-                            <form action="/login" method="POST">
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" class="form-control" name="correo" required>
-                                    <label>Email</label>
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-lock"></i></span>
-                                    <input type="password" class="form-control" name="password" required>
-                                    <label>Contraseña:</label>
-                                </div>
-                                <p class="text-danger">${errorLogin}</p>
-                                <div class="recordar d-flex justify-content-between">
-                                    <label for="#"><input type="checkbox">Recordar sesión</label>
-                                    <a href="#">¿Olvidaste la contraseña?</a>
-                                </div>
-                                <input type="submit" class="btn-subb" value="Iniciar sesion">
-                                <div class="registrar">
-                                    <p>¿No tenés cuenta? <a href="#" class="registrar-link">Registrarse</a></p>
-                                </div>
-                            </form>
-                        </div>
+					<div class="fondo position-absolute top-50 start-50 translate-middle">
+						<span class="icono-cerrar"><i class="fa-solid fa-xmark"></i></span>
+						<div class="contenedor-form login active-form">
+							<h2>Iniciar sesión</h2>
+							<form action="/login" method="POST">
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-envelope"></i></span>
+									<input type="email" class="form-control" name="correo" required placeholder="Correo">
+								</div>
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-lock"></i></span>
+									<input type="password" class="form-control" name="password" required placeholder="Contraseña">
+								</div>
+								<p class="text-danger">${errorLogin}</p>
+								<div class="recordar d-flex justify-content-between">
+									<label for="#"><input type="checkbox">Recordar sesión</label>
+									<a href="#">¿Olvidaste la contraseña?</a>
+								</div>
+								<input type="submit" class="btn-subb" value="Iniciar sesion">
+								<div class="registrar">
+									<p>¿No tenés cuenta? <a href="#" class="registrar-link">Registrarse</a></p>
+								</div>
+							</form>
+						</div>
 
 
 
 
 
-                        <div class="contenedor-form registrar">
-                            <h2>Registrarse</h2>
+						<div class="contenedor-form registrar">
+							<h2>Registrarse</h2>
 
-                            <form:form action="/register" method="post" modelAttribute="newUser">
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-user"></i></span>
-                                    <form:label path="nombre">Nombre</form:label>
-                                    <form:input path="nombre" class="form-control" />
-                                    <form:errors path="nombre" class="text-danger" />
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-user"></i></span>
-                                    <form:label path="apellido">Apellido</form:label>
-                                    <form:input path="apellido" class="form-control" />
-                                    <form:errors path="apellido" class="text-danger" />
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-envelope"></i></span>
-                                    <form:label path="email">Correo</form:label>
-                                    <form:input path="email" class="form-control" />
-                                    <form:errors path="email" class="text-danger" />
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-lock"></i></span>
-                                    <form:label path="contrasenna">Contraseña</form:label>
-                                    <form:password path="contrasenna" class="form-control" />
-                                    <form:errors path="contrasenna" class="text-danger" />
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-lock"></i></span>
-                                    <form:label path="confirmar">Confirmar contraseña</form:label>
-                                    <form:password path="confirmar" class="form-control" />
-                                    <form:errors path="confirmar" class="text-danger" />
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-building-columns"></i></span>
-                                    <form:label path="facultad">Facultad:</form:label>
-                                    <form:select path="facultad" class="form-select">
-                                        <c:forEach items="${listaFacultades}" var="facultad">
-                                            <form:option value="${facultad}">${facultad}</form:option>
-                                        </c:forEach>
-                                    </form:select>
-                                    <form:errors path="facultad" class="text-danger" />
-                                </div>
-                                <div class="contenedor-input">
-                                    <span class="icono"><i class="fa-solid fa-chalkboard-user"></i></span>
-                                    <form:label path="carrera">Carrera:</form:label>
-                                    <form:select path="carrera" class="form-select">
-                                        <c:forEach items="${listaCarreras}" var="carrera">
-                                            <form:option value="${carrera}">${carrera}</form:option>
-                                        </c:forEach>
-                                    </form:select>
-                                    <form:errors path="facultad" class="text-danger" />
-                                </div>
-                                <input type="submit" class="btn-subb" value="Registro">
-                                <div class="registrar">
-                                    <p>¿Tienes una cuenta? <a href="#" class="login-link">Iniciar sesión</a></p>
-                                </div>
-                            </form:form>
+							<form:form action="/register" method="post" modelAttribute="newUser">
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-user"></i></span>
+									<form:input path="nombre" class="form-control" placeholder="Nombre"/>
+									<form:errors path="nombre" class="text-danger" />
+								</div>
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-user"></i></span>
+									<form:input path="apellido" class="form-control" placeholder="Apellido" />
+									<form:errors path="apellido" class="text-danger" />
+								</div>
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-envelope"></i></span>
+									<form:input path="email" class="form-control" placeholder="Correo"/>
+									<form:errors path="email" class="text-danger" />
+								</div>
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-lock"></i></span>
+									<form:password path="contrasenna" class="form-control" placeholder="Contraseña"/>
+									<form:errors path="contrasenna" class="text-danger" />
+								</div>
+								<div class="contenedor-input">
+									<span class="icono"><i class="fa-solid fa-lock"></i></span>
+									<form:password path="confirmar" class="form-control" placeholder="Contraseña"/>
+									<form:errors path="confirmar" class="text-danger" />
+								</div>
+								<div class="contenedor-input">
+									<form:select path="facultad" class="form-select">
+										<c:forEach items="${listaFacultades}" var="facultad">
+											<form:option value="${facultad}">${facultad}</form:option>
+										</c:forEach>
+									</form:select>
+									<form:errors path="facultad" class="text-danger" />
+								</div>
+								<div class="contenedor-input">
+									<form:select path="carrera" class="form-select">
+										<c:forEach items="${listaCarreras}" var="carrera">
+											<form:option value="${carrera}">${carrera}</form:option>
+										</c:forEach>
+									</form:select>
+									<form:errors path="facultad" class="text-danger" />
+								</div>
+								<input type="submit" class="btn-subb" value="Registro">
+								<div class="registrar">
+									<p>¿Tienes una cuenta? <a href="#" class="login-link">Iniciar sesión</a></p>
+								</div>
+							</form:form>
                         </div>
                     </div>
 

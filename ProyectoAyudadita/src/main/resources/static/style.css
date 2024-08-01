@@ -162,8 +162,17 @@ header {
     color: #5c3a2f;
 }
 
+form input[type="text"]::placeholder,
+form input[type="password"]::placeholder,
+form input[type="email"]::placeholder{
+	color: #5c3a2f;
+	font-weight: bold;
+}
+
 .contenedor-input input:focus~label,
-.contenedor-input input:valid~label {
+.contenedor-input input:valid~label,
+.contenedor-input form:input:focus~form:label,
+.contenedor-input form:input:valid~form:label {
     top: -5px;
 }
 

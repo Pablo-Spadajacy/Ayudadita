@@ -41,13 +41,11 @@
 							<form action="/login" method="POST">
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-envelope"></i></span>
-									<input type="email" class="form-control" name="correo" required>
-									<label>Email</label>
+									<input type="email" class="form-control" name="correo" required placeholder="Correo">
 								</div>
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-lock"></i></span>
-									<input type="password" class="form-control" name="password" required>
-									<label>Contraseña:</label>
+									<input type="password" class="form-control" name="password" required placeholder="Contraseña">
 								</div>
 								<p class="text-danger">${errorLogin}</p>
 								<div class="recordar d-flex justify-content-between">
@@ -71,37 +69,30 @@
 							<form:form action="/register" method="post" modelAttribute="newUser">
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-user"></i></span>
-									<form:label path="nombre">Nombre</form:label>
-									<form:input path="nombre" class="form-control" />
+									<form:input path="nombre" class="form-control" placeholder="Nombre"/>
 									<form:errors path="nombre" class="text-danger" />
 								</div>
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-user"></i></span>
-									<form:label path="apellido">Apellido</form:label>
-									<form:input path="apellido" class="form-control" />
+									<form:input path="apellido" class="form-control" placeholder="Apellido" />
 									<form:errors path="apellido" class="text-danger" />
 								</div>
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-envelope"></i></span>
-									<form:label path="email">Correo</form:label>
-									<form:input path="email" class="form-control" />
+									<form:input path="email" class="form-control" placeholder="Correo"/>
 									<form:errors path="email" class="text-danger" />
 								</div>
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-lock"></i></span>
-									<form:label path="contrasenna">Contraseña</form:label>
-									<form:password path="contrasenna" class="form-control" />
+									<form:password path="contrasenna" class="form-control" placeholder="Contraseña"/>
 									<form:errors path="contrasenna" class="text-danger" />
 								</div>
 								<div class="contenedor-input">
 									<span class="icono"><i class="fa-solid fa-lock"></i></span>
-									<form:label path="confirmar">Confirmar contraseña</form:label>
-									<form:password path="confirmar" class="form-control" />
+									<form:password path="confirmar" class="form-control" placeholder="Contraseña"/>
 									<form:errors path="confirmar" class="text-danger" />
 								</div>
 								<div class="contenedor-input">
-									<span class="icono"><i class="fa-solid fa-building-columns"></i></span>
-									<form:label path="facultad">Facultad:</form:label>
 									<form:select path="facultad" class="form-select">
 										<c:forEach items="${listaFacultades}" var="facultad">
 											<form:option value="${facultad}">${facultad}</form:option>
@@ -110,8 +101,6 @@
 									<form:errors path="facultad" class="text-danger" />
 								</div>
 								<div class="contenedor-input">
-									<span class="icono"><i class="fa-solid fa-chalkboard-user"></i></span>
-									<form:label path="carrera">Carrera:</form:label>
 									<form:select path="carrera" class="form-select">
 										<c:forEach items="${listaCarreras}" var="carrera">
 											<form:option value="${carrera}">${carrera}</form:option>
