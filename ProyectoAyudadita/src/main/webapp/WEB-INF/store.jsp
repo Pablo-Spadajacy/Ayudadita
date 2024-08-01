@@ -13,6 +13,7 @@
                 crossorigin="anonymous">
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ayu22.png" alt="logo-ayudadita">
             <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
         </head>
 
@@ -81,7 +82,7 @@
             </nav>
             <div class="container mt-4">
 
-                <a href="/store/product/new" class="btn btn-primary position-fixed bottom-0 end-0 m-3">
+                <a href="/store/product/new" class="btn btn-primary position-fixed bottom-0 end-0 m-3 btn-info">
                     <span class="material-symbols-outlined">
                         add_circle
                     </span>

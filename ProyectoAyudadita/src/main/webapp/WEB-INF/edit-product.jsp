@@ -15,6 +15,7 @@
                         crossorigin="anonymous">
                     <link rel="stylesheet"
                         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+                    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ayu22.png" alt="logo-ayudadita">
                     <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
                 </head>
 
@@ -88,7 +89,7 @@
                             <h1>Edit Product</h1>
                             <span class="text-danger">${errors.first('title')}</span>
 
-                            <div class="container">
+                            <div>
 
                                 <div>
                                     <form:label path="title">Product Title:</form:label>
@@ -98,17 +99,17 @@
 
                                 <div>
                                     <form:label path="price">Price:</form:label>
-                                    <form:input path="price" />
+                                    <form:input path="price" class="form-control"/>
                                     <form:errors path="price" class="text-danger" />
                                 </div>
                                 <div>
                                     <form:label path="productDescription">Description:</form:label>
-                                    <form:input path="productDescription" />
+                                    <form:input path="productDescription" class="form-control"/>
                                     <form:errors path="productDescription" class="text-danger" />
                                 </div>
                                 <div>
                                     <form:label path="productLocation">Location:</form:label>
-                                    <form:input path="productLocation" />
+                                    <form:input path="productLocation" class="form-control"/>
                                     <form:errors path="productLocation" class="text-danger" />
                                 </div>
                                 <div>
@@ -119,8 +120,9 @@
                                 <form:hidden path="id" value="${product.id}" />
                                 <input type="hidden" value="put" name="_method">
 
-                                <input type="submit" class="btn btn-success" value="Submit">
-                                <a href="/store/" class="btn btn-danger">Cancel</a>
+                                <input type="submit" class="btn btn-success btn-info mt-3 mr-2" value="Submit">
+                                <a href="/store/" class="btn btn-danger btn-info mt-3">Cancel</a>
+                        	</div>
                         </form:form>
 
                     </div>

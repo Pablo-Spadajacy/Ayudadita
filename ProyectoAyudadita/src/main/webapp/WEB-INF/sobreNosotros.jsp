@@ -167,7 +167,7 @@
                                     <h4><a href="https://www.linkedin.com/in/pablo-francisco-quiroga/"
                                             target="_blank">Pablo
                                             Quiroga</a></h4>
-                                    <p>Organizador / Backend</p>
+                                    <p>Backend</p>
                                 </div>
                                 <div class="col-md-4 text-center mb-4">
                                     <img src="${pageContext.request.contextPath}/images/vanina.png"

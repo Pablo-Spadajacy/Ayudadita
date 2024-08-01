@@ -16,8 +16,8 @@
                         crossorigin="anonymous">
                     <link rel="stylesheet"
                         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-                
-                        <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
+                	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ayu22.png" alt="logo-ayudadita">
+                    <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
                 </head>
 
                 <body>
@@ -108,7 +108,7 @@
                                                 <form:option value="${facultad}">${facultad}</form:option>
                                             </c:forEach>
                                         </form:select>
-                                        <p class="text-danger">AVISO: Si no quires cambiar de facultad elije la actual
+                                        <p class="text-danger">AVISO: Si no queres cambiar de facultad elegí la actual
                                         </p>
                                     </div>
                                     <div>
@@ -118,13 +118,13 @@
                                                 <form:option value="${carrera}">${carrera}</form:option>
                                             </c:forEach>
                                         </form:select>
-                                        <p class="text-danger">AVISO: Si no quires cambiar la carrera elije la actual
+                                        <p class="text-danger">AVISO: Si no queres cambiar la carrera elegí la actual
                                         </p>
                                         <form:errors path="facultad" class="text-danger" />
                                     </div>
 
                                     <div>
-                                        <form:label path="contrasenna">Debes colocar tu contraseña para verificar
+                                        <form:label path="contrasenna">Debes colocar tu contraseña para verificar los cambios
                                         </form:label>
                                         <input type="password" class="form-control" name="contrasenna" />
                                         <form:errors path="contrasenna" class="text-danger" />
@@ -139,7 +139,7 @@
                             <div class="col-6">
                                 <h2>¿No te gusta tu avatar? ¡Cambialo!</h2>
                                 <form action="/imagen" class="form-group container d-flex" method="post" enctype="multipart/form-data">
-                                    <label for="fileUpload" class="custom-file-upload btn btn-info mt-1">
+                                    <label for="fileUpload" class="custom-file-upload btn btn-info mt-1 margen">
                                         <input type="file" id="fileUpload" class="d-none" name="file" accept="image/*" required />
                                         Seleccionar archivo
                                     </label> 

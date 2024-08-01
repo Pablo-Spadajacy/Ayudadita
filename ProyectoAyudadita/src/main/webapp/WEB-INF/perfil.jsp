@@ -12,6 +12,7 @@
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
                 <title>Perfil de ${usuario.nombre}</title>
+                <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ayu22.png" alt="logo-ayudadita">
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
             </head>
 
@@ -89,7 +90,6 @@
                                 <h3>Carrera: ${usuario.carrera}</h3>
                                 <c:choose>
                                     <c:when test="${not empty usuario.avatar}">
-                                        <h4>Avatar del Usuario</h4>
                                         <img src="/img/${usuario.avatar}" alt="${usuario.avatar}"
                                             class="avatarNoDefault border border-secondary">
                                     </c:when>

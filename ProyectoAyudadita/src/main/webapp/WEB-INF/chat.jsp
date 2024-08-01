@@ -11,6 +11,7 @@
                     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
                     crossorigin="anonymous">
                     <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
+                    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ayu22.png" alt="logo-ayudadita">
             </head>
 
             <body>

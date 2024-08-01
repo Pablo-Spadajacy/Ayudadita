@@ -11,6 +11,7 @@
                     crossorigin="anonymous">
                 <link rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+                <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ayu22.png" alt="logo-ayudadita">
                 <title>Bienvenido ${userInSession.nombre}</title>
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
             </head>
@@ -154,7 +155,7 @@
 
 
 
-                                        <button type="submit" class="btn btn-info mt-3">Enviar</button>
+                                        <button type="submit" class="btn btn-info mt-1">Enviar</button>
                                     </div>
                                 </div>
 
