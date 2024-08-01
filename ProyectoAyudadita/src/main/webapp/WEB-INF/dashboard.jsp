@@ -144,7 +144,7 @@
                                     <form:textarea path="contenido" class="form-control"
                                         placeholder="Escribe aquí..."></form:textarea>
                                 </div>
-                                <div class="row mt-3">
+                                <div class="form-group text-center mb-3">
                                     <label for="foto" class="custom-file-upload btn btn-info mt-1">
                                         Agregar imagen
                                         <input type="file" class="d-none" id="foto" name="foto">
@@ -156,7 +156,7 @@
                                                                  Agregar imagen
                                             </label>
                                                 -->
-                                    <button type="submit" class="btn btn-info mt-3">Enviar</button>
+                                    <button type="submit" class="btn btn-info mt-1">Enviar</button>
                                 </div>
                             </form:form>
                             <c:forEach items="${mensajesForoGeneral}" var="mensaje">
