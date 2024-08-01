@@ -8,7 +8,7 @@
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>item</title>
+                    <title>Nuevo producto</title>
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
                         rel="stylesheet"
                         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
@@ -84,40 +84,40 @@
                     <div class="container">
 
                         <form:form action="/store/product/create" method="post" modelAttribute="product" enctype="multipart/form-data">
-                            <h1>Nuevos apuntes para la venta</h1>
+                            <h2>Crea tu publicación</h2>
+                            <h4>¡Vende, intercambiá o regalá tus apuntes!</h4>
                             <span class="text-danger">${errors.first('title')}</span>
 
-                            <div class="container">
+                            <div>
 
                                 <div>
-                                    <form:label path="title" class="form-control">Titulo de los apuntes	:</form:label>
+                                    <form:label path="title" >Titulo de los apuntes	:</form:label>
                                     <form:input path="title" class="form-control" />
                                     <form:errors path="title" class="text-danger" />
                                 </div>
 
                                 <div>
-                                    <form:label path="price" class="form-control">Precio:</form:label>
-                                    <form:input path="price" />
+                                    <form:label path="price" >Precio:</form:label>
+                                    <form:input path="price" class="form-control"/>
                                     <form:errors path="price" class="text-danger" />
                                 </div>
                                 <div>
-                                    <form:label path="productDescription" class="form-control">Descripcion:</form:label>
-                                    <form:input path="productDescription" />
+                                    <form:label path="productDescription" >Descripcion:</form:label>
+                                    <form:input path="productDescription" class="form-control"/>
                                     <form:errors path="productDescription" class="text-danger" />
                                 </div>
                                 <div>
-                                    <form:label path="productLocation" class="form-control">Localidad:</form:label>
-                                    <form:input path="productLocation" />
+                                    <form:label path="productLocation" >Localidad:</form:label>
+                                    <form:input path="productLocation" class="form-control"/>
                                     <form:errors path="productLocation" class="text-danger" />
                                 </div>
-                                <div class="text-center">
+                                <div>
 						         	<label for="fileInput" class="form-label">(Opcional) Selecciona una imagen:</label>
 						            <input type="file" name="file" accept="image/*" class="form-control">
-						            <input type="submit" value="Enviar" class="btn btn-info mt-1">
 						        </div>
                                 <form:hidden path="Creator" value="${userInSession.id}" />
-                                <input type="submit" class="btn btn-success" value="Enviar">
-                                <a href="/store/" class="btn btn-danger ms-1">Cancelar</a>
+                                <input type="submit" class="btn btn-info mt-1" value="Enviar">
+                                <a href="/store/" class="btn btn-info mt-1">Cancelar</a>
                                 </div>
                         </form:form>
 						</div>

@@ -93,7 +93,7 @@
                         <form action="/usuario/chat/${otroUsuario.id}/enviar" method="post">
                             <div class="form-group">
                                 <textarea name="contenido" class="form-control"
-                                    placeholder="Escribe tu mensaje aqu�"></textarea>
+                                    placeholder="Escribe tu mensaje aquí"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Enviar</button>
                         </form>

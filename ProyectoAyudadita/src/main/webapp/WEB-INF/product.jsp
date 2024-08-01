@@ -19,9 +19,9 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/principal">
-                    
+
                         <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
-                        
+
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -51,12 +51,11 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="material-symbols-outlined">account_circle</span>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end"
-                                    aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                     <li>
                                         <a class="dropdown-item" href="/logout">
                                             <span class="material-icons-outlined">Cerrar sesión</span>
@@ -79,36 +78,39 @@
                 </div>
             </nav>
             <div class="container">
+                <div class="d-flex justify-content-between">
+                    <c:choose>
+                        <c:when test="${not empty product.img}">
+                            <!-- Imagen del producto disponible -->
+                            <img src="/img/${product.img}" class="product-img">
+                        </c:when>
+                        <c:otherwise>
+                            <!-- Imagen por defecto si el producto no tiene imagen -->
+                            <img src="/img/test.png" class="product-img">
+                        </c:otherwise>
+                    </c:choose>
+                    <div>
 
-                <a href="/store/" class="btn btn-success">Tienda</a>
-                <h1>Titulo: ${product.title}</h1>
-                <p>Localidad: ${product.productLocation}</p>
-                <p>Precio: ${product.price}</p>
-                <p>Descripcion: ${product.productDescription}</p>
-                <c:choose>
-                    <c:when test="${not empty product.img}">
-                        <!-- Imagen del producto disponible -->
-                        <img src="/img/${product.img}" class="product-img">
-                    </c:when>
-                    <c:otherwise>
-                        <!-- Imagen por defecto si el producto no tiene imagen -->
-                        <img src="/img/test.png" class="product-img">
-                    </c:otherwise>
-                </c:choose>
+                        <h1>Titulo: ${product.title}</h1>
+                        <p>Localidad: ${product.productLocation}</p>
+                        <p>Precio: ${product.price}</p>
+                        <p>Descripcion: ${product.productDescription}</p>
+                    </div>
+                </div>
                 <div>
                     <c:if test="${userInSession.id == product.creator.id}">
 
-                        <a href="/store/product/${id}/edit" class="btn btn-warning">Editar</a>
+                        <a href="/store/product/${id}/edit" class="btn btn-info mt-1">Editar</a>
                     </c:if>
 
                     <c:if test="${userInSession.id == product.creator.id}">
-                        <a href="/store/product/${id}/delete" class="btn btn-danger">Borrar</a>
+                        <a href="/store/product/${id}/delete" class="btn btn-info mt-1">Borrar</a>
                     </c:if>
                 </div>
                 <div class="row">
                     <c:if test="${userInSession.id != product.creator.id}">
 
-                        <a href="#" class="btn btn-success">Enviar mensaje</a>
+                        <a href="#" class="btn btn-info mt-1">Enviar mensaje</a>
                     </c:if>
                 </div>
 

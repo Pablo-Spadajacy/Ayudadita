@@ -12,74 +12,7 @@
             <link rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
-            <style>
-                body {
-                    background-color: #ffffff;
-                    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-                        linear-gradient(180deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-                    background-size: 30px 30px;
-                    background-repeat: repeat;
-                }
 
-                .navbar {
-                    background-color: #bfab97;
-                    color: #ffffff;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                }
-
-                .header-title {
-                    background-color: #bfab97;
-                    color: white;
-                    padding: 20px;
-                    text-align: center;
-                    border-radius: 0.25rem;
-                    margin-bottom: 20px;
-                }
-
-                .card-header {
-                    background-color: #d6bfa6;
-                    color: #6f4e37;
-                }
-
-                .btn-custom-success {
-                    background-color: #bfab97;
-                    color: white;
-                    border: none;
-                }
-
-                .btn-custom-primary {
-                    background-color: #d6bfa6;
-                    /* Color marr�n m�s claro */
-                    color: white;
-                    border: none;
-                }
-
-                .btn-custom-success:hover,
-                .btn-custom-primary:hover {
-                    opacity: 0.9;
-                }
-
-                .dropdown-menu {
-                    background-color: #bfab97;
-                    border: none;
-                    color: #6f4e37;
-                }
-
-                .dropdown-item {
-                    color: #6f4e37;
-                }
-
-                .dropdown-item:hover {
-                    background-color: #d6bfa6;
-                    color: #6f4e37;
-                    /* Color de texto al pasar el rat�n */
-                }
-
-                .dropdown-item span {
-                    vertical-align: middle;
-                    margin-right: 8px;
-                }
-            </style>
         </head>
 
         <body>
@@ -147,10 +80,10 @@
             </nav>
 
             <div class="header-title">
-                <h1>�Bienvenido a la seccion de Foros! Conecta con Tu Carrera, Comparte Ideas y Aprende. </h1>
+                <h1>¡Bienvenido a la seccion de Foros! Conecta con Tu Carrera, Comparte Ideas y Aprende. </h1>
             </div>
 
-            <div class="container mt-4">
+            <div class="mt-4">
                 <div class="row">
                     <div class="col-12">
                         <div class="row">

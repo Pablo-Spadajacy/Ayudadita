@@ -12,6 +12,21 @@ body {
     margin-left: 15px;
 }
 
+.container{
+    background-color: rgba(255, 255, 255);
+    margin-top: 1%;
+    padding: 1%;
+    box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.6);
+}
+.header-title {
+    background-color: #bfab97;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0.25rem;
+    margin-bottom: 20px;
+}
+
 .navbar {
     background-color: #bfab97;
     color: #ffffff;
@@ -54,10 +69,52 @@ body {
     margin-bottom: 15px;
 }
 
+.btn-custom-success {
+    background-color: #bfab97;
+    color: white;
+    border: none;
+}
+
+.btn-custom-primary {
+    background-color: #d6bfa6;
+    /* Color marr�n m�s claro */
+    color: white;
+    border: none;
+}
+
+.btn-custom-success:hover,
+.btn-custom-primary:hover {
+    opacity: 0.9;
+}
+
+.dropdown-menu {
+    background-color: #bfab97;
+    border: none;
+    color: #6f4e37;
+}
+
+.dropdown-item {
+    color: #6f4e37;
+}
+
+.dropdown-item:hover {
+    background-color: #d6bfa6;
+    color: #6f4e37;
+    /* Color de texto al pasar el rat�n */
+}
+
+.dropdown-item span {
+    vertical-align: middle;
+    margin-right: 8px;
+}
 .message-header {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+.card-header {
+    background-color: #d6bfa6;
+    color: #6f4e37;
 }
 
 .message-author {

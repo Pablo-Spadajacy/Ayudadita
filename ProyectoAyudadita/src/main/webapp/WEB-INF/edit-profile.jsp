@@ -16,7 +16,7 @@
                         crossorigin="anonymous">
                     <link rel="stylesheet"
                         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-                    <%@ page isErrorPage="true" %>
+                
                         <link rel="stylesheet" href="${pageContext.request.contextPath}/style2.css">
                 </head>
 
@@ -124,24 +124,27 @@
                                     </div>
 
                                     <div>
-                                        <form:label path="contrasenna">Debes colocar tu contrase�a para verificar
+                                        <form:label path="contrasenna">Debes colocar tu contraseña para verificar
                                         </form:label>
                                         <input type="password" class="form-control" name="contrasenna" />
                                         <form:errors path="contrasenna" class="text-danger" />
                                     </div>
                                     <p class="text-danger">${errorContra}</p>
                                     <p class="text-danger">${size}</p>
-                                    <input type="submit" value="Guardar Perfil" class="btn btn-success mt-1">
+                                    <input type="submit" value="Guardar Perfil" class="btn btn-info mt-1">
                                 </form:form>
 
 
                             </div>
                             <div class="col-6">
-                                <h2>�No te gusta tu avatar? �Cambialo!</h2>
-                                <form action="/imagen" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="file" accept="image/*" required />
-                                    <br /><br />
-                                    <button type="submit">Cargar Imagen</button>
+                                <h2>¿No te gusta tu avatar? ¡Cambialo!</h2>
+                                <form action="/imagen" class="form-group container d-flex" method="post" enctype="multipart/form-data">
+                                    <label for="fileUpload" class="custom-file-upload btn btn-info mt-1">
+                                        <input type="file" id="fileUpload" class="d-none" name="file" accept="image/*" required />
+                                        Seleccionar archivo
+                                    </label> 
+                                    
+                                    <button type="submit" class="btn btn-info mt-1">Cargar Imagen</button>
                                 </form>
                             </div>
                         </div>

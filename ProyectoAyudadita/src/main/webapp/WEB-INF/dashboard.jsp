@@ -19,9 +19,10 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="/principal">
-                        
-                            <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita" class="logo">
-                            
+
+                            <img src="${pageContext.request.contextPath}/images/ayu.png" alt="logo-ayudadita"
+                                class="logo">
+
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -81,7 +82,7 @@
 
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="container col-3">
                             <h2 class="mb-5">Compañeros de tu facultad</h2>
                             <c:set var="count" value="0" />
                             <c:forEach items="${listaAlumnos}" var="alumno" varStatus="status">
@@ -134,23 +135,32 @@
                             </c:forEach>
                         </div>
 
-                        <div class="col-7">
-                            <form:form action="/crear/mensaje/foroGeneral" method="post"
+                        <div class="container col-7">
+                            <form:form action="/crear/mensaje/foroGeneral" class="container" method="post"
                                 modelAttribute="mensajeForoGeneral" enctype="multipart/form-data">
                                 <form:errors path="contenido" class="text-danger" />
                                 <h3>Bienvenido ${userInSession.nombre} al foro General</h3>
-                                <div class="form-group mt-3">
-                                    <form:textarea path="contenido" class="form-control"
-                                        placeholder="Escribe un mensaje..."></form:textarea>
+                                <div class="row" >
+                                    <div class="form-group mt-3">
+                                        <form:textarea path="contenido" class="form-control"
+                                            placeholder="Escribe un mensaje..."></form:textarea>
+                                    </div>
+                                    <div class="form-group text-center ">
+                                        <label for="foto" class="custom-file-upload btn btn-info mt-1">
+                                            <input type="file" id="foto" class="d-none" name="foto" accept="image/*"
+                                                required />
+                                            Agregar imagen
+                                        </label>
+
+
+
+                                        <button type="submit" class="btn btn-info mt-3">Enviar</button>
+                                    </div>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <label for="foto">Enviar foto</label>
-                                    <input type="file" class="form-control-file" id="foto" name="foto">
-                                </div>
-                                <button type="submit" class="btn btn-info mt-3">Enviar</button>
+
                             </form:form>
                             <c:forEach items="${mensajesForoGeneral}" var="mensaje">
-                                <div class="message-card">
+                                <div class="message-card container">
                                     <div class="message-header">
                                         <c:choose>
                                             <c:when test="${not empty mensaje.autorForoGeneral.avatar}">
@@ -185,10 +195,10 @@
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
                     integrity="sha384-QmeHVoQA3RN49A9KTyML1imF0F5wHHyw2oIogtkY8Vr81Bt+K5B8zBMMsgrG2O/Q"
                     crossorigin="anonymous"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                crossorigin="anonymous">
-                </script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                    crossorigin="anonymous">
+                    </script>
             </body>
 
             </html>

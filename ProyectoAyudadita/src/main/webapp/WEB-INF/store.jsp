@@ -103,8 +103,8 @@
                                             style="height: 200px; object-fit: cover;" />
                                     </c:if>
                                     <div class="card-body">
-                                        <h5 class="card-title">Titulo: ${product.title}</h5>
                                         <p class="card-text">Precio: ${product.price}</p>
+                                        <h5 class="card-title">${product.title}</h5>
                                     </div>
                                 </div>
                             </a>

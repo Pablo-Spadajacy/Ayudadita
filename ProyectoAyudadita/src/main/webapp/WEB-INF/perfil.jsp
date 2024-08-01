@@ -108,11 +108,11 @@
                                 </c:choose>
                                 <br>
                                 <c:if test="${usuario.id == userInSession.id}">
-                                    <a href="/editarPerfil" class="btn btn-success mt-3 mb-2">Editar perfil</a>
+                                    <a href="/editarPerfil" class="btn btn-info mt-1 border">Editar perfil</a>
                                 </c:if>
                             </div>
                         </div>
-                        <div class="col-6 border border-secondary rounded">
+                        <div class="col-6 container rounded">
                             <h3 class="mt-2">Publicaciones del usuario:</h3>
                             <c:forEach items="${foro.foroGeneralMensajes}" var="msg">
                                 <c:if test="${msg.autor.id == usuario.id}">
